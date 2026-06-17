@@ -4,11 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"pveRH-mod-manager/internal/logger"
 )
 
 // OnlineMod 在线 Mod 信息
@@ -25,12 +26,13 @@ type OnlineMod struct {
 // FetchGameVersions 从服务器获取可用的游戏版本列表
 func FetchGameVersions(serverURL string) ([]string, error) {
 	url := strings.TrimRight(serverURL, "/") + "/api/versions"
-	log.Printf("获取游戏版本链接: %s", url)
+	logger.Debugf("请求游戏版本列表: %s", url)
 	resp, err := http.Get(url)
 	if err != nil {
+		logger.Errorf("获取版本列表失败: %v", err)
 		return nil, fmt.Errorf("无法获取版本列表: %v", err)
 	}
-	log.Printf("获取游戏版本列表响应参数: %d %s", resp.StatusCode, resp.Body)
+	logger.Debugf("版本列表响应: status=%d", resp.StatusCode)
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
@@ -50,9 +52,11 @@ func FetchOnlineMods(serverURL, gameVersion string) ([]OnlineMod, error) {
 	if gameVersion != "" {
 		url += "?ver=" + gameVersion
 	}
+	logger.Debugf("请求在线 Mod 列表: %s", url)
 
 	resp, err := http.Get(url)
 	if err != nil {
+		logger.Errorf("获取在线 Mod 列表失败: %v", err)
 		return nil, fmt.Errorf("无法获取在线 Mod: %v", err)
 	}
 	defer resp.Body.Close()
@@ -71,9 +75,10 @@ func FetchOnlineMods(serverURL, gameVersion string) ([]OnlineMod, error) {
 // DownloadMod 下载单个 Mod 并保存到 Mod 库对应路径
 // 保存路径格式：{游戏版本}/{作者}/[Mod类型]/{中文名}/{文件名}
 func DownloadMod(mod OnlineMod, modLibPath, serverURL string) error {
+	logger.Infof("开始下载 Mod: %s/%s, 版本: %s, 作者: %s", mod.NameCN, mod.FileName, mod.GameVer, mod.Author)
 	// 构建保存目录
 	saveDir := filepath.Join(modLibPath, mod.GameVer, mod.Author)
-	log.Printf("构建保存目录: %s", saveDir)
+	logger.Debugf("构建保存目录: %s", saveDir)
 	if mod.ModType != "" {
 		saveDir = filepath.Join(saveDir, mod.ModType)
 	}
@@ -90,11 +95,12 @@ func DownloadMod(mod OnlineMod, modLibPath, serverURL string) error {
 		// 如果服务器未提供直链，根据规则拼接（假设文件可通过 /files/ 路径访问）
 		downloadURL = strings.TrimRight(serverURL, "/") + "/files/" + mod.FileName
 	}
-	log.Printf("构建下载链接: %s", downloadURL)
+	logger.Debugf("下载链接: %s", downloadURL)
 
 	// 执行下载
 	resp, err := http.Get(downloadURL)
 	if err != nil {
+		logger.Errorf("下载请求失败: %s, %v", downloadURL, err)
 		return fmt.Errorf("下载失败: %v", err)
 	}
 	defer resp.Body.Close()
@@ -111,8 +117,10 @@ func DownloadMod(mod OnlineMod, modLibPath, serverURL string) error {
 
 	_, err = io.Copy(outFile, resp.Body)
 	if err != nil {
+		logger.Errorf("写入文件失败: %s, %v", savePath, err)
 		return fmt.Errorf("写入文件失败: %v", err)
 	}
 
+	logger.Infof("下载完成: %s", savePath)
 	return nil
 }
