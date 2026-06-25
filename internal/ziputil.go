@@ -7,8 +7,11 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"unicode/utf8"
 
 	"github.com/nwaples/rardecode/v2"
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
 
 	"pveRH-mod-manager/internal/logger"
 )
@@ -25,7 +28,8 @@ func Unzip(src, dest string) error {
 	logger.Debugf("开始解压 ZIP: %s -> %s, 共 %d 个文件", src, dest, len(r.File))
 
 	for _, f := range r.File {
-		fpath := filepath.Join(dest, f.Name)
+		name := decodeZipName(f.Name)
+		fpath := filepath.Join(dest, name)
 		if !strings.HasPrefix(fpath, filepath.Clean(dest)+string(os.PathSeparator)) {
 			return fmt.Errorf("非法文件路径: %s", fpath)
 		}
@@ -159,4 +163,16 @@ func GetZipTopDir(zipPath string) (string, error) {
 		return dir, nil
 	}
 	return "", fmt.Errorf("zip 内没有顶层文件夹")
+}
+
+// decodeZipName 尝试将 zip 文件名从 GBK 解码为 UTF-8
+func decodeZipName(name string) string {
+	if utf8.ValidString(name) {
+		return name
+	}
+	decoded, _, err := transform.String(simplifiedchinese.GBK.NewDecoder(), name)
+	if err != nil {
+		return name
+	}
+	return decoded
 }

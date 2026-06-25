@@ -1,0 +1,19 @@
+{
+  "GameFile": [
+    "PlantsVsZombiesRH_Data/",
+    "baselib.dll",
+    "GameAssembly.dll",
+    "PlantsVsZombiesRH.exe",
+    "UnityCrashHandler64.exe",
+    "UnityPlayer.dll",
+    "融合版3.7版本更新公告.txt"
+  ],
+  "BepInEx": [
+    "BepInEx/",
+    "dotnet/",
+    ".doorstop_version",
+    "changelog.txt",
+    "doorstop_config.ini",
+    "winhttp.dll"
+  ]
+}

@@ -1,0 +1,3314 @@
+[
+  {
+    "author": "慕容孤晴",
+    "version": "3.6.1",
+    "planList": [
+      {
+        "chineseName": "(金银钻)杨桃",
+        "modName": "MoneyStar.dll"
+      },
+      {
+        "chineseName": "一只野生の潮水",
+        "modName": "WildWater.dll"
+      },
+      {
+        "chineseName": "伪·全息家族",
+        "modName": "Holo.dll"
+      },
+      {
+        "chineseName": "僵尸机枪射手",
+        "modName": "ZombieGatlingPea.dll"
+      },
+      {
+        "chineseName": "命运·智慧枯树",
+        "modName": "WisdomTree.dll"
+      },
+      {
+        "chineseName": "抽奖机 (二阶段僵王，需搭配二创黄金僵王使用)",
+        "modName": "Randomm.dll"
+      },
+      {
+        "chineseName": "抽奖机(通用版，一阶段僵王，无需搭配其余二创)",
+        "modName": "Randomm.dll"
+      },
+      {
+        "chineseName": "杨桃猫咪",
+        "modName": "StarCat.dll"
+      },
+      {
+        "chineseName": "比基尼海滩三兄弟",
+        "modName": "SpongeBob.dll"
+      },
+      {
+        "chineseName": "烈焰机枪炮台",
+        "modName": "BigFireGatling.dll"
+      },
+      {
+        "chineseName": "究极魅惑机枪炮台",
+        "modName": "GatlingHypnoPea.dll"
+      },
+      {
+        "chineseName": "空军仙人掌",
+        "modName": "ArmyCactus.dll"
+      },
+      {
+        "chineseName": "苦力怕娘",
+        "modName": "Creeper.dll"
+      },
+      {
+        "chineseName": "蒜毒高坚果",
+        "modName": "TallGarlicNut.dll"
+      },
+      {
+        "chineseName": "谱尼",
+        "modName": "Puni.dll"
+      },
+      {
+        "chineseName": "超级极冰机枪射手",
+        "modName": "SuperSnowExtraGatling.dll"
+      },
+      {
+        "chineseName": "超级爆破机枪射手",
+        "modName": "SuperExplodeGatling.dll"
+      },
+      {
+        "chineseName": "超级究仙机枪射手",
+        "modName": "SuperFumeGatling.dll"
+      },
+      {
+        "chineseName": "超级究炮机枪射手",
+        "modName": "SuperUltimateCannonGatling.dll"
+      },
+      {
+        "chineseName": "运气模块",
+        "modName": "Changes.dll"
+      },
+      {
+        "chineseName": "金(银)币机枪射手",
+        "modName": "MoneyGatlingPea.dll"
+      },
+      {
+        "chineseName": "闪电苦力怕",
+        "modName": "ThunderCreeper.dll"
+      },
+      {
+        "chineseName": "附魔台",
+        "modName": "EnchantingTable.dll"
+      },
+      {
+        "chineseName": "陆军机枪射手",
+        "modName": "ArmyGatling.dll"
+      },
+      {
+        "chineseName": "魅惑猫尾草",
+        "modName": "HypnoCat.dll"
+      },
+      {
+        "chineseName": "魅惑高坚果",
+        "modName": "TallHypnoNut.dll"
+      }
+    ],
+    "zombieList": null,
+    "skinList": null,
+    "pluginList": null
+  },
+  {
+    "author": "慕容孤晴",
+    "version": "3.7",
+    "planList": [
+      {
+        "chineseName": "(金银钻)杨桃",
+        "modName": "MoneyStar.dll"
+      },
+      {
+        "chineseName": "一只野生の潮水",
+        "modName": "WildWater.dll"
+      },
+      {
+        "chineseName": "伪·全息家族",
+        "modName": "Holo.dll"
+      },
+      {
+        "chineseName": "僵尸机枪射手",
+        "modName": "ZombieGatlingPea.dll"
+      },
+      {
+        "chineseName": "抽奖机 (二阶段僵王，需搭配二创黄金僵王使用)",
+        "modName": "Randomm.dll"
+      },
+      {
+        "chineseName": "抽奖机(通用版，一阶段僵王，无需搭配其余二创)",
+        "modName": "Randomm.dll"
+      },
+      {
+        "chineseName": "杨桃猫咪",
+        "modName": "StarCat.dll"
+      },
+      {
+        "chineseName": "比基尼海滩三兄弟",
+        "modName": "SpongeBob.dll"
+      },
+      {
+        "chineseName": "烈焰机枪炮台",
+        "modName": "BigFireGatling.dll"
+      },
+      {
+        "chineseName": "究极魅惑机枪炮台",
+        "modName": "GatlingHypnoPea.dll"
+      },
+      {
+        "chineseName": "空军仙人掌",
+        "modName": "ArmyCactus.dll"
+      },
+      {
+        "chineseName": "苦力怕娘",
+        "modName": "Creeper.dll"
+      },
+      {
+        "chineseName": "蒜毒高坚果",
+        "modName": "TallGarlicNut.dll"
+      },
+      {
+        "chineseName": "谱尼",
+        "modName": "Puni.dll"
+      },
+      {
+        "chineseName": "超级极冰机枪射手",
+        "modName": "SuperSnowExtraGatling.dll"
+      },
+      {
+        "chineseName": "超级爆破机枪射手",
+        "modName": "SuperExplodeGatling.dll"
+      },
+      {
+        "chineseName": "超级究仙机枪射手",
+        "modName": "SuperFumeGatling.dll"
+      },
+      {
+        "chineseName": "超级究炮机枪射手",
+        "modName": "SuperUltimateCannonGatling.dll"
+      },
+      {
+        "chineseName": "运气模块",
+        "modName": "Changes.dll"
+      },
+      {
+        "chineseName": "金(银)币机枪射手",
+        "modName": "MoneyGatlingPea.dll"
+      },
+      {
+        "chineseName": "闪电苦力怕",
+        "modName": "ThunderCreeper.dll"
+      },
+      {
+        "chineseName": "附魔台",
+        "modName": "EnchantingTable.dll"
+      },
+      {
+        "chineseName": "陆军机枪射手",
+        "modName": "ArmyGatling.dll"
+      },
+      {
+        "chineseName": "魅惑猫尾草",
+        "modName": "HypnoCat.dll"
+      },
+      {
+        "chineseName": "魅惑高坚果",
+        "modName": "TallHypnoNut.dll"
+      }
+    ],
+    "zombieList": null,
+    "skinList": null,
+    "pluginList": null
+  },
+  {
+    "author": "林秋鲑鱼",
+    "version": "3.6.1",
+    "planList": [
+      {
+        "chineseName": "Doro",
+        "modName": "DoroCat.BepInEx.dll"
+      },
+      {
+        "chineseName": "██坚果",
+        "modName": "NullNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "三线超级机枪小喷菇系列",
+        "modName": "PuffSuperGatling_BepInEx.dll, ThreePuffFireSuperGatling.BepInEx.dll, ThreePuffSuperGatling.BepInEx.dll, ThreePuffSuperHypnoGatling.BepInEx.dll, ThreePuffSuperSnowGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "僵尸模仿者",
+        "modName": "ZombieImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁机枪射手",
+        "modName": "IceDoomGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁狙击射手",
+        "modName": "IceDoomSniperPea.BepInEx.dll, IceSniperPeaBepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰狙击射手",
+        "modName": "IceSniperPeaBepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰猫瓜",
+        "modName": "IceSqualour.BepInEx.dll"
+      },
+      {
+        "chineseName": "小推车",
+        "modName": "Mower.BepInEx.dll"
+      },
+      {
+        "chineseName": "核爆猫瓜",
+        "modName": "UltimateDoomSqualour.BepInEx.dll"
+      },
+      {
+        "chineseName": "浴火三线超级机枪射手",
+        "modName": "FireSuperThreeGatling.BepInEx.dll, UltimateFireThreeGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "火爆猫瓜",
+        "modName": "JalaSqualour_BepInEx.dll"
+      },
+      {
+        "chineseName": "猫娘胆小菇",
+        "modName": "MScardyShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极冷寂迫击炮",
+        "modName": "UltimateWinterCabbagecannon.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极地刺窝炬",
+        "modName": "UltimateFireSpike.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极太阳神云杉",
+        "modName": "SolarSpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极太阳神魅惑菇",
+        "modName": "SolarHypno.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极寒霜樱桃系列",
+        "modName": "FreezingCherry.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极小樱桃射手",
+        "modName": "PuffUltimateGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极小樱桃战神",
+        "modName": "PuffUltimateChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极机械战神",
+        "modName": "UltimateMachineChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极浮空毁灭射手",
+        "modName": "DoomGatlingBlover.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极蚀日神卷心菜",
+        "modName": "SolarEclipseCabbage.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空冰瓜",
+        "modName": "UltimateWinterMelon_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空弹弹菇",
+        "modName": "UltimatePortalSpring.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空黄油坚果",
+        "modName": "UltimateCornNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极速射毁灭机枪系列",
+        "modName": "UltimateDoomMinigun.BepInEx.dll, UltimateDoomMinigunScaredy.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极黄金模仿者",
+        "modName": "GoldImitater.BepInEx.dll, UltimateGoldImitater.BepInEx.dll, ZombieImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极黑曜石三线超级机枪射手",
+        "modName": "FireSuperThreeGatling.BepInEx.dll, IceSuperThreeGatling.BepInEx.dll, ObsidianThreeGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "窝油帝菇",
+        "modName": "UltimateCornFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极核爆火炬",
+        "modName": "UltimateCherryTorch.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级大蒜机枪射手",
+        "modName": "GarlicSuperGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级寒冰三线机枪射手",
+        "modName": "IceSuperThreeGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级机枪小喷菇系列",
+        "modName": "PuffFireSuperGatling.BepInEx.dll, PuffHypnoSuperGatling.BepInEx.dll, PuffSuperGatling_BepInEx.dll, PuffSuperSnowGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级火焰三线机枪射手",
+        "modName": "FireSuperThreeGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级火焰机枪射手",
+        "modName": "FireSuperGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级电能机枪射手",
+        "modName": "ElectricSuperGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级裂荚机枪射手",
+        "modName": "SplitSuperGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "邪神狙击射手",
+        "modName": "UltimateDoomSniperPea.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑三线超级机枪射手",
+        "modName": "HypnoSuperThreeGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑磁力菇王",
+        "modName": "UltimateHypnoMagnet_BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金模仿者",
+        "modName": "GoldImitater.BepInEx.dll"
+      }
+    ],
+    "zombieList": [
+      {
+        "chineseName": "凑企鹅",
+        "modName": "GGGGPenguin.BepInEx.dll"
+      },
+      {
+        "chineseName": "魔术僵尸",
+        "modName": "MagicZombie.BepInEx.dll"
+      }
+    ],
+    "skinList": [
+      {
+        "chineseName": "卷心菜迫击炮-颜值脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "双子向日葵-金毛狮王",
+        "modName": ""
+      },
+      {
+        "chineseName": "小松炉系列-严肃脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "极寒冰豆-龙",
+        "modName": ""
+      },
+      {
+        "chineseName": "樱桃射手系列-绿色樱桃",
+        "modName": ""
+      },
+      {
+        "chineseName": "死神狙击射手-真正的死神",
+        "modName": ""
+      },
+      {
+        "chineseName": "猫瓜-龙",
+        "modName": ""
+      },
+      {
+        "chineseName": "玄钢坚果-可爱脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极仙人掌-极光夜",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极太阳神卷心菜-点赞",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极月亮神卷心菜-修改动画",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极月亮神卷心菜-粉红霞月",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极浮空樱桃射手-指挥官",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极爆破迫击炮-颜值脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极血月神卷心菜-猩红月食",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极路灯花-极光夜",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极速射樱桃射手-指挥官",
+        "modName": ""
+      },
+      {
+        "chineseName": "究级杨桃大帝-渊鲸之海",
+        "modName": ""
+      },
+      {
+        "chineseName": "窝瓜-傻窝瓜",
+        "modName": ""
+      },
+      {
+        "chineseName": "自信阳光窝瓜-自信",
+        "modName": ""
+      },
+      {
+        "chineseName": "自信阳光窝瓜-震惊",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机枪射手-头冒爱心",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机枪射手系列-金马迎春",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机械坚果-龙",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机械坚果-龙-红眼",
+        "modName": ""
+      },
+      {
+        "chineseName": "阳光帝果\u0026阳光保龄球-红温",
+        "modName": ""
+      }
+    ],
+    "pluginList": null
+  },
+  {
+    "author": "林秋鲑鱼",
+    "version": "3.7",
+    "planList": [
+      {
+        "chineseName": "Doro",
+        "modName": "DoroCat.BepInEx.dll"
+      },
+      {
+        "chineseName": "██坚果",
+        "modName": "NullNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "僵尸模仿者",
+        "modName": "ZombieImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁机枪射手",
+        "modName": "IceDoomGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁狙击射手",
+        "modName": "IceDoomSniperPea.BepInEx.dll, IceSniperPeaBepInEx.dll"
+      },
+      {
+        "chineseName": "土豆超级机枪射手",
+        "modName": "SuperMineGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰狙击射手",
+        "modName": "IceSniperPeaBepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰猫瓜",
+        "modName": "IceSqualour.BepInEx.dll"
+      },
+      {
+        "chineseName": "小推车",
+        "modName": "Mower.BepInEx.dll"
+      },
+      {
+        "chineseName": "核爆猫瓜",
+        "modName": "UltimateDoomSqualour.BepInEx.dll"
+      },
+      {
+        "chineseName": "火爆猫瓜",
+        "modName": "JalaSqualour_BepInEx.dll"
+      },
+      {
+        "chineseName": "猫娘胆小菇",
+        "modName": "MScardyShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极冷寂迫击炮",
+        "modName": "UltimateWinterCabbagecannon.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极地刺窝炬",
+        "modName": "UltimateFireSpike.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极太阳神云杉",
+        "modName": "SolarSpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极太阳神魅惑菇",
+        "modName": "SolarHypno.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极寒霜樱桃系列",
+        "modName": "FreezingCherry.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极小樱桃射手",
+        "modName": "PuffUltimateGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极小樱桃战神",
+        "modName": "PuffUltimateChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极机械战神",
+        "modName": "UltimateMachineChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极浮空毁灭射手",
+        "modName": "DoomGatlingBlover.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极蚀日神卷心菜",
+        "modName": "SolarEclipseCabbage.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空冰瓜",
+        "modName": "UltimateWinterMelon_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空弹弹菇",
+        "modName": "UltimatePortalSpring.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空黄油坚果",
+        "modName": "UltimateCornNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极速射毁灭机枪系列",
+        "modName": "UltimateDoomMinigun.BepInEx.dll, UltimateDoomMinigunScaredy.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极黄金模仿者",
+        "modName": "GoldImitater.BepInEx.dll, UltimateGoldImitater.BepInEx.dll, ZombieImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "窝油帝菇",
+        "modName": "UltimateCornFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极核爆火炬",
+        "modName": "UltimateCherryTorch.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级机枪小喷菇系列",
+        "modName": "PuffFireSuperGatling.BepInEx.dll, PuffHypnoSuperGatling.BepInEx.dll, PuffSuperGatling_BepInEx.dll, PuffSuperSnowGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级裂荚机枪射手",
+        "modName": "SplitSuperGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "邪神狙击射手",
+        "modName": "UltimateDoomSniperPea.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑磁力菇王",
+        "modName": "UltimateHypnoMagnet_BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金模仿者",
+        "modName": "GoldImitater.BepInEx.dll"
+      }
+    ],
+    "zombieList": [
+      {
+        "chineseName": "凑企鹅",
+        "modName": "GGGGPenguin.BepInEx.dll"
+      },
+      {
+        "chineseName": "魔术僵尸",
+        "modName": "MagicZombie.BepInEx.dll"
+      }
+    ],
+    "skinList": [
+      {
+        "chineseName": "卷心菜迫击炮-颜值脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "双子向日葵-金毛狮王",
+        "modName": ""
+      },
+      {
+        "chineseName": "小松炉系列-严肃脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "极寒冰豆-龙",
+        "modName": ""
+      },
+      {
+        "chineseName": "樱桃射手系列-绿色樱桃",
+        "modName": ""
+      },
+      {
+        "chineseName": "死神狙击射手-真正的死神",
+        "modName": ""
+      },
+      {
+        "chineseName": "猫瓜-龙",
+        "modName": ""
+      },
+      {
+        "chineseName": "玄钢坚果-可爱脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极仙人掌-极光夜",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极冰神西瓜-极光夜",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极太阳神卷心菜-点赞",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极月亮神卷心菜-修改动画",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极月亮神卷心菜-粉红霞月",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极浮空樱桃射手-指挥官",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极爆破迫击炮-颜值脸",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极血月神卷心菜-猩红月食",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极路灯花-极光夜",
+        "modName": ""
+      },
+      {
+        "chineseName": "究极速射樱桃射手-指挥官",
+        "modName": ""
+      },
+      {
+        "chineseName": "究级杨桃大帝-渊鲸之海",
+        "modName": ""
+      },
+      {
+        "chineseName": "窝瓜-傻窝瓜",
+        "modName": ""
+      },
+      {
+        "chineseName": "自信阳光窝瓜-自信",
+        "modName": ""
+      },
+      {
+        "chineseName": "自信阳光窝瓜-震惊",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机枪射手-头冒爱心",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机枪射手系列-金马迎春",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机械坚果-龙",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级机械坚果-龙-红眼",
+        "modName": ""
+      },
+      {
+        "chineseName": "阳光帝果\u0026阳光保龄球-红温",
+        "modName": ""
+      }
+    ],
+    "pluginList": null
+  },
+  {
+    "author": "梧萱梦汐",
+    "version": "3.6.1",
+    "planList": [
+      {
+        "chineseName": "三子向日葵",
+        "modName": "TrebleSunflower.BepInEx.dll"
+      },
+      {
+        "chineseName": "丛林竹",
+        "modName": "JungleBamboo.BepInEx.dll"
+      },
+      {
+        "chineseName": "丛竹迫击炮",
+        "modName": "BambooWoodMortar.BepInEx.dll"
+      },
+      {
+        "chineseName": "主宰者胆小菇",
+        "modName": "DoominatorScaredyShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "云杉机枪炮台",
+        "modName": "BigElovikGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "促销豆",
+        "modName": "CoffeeBeanSale.BepInEx.dll"
+      },
+      {
+        "chineseName": "储君",
+        "modName": "Regent.BepInEx.dll"
+      },
+      {
+        "chineseName": "储钱罐",
+        "modName": "MoneyNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "僵尸射手",
+        "modName": "ZombiePeaShooter.BepInEx.dll"
+      },
+      {
+        "chineseName": "僵尸盒子胆小菇",
+        "modName": "ScaredyZombieBox.BepInEx.dll"
+      },
+      {
+        "chineseName": "全息卡牌投影",
+        "modName": "HolographicCard.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰卷心瓜投手",
+        "modName": "WinterCabbageMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰晶瓜迫击炮",
+        "modName": "MelonAdemortar.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁大帝",
+        "modName": "Apocastar.dll"
+      },
+      {
+        "chineseName": "冰毁爆竹",
+        "modName": "IceDoomCherryJalapeno.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁胆小菇",
+        "modName": "IceDoomScaredyShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁鱼丸",
+        "modName": "SuperIceDoomMachineNut.dll"
+      },
+      {
+        "chineseName": "冰瓜坚果",
+        "modName": "WinterMelonNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰瓜女王",
+        "modName": "WinterMelonQueen.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰瓜射手",
+        "modName": "WinterMelonPeaShooter_BepInEx.dll"
+      },
+      {
+        "chineseName": "冰瓜泡",
+        "modName": "IceMelonCannon.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰西瓜小投手",
+        "modName": "WinterMelonPuff.BepInEx.dll"
+      },
+      {
+        "chineseName": "初音双子星",
+        "modName": "HatsuneAndShiori.BepInEx.dll"
+      },
+      {
+        "chineseName": "南瓜",
+        "modName": "PumpkinSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "卡厄斯毁灭菇",
+        "modName": "ChaosDoom.BepInEx.dll"
+      },
+      {
+        "chineseName": "卷心瓜坚果",
+        "modName": "MelonCabbageNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "双发、裂荚小冰机",
+        "modName": "IceDoublePuff.BepInEx.dll"
+      },
+      {
+        "chineseName": "向日葵女王",
+        "modName": "SunFlowerQueen.BepInEx.dll"
+      },
+      {
+        "chineseName": "吸金磁射手",
+        "modName": "GoldMagnetPea.BepInEx.dll"
+      },
+      {
+        "chineseName": "呼叫网管",
+        "modName": "Computer.BepInEx.dll"
+      },
+      {
+        "chineseName": "咖啡豆",
+        "modName": "CoffeeBean.BepInEx.dll"
+      },
+      {
+        "chineseName": "圣光猫尾草",
+        "modName": "HeliosCattailLour.dll"
+      },
+      {
+        "chineseName": "大蒜大嘴花",
+        "modName": "GarlicChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "大蒜高坚果",
+        "modName": "TallGarlicNut_BepInEx.dll"
+      },
+      {
+        "chineseName": "天使向日葵",
+        "modName": "SunFlowerAngel.BepInEx.dll"
+      },
+      {
+        "chineseName": "太阳神向日葵",
+        "modName": "SolarSunflower_new_BepInEx.dll"
+      },
+      {
+        "chineseName": "奥林匹斯级航空母舰",
+        "modName": "AircraftCarrier.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒光菇",
+        "modName": "IceSunShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰帝果",
+        "modName": "SuperIceNut.dll"
+      },
+      {
+        "chineseName": "寒冰菇王",
+        "modName": "IceShroomKing.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰鱼丸",
+        "modName": "SuperIceMachineNut.dll"
+      },
+      {
+        "chineseName": "将军级战列舰",
+        "modName": "ShogunBattleShip.BepInEx.dll"
+      },
+      {
+        "chineseName": "川菜投手",
+        "modName": "SichuanCabbagePult.BepInEx.dll"
+      },
+      {
+        "chineseName": "巨型樱桃战神",
+        "modName": "WildUltimateChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "巨型究投",
+        "modName": "WildUltimateMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "幻灭机枪射手",
+        "modName": "HypnoDoomGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "幻灭猫尾草、幻灭猫瓜",
+        "modName": "SuperDoomSqualour.BepInEx.dll"
+      },
+      {
+        "chineseName": "幻灭玄钢坚果",
+        "modName": "SuperHypnoObsidianWallNut.dll"
+      },
+      {
+        "chineseName": "幽冥火红莲",
+        "modName": "GhostEndoFlame.BepInEx.dll"
+      },
+      {
+        "chineseName": "忧郁南瓜壳",
+        "modName": "GloomPumpkin.BepInEx.dll"
+      },
+      {
+        "chineseName": "忧郁菇投手",
+        "modName": "GloomShroomPult.BepInEx.dll"
+      },
+      {
+        "chineseName": "战神南瓜",
+        "modName": "UltimateChomperPumpkin.BepInEx.dll"
+      },
+      {
+        "chineseName": "新黄金模仿者、僵尸模仿者（不依赖前置库）",
+        "modName": "GoldZombieImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "无畏级战舰",
+        "modName": "Dreadnought.BepInEx.dll"
+      },
+      {
+        "chineseName": "普罗米修斯太阳神卷心菜",
+        "modName": "SuperSolarCabbage.dll"
+      },
+      {
+        "chineseName": "普通毁灭机枪炮台",
+        "modName": "BigDoomGatling.dll"
+      },
+      {
+        "chineseName": "更多的伞",
+        "modName": "SuperUmbrellasExtra.BepInEx.dll"
+      },
+      {
+        "chineseName": "机枪花盆",
+        "modName": "GatlingPeaPot.BepInEx.dll"
+      },
+      {
+        "chineseName": "极寒冰瓜投手",
+        "modName": "ExtremeWinterMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "核爆小窝瓜",
+        "modName": "NuclearPuffSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "核爆末日死神狙",
+        "modName": "NuclearDoomSniperPea_BepInEx.dll"
+      },
+      {
+        "chineseName": "樱桃大喷菇",
+        "modName": "CherryFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "樱桃机枪炮台",
+        "modName": "CherryBigGatling.dll"
+      },
+      {
+        "chineseName": "樱桃豌豆大嘴花",
+        "modName": "CherryPeaChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "樱桃高坚果",
+        "modName": "CherryTallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "橄榄机枪炮台",
+        "modName": "BigHelmetGatlingPea.dll"
+      },
+      {
+        "chineseName": "死水大喷菇",
+        "modName": "UltimateDeathObsidianFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "水滴",
+        "modName": "WaterDrop.BepInEx.dll"
+      },
+      {
+        "chineseName": "水盆",
+        "modName": "WaterPot.dll"
+      },
+      {
+        "chineseName": "汉堡王",
+        "modName": "HamburgerKing.BepInEx.dll"
+      },
+      {
+        "chineseName": "流萤伞",
+        "modName": "FireflyLaserUmbrella.dll"
+      },
+      {
+        "chineseName": "浴火大哥",
+        "modName": "SuperFireGatling.dll"
+      },
+      {
+        "chineseName": "湮灭菇",
+        "modName": "CherryPepperSuperHypnoDoom.dll"
+      },
+      {
+        "chineseName": "潜伏南瓜",
+        "modName": "IFVPotatoPumpkin.BepInEx.dll"
+      },
+      {
+        "chineseName": "激光治疗盆",
+        "modName": "HealPot.dll"
+      },
+      {
+        "chineseName": "火山岩大喷菇",
+        "modName": "VolcanicRockFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "火爆小窝瓜",
+        "modName": "JalaPuffSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "火爆毁灭菇",
+        "modName": "JalapenoDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "焰毁大喷菇",
+        "modName": "MagmaShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "爆燃卷心菜",
+        "modName": "SummerCabbage.dll"
+      },
+      {
+        "chineseName": "爆破大帝",
+        "modName": "UltimateCherryStar.dll"
+      },
+      {
+        "chineseName": "状元葵",
+        "modName": "TopScorerSunFlower.BepInEx.dll"
+      },
+      {
+        "chineseName": "猫砂盆",
+        "modName": "CatPot.dll"
+      },
+      {
+        "chineseName": "玄武级攻击潜艇",
+        "modName": "XuanwuSubmarine.BepInEx.dll"
+      },
+      {
+        "chineseName": "玄钢堡垒",
+        "modName": "ObsidianCaltropFortress.BepInEx.dll"
+      },
+      {
+        "chineseName": "生命果",
+        "modName": "LifeFlower.BepInEx.dll"
+      },
+      {
+        "chineseName": "盗火毁灭菇（内测）",
+        "modName": "ChaosDoom.BepInEx.dll"
+      },
+      {
+        "chineseName": "礼盒机",
+        "modName": "GiftMachine.dll"
+      },
+      {
+        "chineseName": "礼盒模仿者",
+        "modName": "PresentImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "神水滴射手",
+        "modName": "GoldShowPeaShooter.BepInEx.dll"
+      },
+      {
+        "chineseName": "禁忌寒冰菇",
+        "modName": "TabooIceShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "禁忌毁灭菇",
+        "modName": "TabooDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "禁忌毁荟",
+        "modName": "Shrine_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极云杉炮台",
+        "modName": "BigSnowElovikGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极冬笋云杉",
+        "modName": "UltimateBambooSpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极冰瓜炮",
+        "modName": "UltimateWinterMelonCannon.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极天启樱龙（不依赖前置库）",
+        "modName": "UltimateApocalypseChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极恶孽杨桃",
+        "modName": "UltimateViciousStar.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极星星炮杨桃",
+        "modName": "UltimateCannonStar.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极机械辣椒",
+        "modName": "SuperMachineObsidianJalapeno.dll"
+      },
+      {
+        "chineseName": "究极火神西瓜",
+        "modName": "UltimateFireMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极炽天使海蘑菇",
+        "modName": "AngelBlover.dll"
+      },
+      {
+        "chineseName": "究极爆破云杉",
+        "modName": "UltimateCherrySpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极玉米投手",
+        "modName": "UltimateCornPlus.dll"
+      },
+      {
+        "chineseName": "究极蒜喷菇",
+        "modName": "SuperGarlicFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空帝果",
+        "modName": "UltimatePortalSunNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空高坚果",
+        "modName": "UltimatePortalTallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极金向日葵",
+        "modName": "SolarSunflower_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极钻石帝果",
+        "modName": "SuperUltimateDiamondNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极银河向日葵",
+        "modName": "GalaxyUltimateSunflower.dll"
+      },
+      {
+        "chineseName": "究极高冰果",
+        "modName": "UltimateIceTallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极黑曜石战神",
+        "modName": "Obsidianzilla.BepInEx.dll"
+      },
+      {
+        "chineseName": "窝油皇棘",
+        "modName": "WildSuperCaltrop.BepInEx.dll"
+      },
+      {
+        "chineseName": "纠缠之源（不依赖前置库）",
+        "modName": ""
+      },
+      {
+        "chineseName": "红木迫击炮",
+        "modName": "RedWoodMortar.BepInEx.dll"
+      },
+      {
+        "chineseName": "红石伞",
+        "modName": "RedStoneUmbrella.BepInEx.dll"
+      },
+      {
+        "chineseName": "纳西妲",
+        "modName": "Nahida.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极不朽机械坚果",
+        "modName": "UltimateJalapenoMachineNut.dll"
+      },
+      {
+        "chineseName": "终极不朽黑曜石土豆雷",
+        "modName": "UltimateJalapenoObsidianPotatoNut.dll"
+      },
+      {
+        "chineseName": "终极不朽黑曜石高坚果",
+        "modName": "UltimateJalapenoTallNut.dll"
+      },
+      {
+        "chineseName": "终极云杉弩炮",
+        "modName": "UltimateWaterBallista_BepInEx.dll"
+      },
+      {
+        "chineseName": "终极寒烬月神卷心菜",
+        "modName": "OlivionLunarCabbage.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极巨喷菇",
+        "modName": "UltimateBigGloom.dll"
+      },
+      {
+        "chineseName": "终极幽光仙人掌",
+        "modName": "UltimateGlimmerCactus.dll"
+      },
+      {
+        "chineseName": "终极强化黑曜石炮台",
+        "modName": "UltimateJalapenoBigSniper.dll"
+      },
+      {
+        "chineseName": "终极星萤月桃",
+        "modName": "UltimateLunarStar.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极核爆寒冰机枪小喷菇",
+        "modName": "NuclearGatlingPuff.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极毁灭机枪炮台",
+        "modName": "DoomBigGatlingPea.dll"
+      },
+      {
+        "chineseName": "终极流星大帝机枪射手",
+        "modName": "UltimateStarGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极炙火机枪射手",
+        "modName": "JalaFireGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极黑曜石高坚果",
+        "modName": ""
+      },
+      {
+        "chineseName": "绿宝石",
+        "modName": "Emerald.BepInEx.dll"
+      },
+      {
+        "chineseName": "肥料高坚果",
+        "modName": "FertilizeTallNut.dll"
+      },
+      {
+        "chineseName": "苏联（不依赖前置库）",
+        "modName": "Soviet.BepInEx.dll"
+      },
+      {
+        "chineseName": "菜问",
+        "modName": "BonkChoy.BepInEx.dll"
+      },
+      {
+        "chineseName": "菜问（原版数值）",
+        "modName": "BonkChoy2.BepInEx.dll"
+      },
+      {
+        "chineseName": "蒜味狙击射手",
+        "modName": "Stinkper.BepInEx.dll"
+      },
+      {
+        "chineseName": "蒜香炸弹",
+        "modName": "GarlicBoom.BepInEx.dll"
+      },
+      {
+        "chineseName": "血雨芦荟",
+        "modName": "RedRainLotusAloes.dll"
+      },
+      {
+        "chineseName": "豌豆藤蔓",
+        "modName": "PeaShooterPot.BepInEx.dll"
+      },
+      {
+        "chineseName": "贪欲帝果",
+        "modName": "SuperGoldNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "贪欲盒子（不依赖前置库）",
+        "modName": "SuperGoldPresent.BepInEx.dll"
+      },
+      {
+        "chineseName": "超时空炮台",
+        "modName": "BigPortalGatling.dll"
+      },
+      {
+        "chineseName": "超级冬笋云杉钢木",
+        "modName": "SuperBambooShulkSpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级机枪土豆地雷",
+        "modName": "SuperGatlingMine.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级机械杨桃",
+        "modName": "UltimateMachineStar.dll"
+      },
+      {
+        "chineseName": "超级机械高坚果",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级樱桃坚果",
+        "modName": "ExplodoNut_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级樱桃机枪射手",
+        "modName": "SuperCherryGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级樱桃炸弹",
+        "modName": "SuperCherryMine_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级橄榄大哥",
+        "modName": "SuperHelmetGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级毁灭机枪射手",
+        "modName": "SuperDoomGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级爆破大哥",
+        "modName": "SuperExplodeGatling.dll"
+      },
+      {
+        "chineseName": "超级超时空机枪射手",
+        "modName": "SuperPortalGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级阳光大哥",
+        "modName": "SunnyCommando.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级黑曜石大哥",
+        "modName": "SuperObsidianGatling.dll"
+      },
+      {
+        "chineseName": "超级黑曜石机枪射手2",
+        "modName": "SuperObsidianGatling2.BepInEx.dll"
+      },
+      {
+        "chineseName": "路灯毁灭菇",
+        "modName": "PlanternDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "转生金苹果",
+        "modName": "ReincarnateApple.BepInEx.dll"
+      },
+      {
+        "chineseName": "过载樱桃射手",
+        "modName": "OverloadCherryShooter_BepInEx.dll"
+      },
+      {
+        "chineseName": "速射浮空牢樱",
+        "modName": "UltimateCherryGatlingBlover.dll"
+      },
+      {
+        "chineseName": "重生电豌",
+        "modName": "ElectricPeaReborn.BepInEx.dll"
+      },
+      {
+        "chineseName": "金苹果、附魔金苹果",
+        "modName": "GoldApple.BepInEx.dll"
+      },
+      {
+        "chineseName": "钟离",
+        "modName": "ZhongLi.dll"
+      },
+      {
+        "chineseName": "钻石坚果",
+        "modName": "DiamondWallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "钻石帝果",
+        "modName": "SuperDiamondNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "铁豆大哥，铁豆炮台",
+        "modName": "IronPeasExtra.BepInEx.dll"
+      },
+      {
+        "chineseName": "铁豆机枪小喷菇",
+        "modName": "GatlingIronPuff.dll"
+      },
+      {
+        "chineseName": "银河三叶草",
+        "modName": "MilkyBlover.BepInEx.dll"
+      },
+      {
+        "chineseName": "阳光帝垒",
+        "modName": "SuperSunFortress.BepInEx.dll"
+      },
+      {
+        "chineseName": "阳光毁灭菇",
+        "modName": "SunDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "阳光狙击射手",
+        "modName": "SuperSunSniperPea_BepInEx.dll"
+      },
+      {
+        "chineseName": "雪霰伞",
+        "modName": "LaserIceUmbrella.dll"
+      },
+      {
+        "chineseName": "飞天樱魅射手",
+        "modName": "CherryHypnoGatlingBlover.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅上照",
+        "modName": "MikamiTeru.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅帝王菇",
+        "modName": "SuccubusStarHypno.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅帝磁力菇",
+        "modName": "Ulthypnet_BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑狙",
+        "modName": "SniperHypno.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑盒子",
+        "modName": "HypnoPresent.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑窝瓜",
+        "modName": "HypnoSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅皇菇",
+        "modName": "HypnoDoomEmperor.BepInEx.dll"
+      },
+      {
+        "chineseName": "鱼丸盆",
+        "modName": ""
+      },
+      {
+        "chineseName": "黄油射手",
+        "modName": "ButterShooter_BepInEx.dll"
+      },
+      {
+        "chineseName": "黄油忧郁菇",
+        "modName": "ButterGloom.BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金模仿者（不依赖前置库）",
+        "modName": "GoldImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑塔（不依赖前置库）",
+        "modName": "HeiTa.dll"
+      },
+      {
+        "chineseName": "黑曜石堡垒",
+        "modName": "ObsidianFortress.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑曜石猫雷",
+        "modName": "ObsidianPotatoCat.dll"
+      },
+      {
+        "chineseName": "黑曜石西瓜投手",
+        "modName": "ObsidianSeed_BepInEx.dll"
+      }
+    ],
+    "zombieList": [
+      {
+        "chineseName": "万年不化骨",
+        "modName": "EternalZombieBoss.BepInEx.dll"
+      },
+      {
+        "chineseName": "多托雷【赝月的异端者】",
+        "modName": "Dottore.BepInEx.dll"
+      },
+      {
+        "chineseName": "无头骑士",
+        "modName": "NoHeadUltimateHorse.BepInEx.dll"
+      },
+      {
+        "chineseName": "普通女僵尸",
+        "modName": "NormalGirlZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "狂野机枪僵尸",
+        "modName": "WildGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "白舞王冰车僵尸（不需前置库）",
+        "modName": "UltimateMJacksonDriver.BepInEx.dll"
+      },
+      {
+        "chineseName": "砖头僵尸",
+        "modName": "BrickZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "精英凛冬引导者雪艇",
+        "modName": "Kirov_d.BepInEx.dll"
+      },
+      {
+        "chineseName": "红眼普通僵尸",
+        "modName": "RedeyeZombie.dll"
+      },
+      {
+        "chineseName": "终极铁甲机械巨人、铁甲守卫机械巨人",
+        "modName": "UltimateIronGargantuar.BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金丑跳",
+        "modName": ""
+      },
+      {
+        "chineseName": "黄金僵王2",
+        "modName": "ZombieBoss2Remake.BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金阳光帝果巨人僵尸",
+        "modName": "UltimateGoldSunNutZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑曜石盲盒僵尸",
+        "modName": "ObsidianDollZombie.BepInEx.dll"
+      }
+    ],
+    "skinList": null,
+    "pluginList": null
+  },
+  {
+    "author": "梧萱梦汐",
+    "version": "3.7",
+    "planList": [
+      {
+        "chineseName": "三子向日葵",
+        "modName": "TrebleSunflower.BepInEx.dll"
+      },
+      {
+        "chineseName": "丛林竹",
+        "modName": "JungleBamboo.BepInEx.dll"
+      },
+      {
+        "chineseName": "丛竹迫击炮",
+        "modName": "BambooWoodMortar.BepInEx.dll"
+      },
+      {
+        "chineseName": "主宰者胆小菇",
+        "modName": "DoominatorScaredyShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "云杉机枪炮台",
+        "modName": "BigElovikGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "促销豆",
+        "modName": "CoffeeBeanSale.BepInEx.dll"
+      },
+      {
+        "chineseName": "储君",
+        "modName": "Regent.BepInEx.dll"
+      },
+      {
+        "chineseName": "储钱罐",
+        "modName": "MoneyNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "僵尸射手",
+        "modName": "ZombiePeaShooter.BepInEx.dll"
+      },
+      {
+        "chineseName": "僵尸盒子胆小菇",
+        "modName": "ScaredyZombieBox.BepInEx.dll"
+      },
+      {
+        "chineseName": "全息卡牌投影",
+        "modName": "HolographicCard.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰卷心瓜投手",
+        "modName": "WinterCabbageMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰晶瓜迫击炮",
+        "modName": "MelonAdemortar.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁大帝",
+        "modName": "Apocastar.dll"
+      },
+      {
+        "chineseName": "冰毁爆竹",
+        "modName": "IceDoomCherryJalapeno.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁胆小菇",
+        "modName": "IceDoomScaredyShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰毁鱼丸",
+        "modName": "SuperIceDoomMachineNut.dll"
+      },
+      {
+        "chineseName": "冰瓜坚果",
+        "modName": "WinterMelonNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰瓜女王",
+        "modName": "WinterMelonQueen.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰瓜射手",
+        "modName": "WinterMelonPeaShooter_BepInEx.dll"
+      },
+      {
+        "chineseName": "冰瓜泡",
+        "modName": "IceMelonCannon.BepInEx.dll"
+      },
+      {
+        "chineseName": "冰西瓜小投手",
+        "modName": "WinterMelonPuff.BepInEx.dll"
+      },
+      {
+        "chineseName": "初音双子星",
+        "modName": "HatsuneAndShiori.BepInEx.dll"
+      },
+      {
+        "chineseName": "南瓜",
+        "modName": "PumpkinSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "卡厄斯毁灭菇",
+        "modName": "ChaosDoom.BepInEx.dll"
+      },
+      {
+        "chineseName": "卷心瓜坚果",
+        "modName": "MelonCabbageNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "双发、裂荚小冰机",
+        "modName": "IceDoublePuff.BepInEx.dll"
+      },
+      {
+        "chineseName": "向日葵女王",
+        "modName": "SunFlowerQueen.BepInEx.dll"
+      },
+      {
+        "chineseName": "吸金磁射手",
+        "modName": "GoldMagnetPea.BepInEx.dll"
+      },
+      {
+        "chineseName": "呼叫网管",
+        "modName": "Computer.BepInEx.dll"
+      },
+      {
+        "chineseName": "咖啡豆",
+        "modName": "CoffeeBean.BepInEx.dll"
+      },
+      {
+        "chineseName": "圣光猫尾草",
+        "modName": "HeliosCattailLour.dll"
+      },
+      {
+        "chineseName": "大蒜大嘴花",
+        "modName": "GarlicChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "天使向日葵",
+        "modName": "SunFlowerAngel.BepInEx.dll"
+      },
+      {
+        "chineseName": "太阳神向日葵",
+        "modName": "SolarSunflower_new_BepInEx.dll"
+      },
+      {
+        "chineseName": "奥林匹斯级航空母舰",
+        "modName": "AircraftCarrier.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒光菇",
+        "modName": "IceSunShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰帝果",
+        "modName": "SuperIceNut.dll"
+      },
+      {
+        "chineseName": "寒冰菇王",
+        "modName": "IceShroomKing.BepInEx.dll"
+      },
+      {
+        "chineseName": "寒冰鱼丸",
+        "modName": "SuperIceMachineNut.dll"
+      },
+      {
+        "chineseName": "将军级战列舰",
+        "modName": "ShogunBattleShip.BepInEx.dll"
+      },
+      {
+        "chineseName": "川菜投手",
+        "modName": "SichuanCabbagePult.BepInEx.dll"
+      },
+      {
+        "chineseName": "巨型樱桃战神",
+        "modName": "WildUltimateChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "巨型究投",
+        "modName": "WildUltimateMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "幻灭机枪射手",
+        "modName": "HypnoDoomGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "幻灭猫尾草、幻灭猫瓜",
+        "modName": "SuperDoomSqualour.BepInEx.dll"
+      },
+      {
+        "chineseName": "幻灭玄钢坚果",
+        "modName": "SuperHypnoObsidianWallNut.dll"
+      },
+      {
+        "chineseName": "幽冥火红莲",
+        "modName": "GhostEndoFlame.BepInEx.dll"
+      },
+      {
+        "chineseName": "忧郁南瓜壳",
+        "modName": "GloomPumpkin.BepInEx.dll"
+      },
+      {
+        "chineseName": "忧郁菇投手",
+        "modName": "GloomShroomPult.BepInEx.dll"
+      },
+      {
+        "chineseName": "战神南瓜",
+        "modName": "UltimateChomperPumpkin.BepInEx.dll"
+      },
+      {
+        "chineseName": "新黄金模仿者、僵尸模仿者（不依赖前置库）",
+        "modName": "GoldZombieImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "无畏级战舰",
+        "modName": "Dreadnought.BepInEx.dll"
+      },
+      {
+        "chineseName": "普罗米修斯太阳神卷心菜",
+        "modName": "SuperSolarCabbage.dll"
+      },
+      {
+        "chineseName": "普通毁灭机枪炮台",
+        "modName": "BigDoomGatling.dll"
+      },
+      {
+        "chineseName": "更多的伞",
+        "modName": "SuperUmbrellasExtra.BepInEx.dll"
+      },
+      {
+        "chineseName": "月光草",
+        "modName": "MoonlightGrass.BepInEx.dll"
+      },
+      {
+        "chineseName": "机枪花盆",
+        "modName": "GatlingPeaPot.BepInEx.dll"
+      },
+      {
+        "chineseName": "极寒冰瓜投手",
+        "modName": "ExtremeWinterMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "核爆小窝瓜",
+        "modName": "NuclearPuffSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "核爆末日死神狙",
+        "modName": "NuclearDoomSniperPea_BepInEx.dll"
+      },
+      {
+        "chineseName": "樱桃大喷菇",
+        "modName": "CherryFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "樱桃机枪炮台",
+        "modName": "CherryBigGatling.dll"
+      },
+      {
+        "chineseName": "樱桃豌豆大嘴花",
+        "modName": "CherryPeaChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "樱桃高坚果",
+        "modName": "CherryTallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "橄榄机枪炮台",
+        "modName": "BigHelmetGatlingPea.dll"
+      },
+      {
+        "chineseName": "死水大喷菇",
+        "modName": "UltimateDeathObsidianFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "水滴",
+        "modName": "WaterDrop.BepInEx.dll"
+      },
+      {
+        "chineseName": "水盆",
+        "modName": "WaterPot.dll"
+      },
+      {
+        "chineseName": "汉堡王",
+        "modName": "HamburgerKing.BepInEx.dll"
+      },
+      {
+        "chineseName": "流萤伞",
+        "modName": "FireflyLaserUmbrella.dll"
+      },
+      {
+        "chineseName": "浴火大哥",
+        "modName": "SuperFireGatling.dll"
+      },
+      {
+        "chineseName": "湮灭菇",
+        "modName": "CherryPepperSuperHypnoDoom.dll"
+      },
+      {
+        "chineseName": "潜伏南瓜",
+        "modName": "IFVPotatoPumpkin.BepInEx.dll"
+      },
+      {
+        "chineseName": "激光治疗盆",
+        "modName": "HealPot.dll"
+      },
+      {
+        "chineseName": "火山岩大喷菇",
+        "modName": "VolcanicRockFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "火爆小窝瓜",
+        "modName": "JalaPuffSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "火爆毁灭菇",
+        "modName": "JalapenoDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "焰毁大喷菇",
+        "modName": "MagmaShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "爆燃卷心菜",
+        "modName": "SummerCabbage.dll"
+      },
+      {
+        "chineseName": "爆破大帝",
+        "modName": "UltimateCherryStar.dll"
+      },
+      {
+        "chineseName": "状元葵",
+        "modName": "TopScorerSunFlower.BepInEx.dll"
+      },
+      {
+        "chineseName": "猫砂盆",
+        "modName": "CatPot.dll"
+      },
+      {
+        "chineseName": "玄武级攻击潜艇",
+        "modName": "XuanwuSubmarine.BepInEx.dll"
+      },
+      {
+        "chineseName": "玄钢堡垒",
+        "modName": "ObsidianCaltropFortress.BepInEx.dll"
+      },
+      {
+        "chineseName": "生命果",
+        "modName": "LifeFlower.BepInEx.dll"
+      },
+      {
+        "chineseName": "盗火毁灭菇（内测）",
+        "modName": "ChaosDoom.BepInEx.dll"
+      },
+      {
+        "chineseName": "礼盒机",
+        "modName": "GiftMachine.dll"
+      },
+      {
+        "chineseName": "礼盒模仿者",
+        "modName": "PresentImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "神水滴射手",
+        "modName": "GoldShowPeaShooter.BepInEx.dll"
+      },
+      {
+        "chineseName": "禁忌寒冰菇",
+        "modName": "TabooIceShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "禁忌毁灭菇",
+        "modName": "TabooDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "禁忌毁荟",
+        "modName": "Shrine_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极云杉炮台",
+        "modName": "BigSnowElovikGatling_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极冬笋云杉",
+        "modName": "UltimateBambooSpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极冰瓜炮",
+        "modName": "UltimateWinterMelonCannon.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极天启樱龙（不依赖前置库）",
+        "modName": "UltimateApocalypseChomper.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极恶孽杨桃",
+        "modName": "UltimateViciousStar.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极星星炮杨桃",
+        "modName": "UltimateCannonStar.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极机械辣椒",
+        "modName": "SuperMachineObsidianJalapeno.dll"
+      },
+      {
+        "chineseName": "究极火神西瓜",
+        "modName": "UltimateFireMelon.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极炽天使海蘑菇",
+        "modName": "AngelBlover.dll"
+      },
+      {
+        "chineseName": "究极爆破云杉",
+        "modName": "UltimateCherrySpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极玉米投手",
+        "modName": "UltimateCornPlus.dll"
+      },
+      {
+        "chineseName": "究极蒜喷菇",
+        "modName": "SuperGarlicFume.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空帝果",
+        "modName": "UltimatePortalSunNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极超时空高坚果",
+        "modName": "UltimatePortalTallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极金向日葵",
+        "modName": "SolarSunflower_BepInEx.dll"
+      },
+      {
+        "chineseName": "究极钻石帝果",
+        "modName": "SuperUltimateDiamondNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极银河向日葵",
+        "modName": "GalaxyUltimateSunflower.dll"
+      },
+      {
+        "chineseName": "究极高冰果",
+        "modName": "UltimateIceTallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "究极黑曜石战神",
+        "modName": "Obsidianzilla.BepInEx.dll"
+      },
+      {
+        "chineseName": "窝油皇棘",
+        "modName": "WildSuperCaltrop.BepInEx.dll"
+      },
+      {
+        "chineseName": "纠缠之源（不依赖前置库）",
+        "modName": ""
+      },
+      {
+        "chineseName": "红木迫击炮",
+        "modName": "RedWoodMortar.BepInEx.dll"
+      },
+      {
+        "chineseName": "红石伞",
+        "modName": "RedStoneUmbrella.BepInEx.dll"
+      },
+      {
+        "chineseName": "纳西妲",
+        "modName": "Nahida.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极不朽机械坚果",
+        "modName": "UltimateJalapenoMachineNut.dll"
+      },
+      {
+        "chineseName": "终极不朽黑曜石土豆雷",
+        "modName": "UltimateJalapenoObsidianPotatoNut.dll"
+      },
+      {
+        "chineseName": "终极不朽黑曜石高坚果",
+        "modName": "UltimateJalapenoTallNut.dll"
+      },
+      {
+        "chineseName": "终极云杉弩炮",
+        "modName": "UltimateWaterBallista_BepInEx.dll"
+      },
+      {
+        "chineseName": "终极寒烬月神卷心菜",
+        "modName": "OlivionLunarCabbage.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极巨喷菇",
+        "modName": "UltimateBigGloom.dll"
+      },
+      {
+        "chineseName": "终极幽光仙人掌",
+        "modName": "UltimateGlimmerCactus.dll"
+      },
+      {
+        "chineseName": "终极强化黑曜石炮台",
+        "modName": "UltimateJalapenoBigSniper.dll"
+      },
+      {
+        "chineseName": "终极星萤月桃",
+        "modName": "UltimateLunarStar.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极核爆寒冰机枪小喷菇",
+        "modName": "NuclearGatlingPuff.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极毁灭机枪炮台",
+        "modName": "DoomBigGatlingPea.dll"
+      },
+      {
+        "chineseName": "终极流星大帝机枪射手",
+        "modName": "UltimateStarGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极炙火机枪射手",
+        "modName": "JalaFireGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "终极黑曜石高坚果",
+        "modName": ""
+      },
+      {
+        "chineseName": "绿宝石",
+        "modName": "Emerald.BepInEx.dll"
+      },
+      {
+        "chineseName": "肥料高坚果",
+        "modName": "FertilizeTallNut.dll"
+      },
+      {
+        "chineseName": "苏联（不依赖前置库）",
+        "modName": "Soviet.BepInEx.dll"
+      },
+      {
+        "chineseName": "菜问",
+        "modName": "BonkChoy.BepInEx.dll"
+      },
+      {
+        "chineseName": "菜问（原版数值）",
+        "modName": "BonkChoy2.BepInEx.dll"
+      },
+      {
+        "chineseName": "蒜味狙击射手",
+        "modName": "Stinkper.BepInEx.dll"
+      },
+      {
+        "chineseName": "蒜香炸弹",
+        "modName": "GarlicBoom.BepInEx.dll"
+      },
+      {
+        "chineseName": "血雨芦荟",
+        "modName": "RedRainLotusAloes.dll"
+      },
+      {
+        "chineseName": "豌豆藤蔓",
+        "modName": "PeaShooterPot.BepInEx.dll"
+      },
+      {
+        "chineseName": "贪欲帝果",
+        "modName": "SuperGoldNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "贪欲盒子（不依赖前置库）",
+        "modName": "SuperGoldPresent.BepInEx.dll"
+      },
+      {
+        "chineseName": "超时空炮台",
+        "modName": "BigPortalGatling.dll"
+      },
+      {
+        "chineseName": "超级冬笋云杉钢木",
+        "modName": "SuperBambooShulkSpruce_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级机枪土豆地雷",
+        "modName": "SuperGatlingMine.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级机械杨桃",
+        "modName": "UltimateMachineStar.dll"
+      },
+      {
+        "chineseName": "超级机械高坚果",
+        "modName": ""
+      },
+      {
+        "chineseName": "超级樱桃坚果",
+        "modName": "ExplodoNut_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级樱桃机枪射手",
+        "modName": "SuperCherryGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级樱桃炸弹",
+        "modName": "SuperCherryMine_BepInEx.dll"
+      },
+      {
+        "chineseName": "超级橄榄大哥",
+        "modName": "SuperHelmetGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级毁灭机枪射手",
+        "modName": "SuperDoomGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级超时空机枪射手",
+        "modName": "SuperPortalGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级阳光大哥",
+        "modName": "SunnyCommando.BepInEx.dll"
+      },
+      {
+        "chineseName": "超级黑曜石大哥",
+        "modName": "SuperObsidianGatling.dll"
+      },
+      {
+        "chineseName": "超级黑曜石机枪射手2",
+        "modName": "SuperObsidianGatling2.BepInEx.dll"
+      },
+      {
+        "chineseName": "路灯毁灭菇",
+        "modName": "PlanternDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "转生金苹果",
+        "modName": "ReincarnateApple.BepInEx.dll"
+      },
+      {
+        "chineseName": "过载樱桃射手",
+        "modName": "OverloadCherryShooter_BepInEx.dll"
+      },
+      {
+        "chineseName": "速射浮空牢樱",
+        "modName": "UltimateCherryGatlingBlover.dll"
+      },
+      {
+        "chineseName": "重生电豌",
+        "modName": "ElectricPeaReborn.BepInEx.dll"
+      },
+      {
+        "chineseName": "金苹果、附魔金苹果",
+        "modName": "GoldApple.BepInEx.dll"
+      },
+      {
+        "chineseName": "钟离",
+        "modName": "ZhongLi.dll"
+      },
+      {
+        "chineseName": "钻石坚果",
+        "modName": "DiamondWallNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "钻石帝果",
+        "modName": "SuperDiamondNut.BepInEx.dll"
+      },
+      {
+        "chineseName": "铁豆大哥，铁豆炮台",
+        "modName": "IronPeasExtra.BepInEx.dll"
+      },
+      {
+        "chineseName": "铁豆机枪小喷菇",
+        "modName": "GatlingIronPuff.dll"
+      },
+      {
+        "chineseName": "银河三叶草",
+        "modName": "MilkyBlover.BepInEx.dll"
+      },
+      {
+        "chineseName": "阳光帝垒",
+        "modName": "SuperSunFortress.BepInEx.dll"
+      },
+      {
+        "chineseName": "阳光毁灭菇",
+        "modName": "SunDoomShroom.BepInEx.dll"
+      },
+      {
+        "chineseName": "阳光狙击射手",
+        "modName": "SuperSunSniperPea_BepInEx.dll"
+      },
+      {
+        "chineseName": "雪霰伞",
+        "modName": "LaserIceUmbrella.dll"
+      },
+      {
+        "chineseName": "飞天樱魅射手",
+        "modName": "CherryHypnoGatlingBlover.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅上照",
+        "modName": "MikamiTeru.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅帝王菇",
+        "modName": "SuccubusStarHypno.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅帝磁力菇",
+        "modName": "Ulthypnet_BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑狙",
+        "modName": "SniperHypno.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑盒子",
+        "modName": "HypnoPresent.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅惑窝瓜",
+        "modName": "HypnoSquash.BepInEx.dll"
+      },
+      {
+        "chineseName": "魅皇菇",
+        "modName": "HypnoDoomEmperor.BepInEx.dll"
+      },
+      {
+        "chineseName": "鱼丸盆",
+        "modName": ""
+      },
+      {
+        "chineseName": "黄油射手",
+        "modName": "ButterShooter_BepInEx.dll"
+      },
+      {
+        "chineseName": "黄油忧郁菇",
+        "modName": "ButterGloom.BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金模仿者（不依赖前置库）",
+        "modName": "GoldImitater.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑塔（不依赖前置库）",
+        "modName": "HeiTa.dll"
+      },
+      {
+        "chineseName": "黑曜石堡垒",
+        "modName": "ObsidianFortress.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑曜石猫雷",
+        "modName": "ObsidianPotatoCat.dll"
+      },
+      {
+        "chineseName": "黑曜石西瓜投手",
+        "modName": "ObsidianSeed_BepInEx.dll"
+      }
+    ],
+    "zombieList": [
+      {
+        "chineseName": "万年不化骨",
+        "modName": "EternalZombieBoss.BepInEx.dll"
+      },
+      {
+        "chineseName": "多托雷【赝月的异端者】",
+        "modName": "Dottore.BepInEx.dll"
+      },
+      {
+        "chineseName": "无头骑士",
+        "modName": "NoHeadUltimateHorse.BepInEx.dll"
+      },
+      {
+        "chineseName": "普通女僵尸",
+        "modName": "NormalGirlZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "狂野机枪僵尸",
+        "modName": "WildGatling.BepInEx.dll"
+      },
+      {
+        "chineseName": "白舞王冰车僵尸（不需前置库）",
+        "modName": "UltimateMJacksonDriver.BepInEx.dll"
+      },
+      {
+        "chineseName": "砖头僵尸",
+        "modName": "BrickZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "精英凛冬引导者雪艇",
+        "modName": "Kirov_d.BepInEx.dll"
+      },
+      {
+        "chineseName": "红眼普通僵尸",
+        "modName": "RedeyeZombie.dll"
+      },
+      {
+        "chineseName": "终极铁甲机械巨人、铁甲守卫机械巨人",
+        "modName": "UltimateIronGargantuar.dll"
+      },
+      {
+        "chineseName": "黄金丑跳",
+        "modName": ""
+      },
+      {
+        "chineseName": "黄金僵王2",
+        "modName": "ZombieBoss2Remake.BepInEx.dll"
+      },
+      {
+        "chineseName": "黄金阳光帝果巨人僵尸",
+        "modName": "UltimateGoldSunNutZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑曜石盲盒僵尸",
+        "modName": "ObsidianDollZombie.BepInEx.dll"
+      },
+      {
+        "chineseName": "黑礁石突袭者",
+        "modName": "UltimateBungiZombie.dll"
+      }
+    ],
+    "skinList": null,
+    "pluginList": null
+  },
+  {
+    "author": "高数羽衫",
+    "version": "3.6.1",
+    "planList": [
+      {
+        "chineseName": "M7步枪射手",
+        "modName": "M7Shooter.dll"
+      },
+      {
+        "chineseName": "丘比特魅惑菇",
+        "modName": "CupidShroom.dll"
+      },
+      {
+        "chineseName": "乱画豌豆黄",
+        "modName": "ColdPeaYellow.dll"
+      },
+      {
+        "chineseName": "云耀yoke",
+        "modName": "Yoke.dll"
+      },
+      {
+        "chineseName": "余烬炽阳向日葵",
+        "modName": "UltimateDoomFlower.dll"
+      },
+      {
+        "chineseName": "兔子打手",
+        "modName": "RabbitThug.dll"
+      },
+      {
+        "chineseName": "全息底座",
+        "modName": "HolographicBase.dll"
+      },
+      {
+        "chineseName": "圣日辉阳神卷心菜",
+        "modName": "HolySunRadiantCabbage.dll"
+      },
+      {
+        "chineseName": "大蒜忧郁菇",
+        "modName": "GarlicDoomGloom.dll"
+      },
+      {
+        "chineseName": "天才小菜菜",
+        "modName": "GeniusCabbagePuff.dll"
+      },
+      {
+        "chineseName": "太阳神小投菇",
+        "modName": "SolarCabbagePultShroom.dll"
+      },
+      {
+        "chineseName": "太阳神樱桃射手",
+        "modName": "HeliosShooter.dll"
+      },
+      {
+        "chineseName": "头脑风暴",
+        "modName": "BrainBest.dll"
+      },
+      {
+        "chineseName": "寒冰狙击小喷菇",
+        "modName": "IceSmallPuffSniper.dll"
+      },
+      {
+        "chineseName": "寒冰究极投手",
+        "modName": "UltimateIcePitcher.dll"
+      },
+      {
+        "chineseName": "寒冰西瓜猫尾草",
+        "modName": "WinterMelon.dll"
+      },
+      {
+        "chineseName": "小丑加农炮",
+        "modName": "JackboxCobCannon.dll"
+      },
+      {
+        "chineseName": "小卷心菜投手",
+        "modName": "CabbagePultShroom.dll"
+      },
+      {
+        "chineseName": "小投菇",
+        "modName": "PultShroom.dll"
+      },
+      {
+        "chineseName": "小推车猫尾草",
+        "modName": "MowerCattail.dll"
+      },
+      {
+        "chineseName": "小火瓜投手",
+        "modName": "FireMelonPultShroom.dll"
+      },
+      {
+        "chineseName": "小究极杨桃大帝",
+        "modName": "UltimateStarShroom.dll"
+      },
+      {
+        "chineseName": "幻灭魅后",
+        "modName": "SuperHypnoDoomEmperor.dll"
+      },
+      {
+        "chineseName": "幻灭魅帝",
+        "modName": "SuperHypnoDoomQueen.dll"
+      },
+      {
+        "chineseName": "幽灵豌豆",
+        "modName": "GhostPea.dll"
+      },
+      {
+        "chineseName": "急冻樱桃射手",
+        "modName": "FreezeCherryShooter.dll"
+      },
+      {
+        "chineseName": "月神夜灯花",
+        "modName": "UltimateLunarGodLamp.dll"
+      },
+      {
+        "chineseName": "模仿者坚果",
+        "modName": "BarleyNuts.dll"
+      },
+      {
+        "chineseName": "樱桃狙击射手",
+        "modName": "CherrySniperPea.dll"
+      },
+      {
+        "chineseName": "毁灭三线树桩和毁灭三线土豆雷",
+        "modName": "UltimateDoomMineAndThreeDoomTorch.dll"
+      },
+      {
+        "chineseName": "毁灭加农炮",
+        "modName": "DestroyCannon.dll"
+      },
+      {
+        "chineseName": "毁灭狙击射手",
+        "modName": "DestorySniperPea.dll"
+      },
+      {
+        "chineseName": "浴火猫尾草",
+        "modName": "FireBathCattail.dll"
+      },
+      {
+        "chineseName": "潜伏南瓜",
+        "modName": "IFVPumpkinBuff.dll"
+      },
+      {
+        "chineseName": "火神卷心菜",
+        "modName": "UltimateFireGod.dll"
+      },
+      {
+        "chineseName": "爆破西瓜加农炮",
+        "modName": "ExplodeMelonCannon.dll"
+      },
+      {
+        "chineseName": "爆破黑曜石辣椒",
+        "modName": "ExplodeObsidianJalapeno.dll"
+      },
+      {
+        "chineseName": "爆米花加农炮",
+        "modName": "PopcornCannon.dll"
+      },
+      {
+        "chineseName": "爱吃席的小白",
+        "modName": "WhiteEmperor.dll"
+      },
+      {
+        "chineseName": "狂野机枪射手",
+        "modName": "WildMachineGunPea.dll"
+      },
+      {
+        "chineseName": "皮肤加载器",
+        "modName": "SkinLoader.dll"
+      },
+      {
+        "chineseName": "礼盒投手",
+        "modName": "GiftBoxPitcher.dll"
+      },
+      {
+        "chineseName": "神秘金蛋",
+        "modName": "GoldenEgg.dll"
+      },
+      {
+        "chineseName": "究极冰神弹弹菇",
+        "modName": "IceBouncyMushroom.dll"
+      },
+      {
+        "chineseName": "究极圣辉日冕太阳神",
+        "modName": "UltimateSolarCoronaCabbage.dll"
+      },
+      {
+        "chineseName": "究极幻灭大喷菇",
+        "modName": "MagicDestroyMushroom.dll"
+      },
+      {
+        "chineseName": "究极幻灭炮台",
+        "modName": "UltimateDestroyAlluringBigGatling.dll"
+      },
+      {
+        "chineseName": "究极星神卷心菜",
+        "modName": "AstralGodCabbage.dll"
+      },
+      {
+        "chineseName": "究极樱火射手",
+        "modName": "UltimateCherryFireShooter.dll"
+      },
+      {
+        "chineseName": "究极浴火小松炉",
+        "modName": "BathFireKomatsu.dll"
+      },
+      {
+        "chineseName": "究极火神乒乓菇",
+        "modName": "UltimateCabbageFume.dll"
+      },
+      {
+        "chineseName": "究极炬掌",
+        "modName": "UltimateTorchCactus.dll"
+      },
+      {
+        "chineseName": "究极炽火狙击射手",
+        "modName": "UltimateBlazingFireSniper.dll"
+      },
+      {
+        "chineseName": "究极炽焰机枪",
+        "modName": "UltimateFlameGatling.dll"
+      },
+      {
+        "chineseName": "究极熔金瓜炮",
+        "modName": "UltimateLaveMelon.dll"
+      },
+      {
+        "chineseName": "究极爆裂樱桃射手",
+        "modName": "UltimateExplodeCherryShooter.dll"
+      },
+      {
+        "chineseName": "究极狂野樱桃射手",
+        "modName": "WildCherryBlossom.dll"
+      },
+      {
+        "chineseName": "究极玩偶匣杨桃",
+        "modName": "UltimateDollBoxStar.dll"
+      },
+      {
+        "chineseName": "究极病毒双发射手",
+        "modName": "UltimateGarlicShooter.dll"
+      },
+      {
+        "chineseName": "究极磁暴西瓜",
+        "modName": "UltimateMagneticStormMelon.dll"
+      },
+      {
+        "chineseName": "究极终结者冰毁机枪",
+        "modName": "IcedoomSuperGatling.dll"
+      },
+      {
+        "chineseName": "究极蒜毒蔬果拼盘投手",
+        "modName": "UltimateSaladThrower.dll"
+      },
+      {
+        "chineseName": "究极赏金炮台",
+        "modName": "BountyHunterBigGatling.dll"
+      },
+      {
+        "chineseName": "究极霜葬猫尾草",
+        "modName": "UltimateFrostBurialCat.dll"
+      },
+      {
+        "chineseName": "究极魅帝菇",
+        "modName": "UltimateMagicMushroom.dll"
+      },
+      {
+        "chineseName": "究极鱼丸帝果",
+        "modName": "SuperMechaSunNut.dll"
+      },
+      {
+        "chineseName": "究级毁灭海鲸菇",
+        "modName": "UltimateDoomShroom.dll"
+      },
+      {
+        "chineseName": "终极圣斗士卷心菜",
+        "modName": "UltimateSaintSeiyaCabbage.dll"
+      },
+      {
+        "chineseName": "终极地狱火炬",
+        "modName": "UltimateHellTorch.dll"
+      },
+      {
+        "chineseName": "终极幻灭加农炮",
+        "modName": "UltimateDisillusionmentCannon.dll"
+      },
+      {
+        "chineseName": "终极幻灭激光南瓜",
+        "modName": "DisillusionmentLaserPumpkin.dll"
+      },
+      {
+        "chineseName": "终极末日指挥官",
+        "modName": "UltimateDoomsdayCommander.dll"
+      },
+      {
+        "chineseName": "终极核爆加农炮",
+        "modName": "UltimateNuclearExplosiveCannon.dll"
+      },
+      {
+        "chineseName": "终极樱桃机枪战神",
+        "modName": "UltimateCherryGatlingChomper.dll"
+      },
+      {
+        "chineseName": "终极深渊邪神",
+        "modName": "UltimateAbyssalEvilGod.dll"
+      },
+      {
+        "chineseName": "终极特种黑曜石炮台",
+        "modName": "UltimateBigSuperGatling.dll"
+      },
+      {
+        "chineseName": "终极猫娘红莲女王",
+        "modName": "RedLotusQueen.dll"
+      },
+      {
+        "chineseName": "终极玄钢机械坚果",
+        "modName": "UltimateObsidianMechineNut.dll"
+      },
+      {
+        "chineseName": "终极金卷光桃",
+        "modName": "UltimateStarshineCarambola.dll"
+      },
+      {
+        "chineseName": "终极魅惑菇",
+        "modName": "UltimateNineGirls.dll"
+      },
+      {
+        "chineseName": "终极魔法猫咪",
+        "modName": "UltimateMagicCat.dll"
+      },
+      {
+        "chineseName": "终极黑曜石战神",
+        "modName": "SuperObsidianChomper.dll"
+      },
+      {
+        "chineseName": "终极黑曜石鲛神",
+        "modName": "UltimateSharkGod.dll"
+      },
+      {
+        "chineseName": "自费盒子",
+        "modName": "LoanPresent.dll"
+      },
+      {
+        "chineseName": "豌豆小组",
+        "modName": "PeaGroup.dll"
+      },
+      {
+        "chineseName": "豌豆炮台",
+        "modName": "PeaBattery.dll"
+      },
+      {
+        "chineseName": "财神爷金盏花",
+        "modName": "Marigold888.dll"
+      },
+      {
+        "chineseName": "赤渊蚀月神卷心菜",
+        "modName": "BloodMoonPhantomCabbage.dll"
+      },
+      {
+        "chineseName": "超时空樱桃机枪",
+        "modName": "PortalCherryGatling.dll"
+      },
+      {
+        "chineseName": "超级寒冰机枪炮台",
+        "modName": "BigSuperSnowGatling.dll"
+      },
+      {
+        "chineseName": "超级机枪炮台",
+        "modName": "BigSuperGatling.dll"
+      },
+      {
+        "chineseName": "超级樱桃机枪炮台",
+        "modName": "BigSuperCherryGatling.dll"
+      },
+      {
+        "chineseName": "超级魅惑机枪炮台",
+        "modName": "HypnoBigSuperGatling.dll"
+      },
+      {
+        "chineseName": "辉月夜神卷心菜",
+        "modName": "MoonlightNightGodCabbage.dll"
+      },
+      {
+        "chineseName": "迷你加特林校尉",
+        "modName": "SmallGatlingFootball.dll"
+      },
+      {
+        "chineseName": "迷你玉米加农炮",
+        "modName": "LittleCannon.dll"
+      },
+      {
+        "chineseName": "金牌狙击指挥官",
+        "modName": "GoldenSniper.dll"
+      },
+      {
+        "chineseName": "黑曜石忧郁菇",
+        "modName": "UltimateObsidianGloom.dll"
+      }
+    ],
+    "zombieList": [
+      {
+        "chineseName": "伽农炮僵尸",
+        "modName": "CannonGargantuar.dll"
+      },
+      {
+        "chineseName": "冰车雪球僵尸",
+        "modName": "SnowballIceTruckZombie.dll"
+      },
+      {
+        "chineseName": "哈夫克自动战车",
+        "modName": "HaavkAutoChariot.dll"
+      },
+      {
+        "chineseName": "坦克僵尸",
+        "modName": "TigerKingZombie.dll"
+      },
+      {
+        "chineseName": "更多撑杆跳僵尸",
+        "modName": "MorePolevaulterZombie.dll"
+      },
+      {
+        "chineseName": "狙击僵尸",
+        "modName": "SniperZombie.dll"
+      },
+      {
+        "chineseName": "究极下界合金钻机僵尸",
+        "modName": "UltimatePickaxeDriver.dll"
+      },
+      {
+        "chineseName": "究极加特林校尉僵尸",
+        "modName": "UltimateGatlingBlackFootball.dll"
+      },
+      {
+        "chineseName": "究极重火力D教授僵尸",
+        "modName": "UltimateDoomPaperZombie.dll"
+      },
+      {
+        "chineseName": "雪爪雪兽骑士僵尸",
+        "modName": "UltimateSnowMonsterRider.dll"
+      }
+    ],
+    "skinList": null,
+    "pluginList": null
+  },
+  {
+    "author": "高数羽衫",
+    "version": "3.7",
+    "planList": [
+      {
+        "chineseName": "M7步枪射手",
+        "modName": "M7Shooter.dll"
+      },
+      {
+        "chineseName": "上岸鸭",
+        "modName": "ShoreboundDuck.dll"
+      },
+      {
+        "chineseName": "丘比特魅惑菇",
+        "modName": "CupidShroom.dll"
+      },
+      {
+        "chineseName": "乱画豌豆黄",
+        "modName": "ColdPeaYellow.dll"
+      },
+      {
+        "chineseName": "云耀yoke",
+        "modName": "Yoke.dll"
+      },
+      {
+        "chineseName": "余烬炽阳向日葵",
+        "modName": "UltimateDoomFlower.dll"
+      },
+      {
+        "chineseName": "兔子打手",
+        "modName": "RabbitThug.dll"
+      },
+      {
+        "chineseName": "全息底座",
+        "modName": "HolographicBase.dll"
+      },
+      {
+        "chineseName": "圣日辉阳神卷心菜",
+        "modName": "HolySunRadiantCabbage.dll"
+      },
+      {
+        "chineseName": "大蒜忧郁菇",
+        "modName": "GarlicDoomGloom.dll"
+      },
+      {
+        "chineseName": "天才小菜菜",
+        "modName": "GeniusCabbagePuff.dll"
+      },
+      {
+        "chineseName": "太阳神小投菇",
+        "modName": "SolarCabbagePultShroom.dll"
+      },
+      {
+        "chineseName": "太阳神樱桃射手",
+        "modName": "HeliosShooter.dll"
+      },
+      {
+        "chineseName": "头脑风暴",
+        "modName": "BrainBest.dll"
+      },
+      {
+        "chineseName": "寒冰狙击小喷菇",
+        "modName": "IceSmallPuffSniper.dll"
+      },
+      {
+        "chineseName": "寒冰究极投手",
+        "modName": "UltimateIcePitcher.dll"
+      },
+      {
+        "chineseName": "寒冰西瓜猫尾草",
+        "modName": "WinterMelon.dll"
+      },
+      {
+        "chineseName": "小丑加农炮",
+        "modName": "JackboxCobCannon.dll"
+      },
+      {
+        "chineseName": "小卷心菜投手",
+        "modName": "CabbagePultShroom.dll"
+      },
+      {
+        "chineseName": "小投菇",
+        "modName": "PultShroom.dll"
+      },
+      {
+        "chineseName": "小推车猫尾草",
+        "modName": "MowerCattail.dll"
+      },
+      {
+        "chineseName": "小火瓜投手",
+        "modName": "FireMelonPultShroom.dll"
+      },
+      {
+        "chineseName": "小究极杨桃大帝",
+        "modName": "UltimateStarShroom.dll"
+      },
+      {
+        "chineseName": "幻灭魅后",
+        "modName": "SuperHypnoDoomEmperor.dll"
+      },
+      {
+        "chineseName": "幻灭魅帝",
+        "modName": "SuperHypnoDoomQueen.dll"
+      },
+      {
+        "chineseName": "幽灵豌豆",
+        "modName": "GhostPea.dll"
+      },
+      {
+        "chineseName": "急冻樱桃射手",
+        "modName": "FreezeCherryShooter.dll"
+      },
+      {
+        "chineseName": "月神夜灯花",
+        "modName": "UltimateLunarGodLamp.dll"
+      },
+      {
+        "chineseName": "模仿者坚果",
+        "modName": "BarleyNuts.dll"
+      },
+      {
+        "chineseName": "樱桃狙击射手",
+        "modName": "CherrySniperPea.dll"
+      },
+      {
+        "chineseName": "毁灭三线树桩和毁灭三线土豆雷",
+        "modName": "UltimateDoomMineAndThreeDoomTorch.dll"
+      },
+      {
+        "chineseName": "毁灭加农炮",
+        "modName": "DestroyCannon.dll"
+      },
+      {
+        "chineseName": "毁灭狙击射手",
+        "modName": "DestorySniperPea.dll"
+      },
+      {
+        "chineseName": "浴火猫尾草",
+        "modName": "FireBathCattail.dll"
+      },
+      {
+        "chineseName": "潜伏南瓜",
+        "modName": "IFVPumpkinBuff.dll"
+      },
+      {
+        "chineseName": "火神卷心菜",
+        "modName": "UltimateFireGod.dll"
+      },
+      {
+        "chineseName": "爆破西瓜加农炮",
+        "modName": "ExplodeMelonCannon.dll"
+      },
+      {
+        "chineseName": "爆破黑曜石辣椒",
+        "modName": "ExplodeObsidianJalapeno.dll"
+      },
+      {
+        "chineseName": "爆米花加农炮",
+        "modName": "PopcornCannon.dll"
+      },
+      {
+        "chineseName": "爱吃席的小白",
+        "modName": "WhiteEmperor.dll"
+      },
+      {
+        "chineseName": "狂野机枪射手",
+        "modName": "WildMachineGunPea.dll"
+      },
+      {
+        "chineseName": "皮肤加载器",
+        "modName": "SkinLoader.dll"
+      },
+      {
+        "chineseName": "礼盒投手",
+        "modName": "GiftBoxPitcher.dll"
+      },
+      {
+        "chineseName": "神秘金蛋",
+        "modName": "GoldenEgg.dll"
+      },
+      {
+        "chineseName": "究极冰神弹弹菇",
+        "modName": "IceBouncyMushroom.dll"
+      },
+      {
+        "chineseName": "究极圣辉日冕太阳神",
+        "modName": "UltimateSolarCoronaCabbage.dll"
+      },
+      {
+        "chineseName": "究极幻灭大喷菇",
+        "modName": "MagicDestroyMushroom.dll"
+      },
+      {
+        "chineseName": "究极幻灭炮台",
+        "modName": "UltimateDestroyAlluringBigGatling.dll"
+      },
+      {
+        "chineseName": "究极星神卷心菜",
+        "modName": "AstralGodCabbage.dll"
+      },
+      {
+        "chineseName": "究极樱火射手",
+        "modName": "UltimateCherryFireShooter.dll"
+      },
+      {
+        "chineseName": "究极浴火小松炉",
+        "modName": "BathFireKomatsu.dll"
+      },
+      {
+        "chineseName": "究极火神乒乓菇",
+        "modName": "UltimateCabbageFume.dll"
+      },
+      {
+        "chineseName": "究极炬掌",
+        "modName": "UltimateTorchCactus.dll"
+      },
+      {
+        "chineseName": "究极炽火狙击射手",
+        "modName": "UltimateBlazingFireSniper.dll"
+      },
+      {
+        "chineseName": "究极炽焰机枪",
+        "modName": "UltimateFlameGatling.dll"
+      },
+      {
+        "chineseName": "究极熔金瓜炮",
+        "modName": "UltimateLaveMelon.dll"
+      },
+      {
+        "chineseName": "究极爆裂樱桃射手",
+        "modName": "UltimateExplodeCherryShooter.dll"
+      },
+      {
+        "chineseName": "究极狂野樱桃射手",
+        "modName": "WildCherryBlossom.dll"
+      },
+      {
+        "chineseName": "究极玩偶匣杨桃",
+        "modName": "UltimateDollBoxStar.dll"
+      },
+      {
+        "chineseName": "究极病毒双发射手",
+        "modName": "UltimateGarlicShooter.dll"
+      },
+      {
+        "chineseName": "究极磁暴西瓜",
+        "modName": "UltimateMagneticStormMelon.dll"
+      },
+      {
+        "chineseName": "究极终结者冰毁机枪",
+        "modName": "IcedoomSuperGatling.dll"
+      },
+      {
+        "chineseName": "究极蒜毒蔬果拼盘投手",
+        "modName": "UltimateSaladThrower.dll"
+      },
+      {
+        "chineseName": "究极赏金炮台",
+        "modName": "BountyHunterBigGatling.dll"
+      },
+      {
+        "chineseName": "究极霜葬猫尾草",
+        "modName": "UltimateFrostBurialCat.dll"
+      },
+      {
+        "chineseName": "究极魅帝菇",
+        "modName": "UltimateMagicMushroom.dll"
+      },
+      {
+        "chineseName": "究极鱼丸帝果",
+        "modName": "SuperMechaSunNut.dll"
+      },
+      {
+        "chineseName": "究级毁灭海鲸菇",
+        "modName": "UltimateDoomShroom.dll"
+      },
+      {
+        "chineseName": "终极圣斗士卷心菜",
+        "modName": "UltimateSaintSeiyaCabbage.dll"
+      },
+      {
+        "chineseName": "终极地狱火炬",
+        "modName": "UltimateHellTorch.dll"
+      },
+      {
+        "chineseName": "终极坍灭粒子炮台",
+        "modName": "NuclearExcitation.dll"
+      },
+      {
+        "chineseName": "终极幻灭加农炮",
+        "modName": "UltimateDisillusionmentCannon.dll"
+      },
+      {
+        "chineseName": "终极幻灭激光南瓜",
+        "modName": "DisillusionmentLaserPumpkin.dll"
+      },
+      {
+        "chineseName": "终极末日指挥官",
+        "modName": "UltimateDoomsdayCommander.dll"
+      },
+      {
+        "chineseName": "终极核爆加农炮",
+        "modName": "UltimateNuclearExplosiveCannon.dll"
+      },
+      {
+        "chineseName": "终极樱桃机枪战神",
+        "modName": "UltimateCherryGatlingChomper.dll"
+      },
+      {
+        "chineseName": "终极深渊邪神",
+        "modName": "UltimateAbyssalEvilGod.dll"
+      },
+      {
+        "chineseName": "终极特种黑曜石炮台",
+        "modName": "UltimateBigSuperGatling.dll"
+      },
+      {
+        "chineseName": "终极猫娘红莲女王",
+        "modName": "RedLotusQueen.dll"
+      },
+      {
+        "chineseName": "终极玄钢机械坚果",
+        "modName": "UltimateObsidianMechineNut.dll"
+      },
+      {
+        "chineseName": "终极金卷光桃",
+        "modName": "UltimateStarshineCarambola.dll"
+      },
+      {
+        "chineseName": "终极魅惑菇",
+        "modName": "UltimateNineGirls.dll"
+      },
+      {
+        "chineseName": "终极魔法猫咪",
+        "modName": "UltimateMagicCat.dll"
+      },
+      {
+        "chineseName": "终极黑曜石战神",
+        "modName": "SuperObsidianChomper.dll"
+      },
+      {
+        "chineseName": "终极黑曜石鲛神",
+        "modName": "UltimateSharkGod.dll"
+      },
+      {
+        "chineseName": "自费盒子",
+        "modName": "LoanPresent.dll"
+      },
+      {
+        "chineseName": "豌豆小组",
+        "modName": "PeaGroup.dll"
+      },
+      {
+        "chineseName": "豌豆炮台",
+        "modName": "PeaBattery.dll"
+      },
+      {
+        "chineseName": "财神爷金盏花",
+        "modName": "Marigold888.dll"
+      },
+      {
+        "chineseName": "赤渊蚀月神卷心菜",
+        "modName": "BloodMoonPhantomCabbage.dll"
+      },
+      {
+        "chineseName": "超时空樱桃机枪",
+        "modName": "PortalCherryGatling.dll"
+      },
+      {
+        "chineseName": "超级寒冰机枪炮台",
+        "modName": "BigSuperSnowGatling.dll"
+      },
+      {
+        "chineseName": "超级机枪炮台",
+        "modName": "BigSuperGatling.dll"
+      },
+      {
+        "chineseName": "超级樱桃机枪炮台",
+        "modName": "BigSuperCherryGatling.dll"
+      },
+      {
+        "chineseName": "超级魅惑机枪炮台",
+        "modName": "HypnoBigSuperGatling.dll"
+      },
+      {
+        "chineseName": "辉月夜神卷心菜",
+        "modName": "MoonlightNightGodCabbage.dll"
+      },
+      {
+        "chineseName": "迷你加特林校尉",
+        "modName": "SmallGatlingFootball.dll"
+      },
+      {
+        "chineseName": "迷你玉米加农炮",
+        "modName": "LittleCannon.dll"
+      },
+      {
+        "chineseName": "金牌狙击指挥官",
+        "modName": "GoldenSniper.dll"
+      },
+      {
+        "chineseName": "黑曜石忧郁菇",
+        "modName": "UltimateObsidianGloom.dll"
+      }
+    ],
+    "zombieList": [
+      {
+        "chineseName": "伽农炮僵尸",
+        "modName": "CannonGargantuar.dll"
+      },
+      {
+        "chineseName": "冰车雪球僵尸",
+        "modName": "SnowballIceTruckZombie.dll"
+      },
+      {
+        "chineseName": "哈夫克自动战车僵尸",
+        "modName": "HaavkAutoChariot.dll"
+      },
+      {
+        "chineseName": "坦克僵尸",
+        "modName": "TigerKingZombie.dll"
+      },
+      {
+        "chineseName": "更多撑杆跳僵尸",
+        "modName": "MorePolevaulterZombie.dll"
+      },
+      {
+        "chineseName": "狙击僵尸",
+        "modName": "SniperZombie.dll"
+      },
+      {
+        "chineseName": "究极下界合金钻机僵尸",
+        "modName": "UltimatePickaxeDriver.dll"
+      },
+      {
+        "chineseName": "究极加特林校尉僵尸",
+        "modName": "UltimateGatlingBlackFootball.dll"
+      },
+      {
+        "chineseName": "究极重火力D教授僵尸",
+        "modName": "UltimateDoomPaperZombie.dll"
+      },
+      {
+        "chineseName": "雪爪雪兽骑士僵尸",
+        "modName": "UltimateSnowMonsterRider.dll"
+      }
+    ],
+    "skinList": null,
+    "pluginList": null
+  }
+]

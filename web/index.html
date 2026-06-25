@@ -62,9 +62,9 @@
             <button id="selectGameBtn" onclick="selectFolder('game')">选择</button>
         </div>
         <div class="path-row">
-            <label>Mod 库:</label>
-            <input type="text" id="modLibPath" readonly placeholder="请点击右侧选择...">
-            <button id="selectModLibBtn" onclick="selectFolder('modlib')">选择</button>
+            <label>下载目录:</label>
+            <input type="text" id="downloadPath" readonly placeholder="请点击右侧选择...">
+            <button id="selectDownloadBtn" onclick="selectFolder('download')">选择</button>
         </div>
         <div class="path-row">
             <label>搜索 Mod:</label>
@@ -178,16 +178,15 @@
             .then(res => res.json())
             .then(cfg => {
                 if (cfg.game_path) document.getElementById('gamePath').value = cfg.game_path;
-                if (cfg.modlib_path) document.getElementById('modLibPath').value = cfg.modlib_path;
-                if (cfg.game_path && cfg.modlib_path) checkBepInExAndLoadAll();
-                else if (cfg.game_path) checkBepInExOnly();
+                if (cfg.download_path) document.getElementById('downloadPath').value = cfg.download_path;
+                if (cfg.game_path) checkBepInExAndLoadAll();
             })
             .catch(err => console.error('加载配置失败:', err));
         loadGameVersions();
     });
 
     function selectFolder(type) {
-        const btnId = type === 'game' ? 'selectGameBtn' : 'selectModLibBtn';
+        const btnId = type === 'game' ? 'selectGameBtn' : 'selectDownloadBtn';
         const btn = document.getElementById(btnId);
         if (locks.get(btn)) return;
         locks.set(btn, true);
@@ -197,8 +196,12 @@
             .then(res => res.json())
             .then(data => {
                 if (data && data.path) {
-                    document.getElementById(type === 'game' ? 'gamePath' : 'modLibPath').value = data.path;
-                    checkBepInExAndLoadAll();
+                    if (type === 'game') {
+                        document.getElementById('gamePath').value = data.path;
+                        checkBepInExAndLoadAll();
+                    } else {
+                        document.getElementById('downloadPath').value = data.path;
+                    }
                 }
             })
             .catch(err => alert('选择失败: ' + err.message))
@@ -216,7 +219,6 @@
 
     function checkBepInExAndLoadAll() {
         const gamePath = document.getElementById('gamePath').value;
-        const modLibPath = document.getElementById('modLibPath').value;
         if (!gamePath) return;
         fetch('/api/check-bepinex')
             .then(res => res.json())
@@ -224,8 +226,8 @@
                 const el = document.getElementById('bepStatus');
                 const btn = document.getElementById('installBepBtn');
                 el.textContent = data.installed ? 'BepInEx: ✅ 已安装' : 'BepInEx: ⚠️ 未安装';
-                btn.style.display = (!data.installed && modLibPath) ? 'inline-block' : 'none';
-                if (gamePath && modLibPath) { loadMods(); loadSkins(); loadTrainers(); loadOnlineModsIfVersionSelected(); }
+                btn.style.display = data.installed ? 'none' : 'inline-block';
+                if (gamePath) { loadMods(); loadSkins(); loadTrainers(); loadOnlineModsIfVersionSelected(); }
             });
     }
 
@@ -245,8 +247,8 @@
     }
 
     function refreshMods() {
-        if (!document.getElementById('gamePath').value || !document.getElementById('modLibPath').value) {
-            alert('请先选择游戏目录和 Mod 库'); return;
+        if (!document.getElementById('gamePath').value) {
+            alert('请先选择游戏目录'); return;
         }
         loadMods(); loadSkins(); loadTrainers(); loadOnlineModsIfVersionSelected();
     }

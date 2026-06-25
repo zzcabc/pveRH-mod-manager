@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mod 管理器 - 配置管理</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Microsoft YaHei", sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { width: 100%; max-width: 600px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { font-size: 20px; margin-bottom: 24px; }
+        .section { margin-bottom: 20px; }
+        .section-title { font-size: 16px; font-weight: bold; padding: 8px 12px; background: #f0f2f5; border-radius: 4px 4px 0 0; }
+        .path-row { display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+        .path-row label { width: 100px; font-weight: bold; }
+        .path-row input { flex: 1; padding: 6px; border: 1px solid #d9d9d9; border-radius: 4px; background: #fafafa; min-width: 200px; }
+        .path-row button { padding: 6px 12px; background: #1677ff; color: #fff; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap; }
+        .btn-normalize { background: #52c41a; color: #fff; width: 100%; padding: 12px; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-normalize:hover { background: #45a049; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>配置管理</h1>
+    <div class="section">
+        <div class="section-title">下载文件夹（用于规范化）</div>
+        <div class="path-row">
+            <label>下载路径:</label>
+            <input type="text" id="downloadPath" readonly placeholder="未设置">
+            <button id="btnSelect" onclick="doSelect()">选择文件夹</button>
+        </div>
+    </div>
+    <div class="section">
+        <button id="btnNormalize" class="btn-normalize" onclick="doNormalize()">规范化下载文件夹</button>
+    </div>
+</div>
+<script>
+var downloadPathInput = document.getElementById('downloadPath');
+var btnSelect = document.getElementById('btnSelect');
+var btnNormalize = document.getElementById('btnNormalize');
+
+// 加载配置
+var xhr1 = new XMLHttpRequest();
+xhr1.open('GET', '/api/config');
+xhr1.onload = function() {
+    try {
+        var data = JSON.parse(xhr1.responseText);
+        downloadPathInput.value = data.download_path || '';
+    } catch(e) {}
+};
+xhr1.send();
+
+function doSelect() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/select-download');
+    xhr.onload = function() {
+        try {
+            var data = JSON.parse(xhr.responseText);
+            if (data.path) {
+                downloadPathInput.value = data.path;
+            }
+        } catch(e) {}
+    };
+    xhr.onerror = function() { alert('请求失败'); };
+    xhr.send();
+}
+
+function doNormalize() {
+    var dp = downloadPathInput.value;
+    if (!dp) { alert('请先选择下载文件夹'); return; }
+    if (!confirm('确定要规范化以下文件夹吗？\n' + dp)) return;
+
+    btnNormalize.disabled = true;
+    btnNormalize.textContent = '规范化中...';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/normalize-download');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        try {
+            var data = JSON.parse(xhr.responseText);
+            if (data.error) {
+                alert('规范化失败: ' + data.error);
+            } else {
+                alert('规范化完成！');
+            }
+        } catch(e) {
+            alert('响应解析失败: ' + xhr.responseText);
+        }
+        btnNormalize.disabled = false;
+        btnNormalize.textContent = '规范化下载文件夹';
+    };
+    xhr.onerror = function() {
+        alert('请求失败');
+        btnNormalize.disabled = false;
+        btnNormalize.textContent = '规范化下载文件夹';
+    };
+    xhr.send();
+}
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 module pveRH-mod-manager
 
-go 1.25
+go 1.25.0
 
 require (
 	github.com/gorilla/mux v1.8.1
@@ -12,4 +12,5 @@ require (
 require (
 	github.com/TheTitanrain/w32 v0.0.0-20180517000239-4f5cfb03fabf // indirect
 	golang.org/x/sys v0.1.0 // indirect
+	golang.org/x/text v0.38.0 // indirect
 )
