@@ -22,12 +22,16 @@ import (
 //go:embed web
 var webFS embed.FS
 
+//go:embed gamefile.json
+var gameFileJSON []byte
+
 var (
 	gamePaths    []string
 	modLibPaths  []string
 	downloadPath string
 	gamePath     string // 当前活动的游戏目录
 	modLibPath   string // 当前活动的 Mod 库目录
+	modOperator  *internal.ModOperator
 )
 
 const onlineModServer = "https://pvzrhmod.zhaocheng.cc:8443" // 在线 Mod 服务器地址
@@ -76,8 +80,18 @@ func saveConfig() {
 	os.WriteFile(configFilePath(), data, 0644)
 }
 
+func initModOperator() {
+	if gamePath != "" && modLibPath != "" {
+		modOperator = internal.NewModOperator(gamePath, modLibPath)
+	}
+}
+
 func main() {
+	// 初始化嵌入的 gamefile.json 数据
+	internal.SetEmbeddedGameFileData(gameFileJSON)
+
 	loadConfig()
+	initModOperator()
 
 	r := mux.NewRouter()
 
@@ -87,6 +101,7 @@ func main() {
 	api.HandleFunc("/select-modlib", handleSelectModLib).Methods("GET")
 	api.HandleFunc("/check-bepinex", handleCheckBepInEx).Methods("GET")
 	api.HandleFunc("/install-bepinex", handleInstallBepInEx).Methods("POST")
+	api.HandleFunc("/remove-bepinex", handleRemoveBepInEx).Methods("POST")
 	api.HandleFunc("/mods", handleGetMods).Methods("GET")
 	api.HandleFunc("/install-mod", handleInstallMod).Methods("POST")
 	api.HandleFunc("/uninstall-mod", handleUninstallMod).Methods("POST")
@@ -107,6 +122,14 @@ func main() {
 	// 新增：路径管理 API
 	api.HandleFunc("/select-download", handleSelectDownload).Methods("GET")
 	api.HandleFunc("/normalize-download", handleNormalizeDownload).Methods("POST")
+
+	// 新增：Mod 状态管理 API
+	api.HandleFunc("/enable-mod", handleEnableMod).Methods("POST")
+	api.HandleFunc("/disable-mod", handleDisableMod).Methods("POST")
+	api.HandleFunc("/batch-enable", handleBatchEnable).Methods("POST")
+	api.HandleFunc("/batch-disable", handleBatchDisable).Methods("POST")
+	api.HandleFunc("/deploy-all", handleDeployAll).Methods("POST")
+	api.HandleFunc("/mod-status", handleGetModStatus).Methods("GET")
 
 	// 静态文件服务
 	webDir, err := fs.Sub(webFS, "web")
@@ -154,6 +177,7 @@ func handleSelectGame(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	addGamePath(path)
+	initModOperator()
 	json.NewEncoder(w).Encode(map[string]string{"path": path})
 }
 
@@ -164,6 +188,7 @@ func handleSelectModLib(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	addModLibPath(path)
+	initModOperator()
 	json.NewEncoder(w).Encode(map[string]string{"path": path})
 }
 
@@ -177,8 +202,11 @@ func handleCheckBepInEx(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "请先选择游戏目录", http.StatusBadRequest)
 		return
 	}
-	installed := internal.IsBepInExInstalled(gamePath)
-	json.NewEncoder(w).Encode(map[string]bool{"installed": installed})
+	installed, missing := internal.CheckBepInExFiles(gamePath)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"installed": installed,
+		"missing":   missing,
+	})
 }
 
 func handleInstallBepInEx(w http.ResponseWriter, r *http.Request) {
@@ -194,6 +222,19 @@ func handleInstallBepInEx(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
 }
 
+func handleRemoveBepInEx(w http.ResponseWriter, r *http.Request) {
+	if gamePath == "" {
+		http.Error(w, "请先选择游戏目录", http.StatusBadRequest)
+		return
+	}
+	err := internal.RemoveBepInEx(gamePath)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+}
+
 // ---------- Mod 列表 ----------
 func handleGetMods(w http.ResponseWriter, r *http.Request) {
 	if gamePath == "" || modLibPath == "" {
@@ -201,80 +242,17 @@ func handleGetMods(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	installedDlls, _ := internal.GetInstalledMods(gamePath)
-	available, _ := internal.ScanModLibrary(modLibPath)
-
-	dllToChinese := make(map[string]string)
-	for _, m := range available {
-		if m.IsZip {
-			continue
-		}
-		for _, dll := range m.DllNames {
-			dllToChinese[strings.ToLower(dll)] = m.Name
-		}
+	if modOperator == nil {
+		http.Error(w, "Mod 操作器未初始化", http.StatusInternalServerError)
+		return
 	}
 
-	installedModMap := make(map[string][]string)
-	for _, dll := range installedDlls {
-		lower := strings.ToLower(dll)
-		cnName, ok := dllToChinese[lower]
-		if !ok {
-			cnName = dll
-		}
-		installedModMap[cnName] = append(installedModMap[cnName], dll)
+	status, err := modOperator.GetModStatus()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
-
-	installedSet := make(map[string]bool)
-	var installedPlant, installedZombie []map[string]interface{}
-
-	for cnName, dlls := range installedModMap {
-		installedSet[cnName] = true
-		entry := map[string]interface{}{
-			"chinese_name": cnName,
-			"dll_names":    dlls,
-		}
-		if internal.IsZombieMod(cnName, dlls) {
-			installedZombie = append(installedZombie, entry)
-		} else {
-			installedPlant = append(installedPlant, entry)
-		}
-	}
-
-	var notInstalledPlant, notInstalledZombie []map[string]interface{}
-	for _, m := range available {
-		if m.IsZip {
-			continue
-		}
-		if !installedSet[m.Name] {
-			entry := map[string]interface{}{
-				"name":         m.Name,
-				"dll_names":    m.DllNames,
-				"needs_format": internal.NeedsFormat(m.DirPath),
-			}
-			if internal.IsZombieMod(m.Name, m.DllNames) {
-				notInstalledZombie = append(notInstalledZombie, entry)
-			} else {
-				notInstalledPlant = append(notInstalledPlant, entry)
-			}
-		}
-	}
-
-	var zips []map[string]interface{}
-	for _, m := range available {
-		if m.IsZip {
-			zips = append(zips, map[string]interface{}{
-				"name": m.Name,
-			})
-		}
-	}
-
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"installed_plant":      installedPlant,
-		"installed_zombie":     installedZombie,
-		"not_installed_plant":  notInstalledPlant,
-		"not_installed_zombie": notInstalledZombie,
-		"zips":                 zips,
-	})
+	json.NewEncoder(w).Encode(status)
 }
 
 // ---------- 安装/卸载 Mod ----------
@@ -555,6 +533,8 @@ func handleGetConfig(w http.ResponseWriter, r *http.Request) {
 		"game_paths":     gamePaths,
 		"modlib_paths":   modLibPaths,
 		"download_path":  downloadPath,
+		"game_path":      gamePath,
+		"modlib_path":    modLibPath,
 		"current_game":   gamePath,
 		"current_modlib": modLibPath,
 	})
@@ -583,4 +563,194 @@ func handleNormalizeDownload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+}
+
+// ---------- Mod 状态管理 API ----------
+func handleEnableMod(w http.ResponseWriter, r *http.Request) {
+	if modOperator == nil {
+		http.Error(w, "请先设置游戏目录和 Mod 库", http.StatusBadRequest)
+		return
+	}
+
+	var req struct {
+		Name string `json:"name"`
+	}
+	json.NewDecoder(r.Body).Decode(&req)
+
+	mods, _ := internal.ScanModLibrary(modLibPath)
+	var target internal.AvailableMod
+	for _, m := range mods {
+		if m.Name == req.Name && !m.IsZip {
+			target = m
+			break
+		}
+	}
+	if target.Name == "" {
+		http.Error(w, "Mod 未找到", http.StatusNotFound)
+		return
+	}
+
+	if err := modOperator.EnableMod(target); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+}
+
+func handleDisableMod(w http.ResponseWriter, r *http.Request) {
+	if modOperator == nil {
+		http.Error(w, "请先设置游戏目录和 Mod 库", http.StatusBadRequest)
+		return
+	}
+
+	var req struct {
+		Name string `json:"name"`
+	}
+	json.NewDecoder(r.Body).Decode(&req)
+
+	mods, _ := internal.ScanModLibrary(modLibPath)
+	var target internal.AvailableMod
+	for _, m := range mods {
+		if m.Name == req.Name && !m.IsZip {
+			target = m
+			break
+		}
+	}
+	if target.Name == "" {
+		http.Error(w, "Mod 未找到", http.StatusNotFound)
+		return
+	}
+
+	if err := modOperator.DisableMod(target); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+}
+
+func handleBatchEnable(w http.ResponseWriter, r *http.Request) {
+	if modOperator == nil {
+		http.Error(w, "请先设置游戏目录和 Mod 库", http.StatusBadRequest)
+		return
+	}
+
+	var req struct {
+		Names []string `json:"names"`
+	}
+	json.NewDecoder(r.Body).Decode(&req)
+
+	mods, _ := internal.ScanModLibrary(modLibPath)
+	modMap := make(map[string]internal.AvailableMod)
+	for _, m := range mods {
+		if !m.IsZip {
+			modMap[m.Name] = m
+		}
+	}
+
+	var result internal.BatchResult
+	for _, name := range req.Names {
+		target, ok := modMap[name]
+		if !ok {
+			result.Results = append(result.Results, internal.OperationResult{
+				ModName: name,
+				Success: false,
+				Error:   fmt.Errorf("Mod 未找到: %s", name),
+			})
+			result.Errors = append(result.Errors, fmt.Errorf("Mod 未找到: %s", name))
+			continue
+		}
+
+		err := modOperator.EnableMod(target)
+		result.Results = append(result.Results, internal.OperationResult{
+			ModName: name,
+			Success: err == nil,
+			Error:   err,
+		})
+		if err != nil {
+			result.Errors = append(result.Errors, err)
+		}
+	}
+
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"status":  "ok",
+		"results": result.Results,
+		"errors":  result.ErrorSummary(),
+	})
+}
+
+func handleBatchDisable(w http.ResponseWriter, r *http.Request) {
+	if modOperator == nil {
+		http.Error(w, "请先设置游戏目录和 Mod 库", http.StatusBadRequest)
+		return
+	}
+
+	var req struct {
+		Names []string `json:"names"`
+	}
+	json.NewDecoder(r.Body).Decode(&req)
+
+	mods, _ := internal.ScanModLibrary(modLibPath)
+	modMap := make(map[string]internal.AvailableMod)
+	for _, m := range mods {
+		if !m.IsZip {
+			modMap[m.Name] = m
+		}
+	}
+
+	var result internal.BatchResult
+	for _, name := range req.Names {
+		target, ok := modMap[name]
+		if !ok {
+			result.Results = append(result.Results, internal.OperationResult{
+				ModName: name,
+				Success: false,
+				Error:   fmt.Errorf("Mod 未找到: %s", name),
+			})
+			result.Errors = append(result.Errors, fmt.Errorf("Mod 未找到: %s", name))
+			continue
+		}
+
+		err := modOperator.DisableMod(target)
+		result.Results = append(result.Results, internal.OperationResult{
+			ModName: name,
+			Success: err == nil,
+			Error:   err,
+		})
+		if err != nil {
+			result.Errors = append(result.Errors, err)
+		}
+	}
+
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"status":  "ok",
+		"results": result.Results,
+		"errors":  result.ErrorSummary(),
+	})
+}
+
+func handleDeployAll(w http.ResponseWriter, r *http.Request) {
+	if modOperator == nil {
+		http.Error(w, "请先设置游戏目录和 Mod 库", http.StatusBadRequest)
+		return
+	}
+
+	if err := modOperator.DeployAll(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
+}
+
+func handleGetModStatus(w http.ResponseWriter, r *http.Request) {
+	if modOperator == nil {
+		http.Error(w, "请先设置游戏目录和 Mod 库", http.StatusBadRequest)
+		return
+	}
+
+	status, err := modOperator.GetModStatus()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(status)
 }

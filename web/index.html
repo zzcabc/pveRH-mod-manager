@@ -30,14 +30,25 @@
         .unzip-btn { background: #faad14; color: #fff; }
         .format-btn { background: #722ed1; color: #fff; }
         .refresh-btn { background: #1677ff; color: #fff; }
+        .enable-btn { background: #52c41a; color: #fff; }
+        .disable-btn { background: #ff7a45; color: #fff; }
+        .deploy-btn { background: #722ed1; color: #fff; }
         .status { color: #888; }
         button:disabled { opacity: 0.5; cursor: not-allowed; }
         .btn-group { display: flex; gap: 4px; flex-wrap: nowrap; align-items: center; }
         small { font-size: 0.75em; color: #666; }
         .zips-panel, .online-panel, .trainer-panel { margin-top: 8px; }
         .zips-panel .panel, .online-panel .panel, .trainer-panel .panel { border: 1px solid #e8e8e8; border-radius: 4px; overflow: auto; max-height: 200px; }
-        .zips-panel h3, .online-panel h3, .trainer-panel h3 { background: #fafafa; padding: 8px 12px; border-bottom: 1px solid #e8e8e8; position: sticky; top: 0; }
+        .zips-panel h3, .online-panel h3, .trainer-panel h3 { background: #fafafa; padding: 8px 12px; border-bottom: 1px solid #e8e8e8; position: sticky: 0; }
         .zips-content, .online-content, .trainer-content { padding: 6px 10px; }
+
+        /* 已禁用 Mod 样式 */
+        .mod-item.disabled { opacity: 0.6; background: #fff7e6; }
+        .mod-item.disabled span { text-decoration: line-through; color: #999; }
+
+        /* 批量操作按钮 */
+        .batch-actions { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+        .batch-actions button { padding: 4px 12px; font-size: 13px; }
 
         @media screen and (max-width: 750px) {
             .split-panel { flex-direction: column; max-height: none; }
@@ -62,6 +73,11 @@
             <button id="selectGameBtn" onclick="selectFolder('game')">选择</button>
         </div>
         <div class="path-row">
+            <label>Mod 库:</label>
+            <input type="text" id="modLibPath" readonly placeholder="请点击右侧选择...">
+            <button id="selectModLibBtn" onclick="selectFolder('modlib')">选择</button>
+        </div>
+        <div class="path-row">
             <label>下载目录:</label>
             <input type="text" id="downloadPath" readonly placeholder="请点击右侧选择...">
             <button id="selectDownloadBtn" onclick="selectFolder('download')">选择</button>
@@ -74,9 +90,11 @@
         <div class="bep-row">
             <span id="bepStatus">BepInEx: 未检测</span>
             <button id="installBepBtn" onclick="installBepInEx()" style="display:none;">安装 BepInEx</button>
+            <button id="removeBepBtn" onclick="removeBepInEx()" style="display:none;">移除 BepInEx</button>
             <button id="refreshModsBtn" class="refresh-btn" onclick="refreshMods()">刷新列表</button>
             <button id="formatAllBtn" class="refresh-btn" onclick="formatAll()">一键格式化</button>
             <button id="unzipAllBtn" class="unzip-btn" onclick="unzipAll()">一键解压</button>
+            <button id="deployAllBtn" class="deploy-btn" onclick="deployAll()">重新部署</button>
         </div>
     </div>
 
@@ -178,6 +196,7 @@
             .then(res => res.json())
             .then(cfg => {
                 if (cfg.game_path) document.getElementById('gamePath').value = cfg.game_path;
+                if (cfg.modlib_path) document.getElementById('modLibPath').value = cfg.modlib_path;
                 if (cfg.download_path) document.getElementById('downloadPath').value = cfg.download_path;
                 if (cfg.game_path) checkBepInExAndLoadAll();
             })
@@ -212,8 +231,18 @@
         fetch('/api/check-bepinex')
             .then(res => res.json())
             .then(data => {
-                document.getElementById('bepStatus').textContent = data.installed ? 'BepInEx: ✅ 已安装' : 'BepInEx: ⚠️ 未安装';
-                document.getElementById('installBepBtn').style.display = 'none';
+                const el = document.getElementById('bepStatus');
+                const installBtn = document.getElementById('installBepBtn');
+                const removeBtn = document.getElementById('removeBepBtn');
+                if (data.installed) {
+                    el.textContent = 'BepInEx: ✅ 已安装';
+                    installBtn.style.display = 'none';
+                    removeBtn.style.display = 'inline-block';
+                } else {
+                    el.textContent = 'BepInEx: ⚠️ 未安装';
+                    installBtn.style.display = 'inline-block';
+                    removeBtn.style.display = 'none';
+                }
             });
     }
 
@@ -224,9 +253,17 @@
             .then(res => res.json())
             .then(data => {
                 const el = document.getElementById('bepStatus');
-                const btn = document.getElementById('installBepBtn');
-                el.textContent = data.installed ? 'BepInEx: ✅ 已安装' : 'BepInEx: ⚠️ 未安装';
-                btn.style.display = data.installed ? 'none' : 'inline-block';
+                const installBtn = document.getElementById('installBepBtn');
+                const removeBtn = document.getElementById('removeBepBtn');
+                if (data.installed) {
+                    el.textContent = 'BepInEx: ✅ 已安装';
+                    installBtn.style.display = 'none';
+                    removeBtn.style.display = 'inline-block';
+                } else {
+                    el.textContent = 'BepInEx: ⚠️ 未安装';
+                    installBtn.style.display = 'inline-block';
+                    removeBtn.style.display = 'none';
+                }
                 if (gamePath) { loadMods(); loadSkins(); loadTrainers(); loadOnlineModsIfVersionSelected(); }
             });
     }
@@ -244,6 +281,23 @@
                 else { alert('BepInEx 安装完成！'); checkBepInExAndLoadAll(); }
             })
             .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '安装 BepInEx'; });
+    }
+
+    function removeBepInEx() {
+        if (!confirm('确定要移除 BepInEx 吗？\n这将删除 BepInEx 相关文件，但保留游戏原始文件。')) return;
+        const btn = document.getElementById('removeBepBtn');
+        if (locks.get(btn)) return;
+        locks.set(btn, true);
+        btn.disabled = true;
+        btn.textContent = '移除中...';
+        fetch('/api/remove-bepinex', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) alert('移除失败: ' + data.error);
+                else { alert('BepInEx 已移除！'); checkBepInExAndLoadAll(); }
+            })
+            .catch(err => alert('请求失败: ' + err.message))
+            .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '移除 BepInEx'; });
     }
 
     function refreshMods() {
@@ -274,6 +328,23 @@
                 else { alert('全部解压完成！'); loadMods(); }
             })
             .catch(err => alert('请求失败: ' + err.message));
+    }
+
+    function deployAll() {
+        if (!confirm('确定要重新部署所有已启用的 Mod 吗？\n这将清空 plugins 目录并重新复制所有已启用的 Mod。')) return;
+        const btn = document.getElementById('deployAllBtn');
+        if (locks.get(btn)) return;
+        locks.set(btn, true);
+        btn.disabled = true;
+        btn.textContent = '部署中...';
+        fetch('/api/deploy-all', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) alert('部署失败: ' + data.error);
+                else { alert('部署完成！'); loadMods(); }
+            })
+            .catch(err => alert('请求失败: ' + err.message))
+            .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '重新部署'; });
     }
 
     // ---------- Mod 列表 ----------
@@ -348,9 +419,9 @@
             btnGroup.className = 'btn-group';
 
             const installBtn = document.createElement('button');
-            installBtn.textContent = '安装';
+            installBtn.textContent = '安装并启用';
             installBtn.className = 'install-btn';
-            installBtn.onclick = () => modAction('install', m.name);
+            installBtn.onclick = () => enableMod(m.name);
             btnGroup.appendChild(installBtn);
 
             if (m.needs_format) {
@@ -374,14 +445,35 @@
         }
         mods.forEach(m => {
             const div = document.createElement('div');
-            div.className = 'mod-item';
+            const isEnabled = m.enabled !== false; // 默认启用
+            div.className = 'mod-item' + (isEnabled ? '' : ' disabled');
             const dllList = m.dll_names.join(', ');
-            div.innerHTML = `<span title="${escapeHtml(m.chinese_name)}">${escapeHtml(m.chinese_name)} <small>(${escapeHtml(dllList)})</small></span>`;
-            const btn = document.createElement('button');
-            btn.textContent = '卸载';
-            btn.className = 'uninstall-btn';
-            btn.onclick = () => modAction('uninstall', m.chinese_name);
-            div.appendChild(btn);
+            const statusIcon = isEnabled ? '✅' : '⏸️';
+            div.innerHTML = `<span title="${escapeHtml(m.chinese_name)}">${statusIcon} ${escapeHtml(m.chinese_name)} <small>(${escapeHtml(dllList)})</small></span>`;
+            const btnGroup = document.createElement('div');
+            btnGroup.className = 'btn-group';
+
+            if (isEnabled) {
+                const disableBtn = document.createElement('button');
+                disableBtn.textContent = '禁用';
+                disableBtn.className = 'disable-btn';
+                disableBtn.onclick = () => disableMod(m.chinese_name);
+                btnGroup.appendChild(disableBtn);
+            } else {
+                const enableBtn = document.createElement('button');
+                enableBtn.textContent = '启用';
+                enableBtn.className = 'enable-btn';
+                enableBtn.onclick = () => enableMod(m.chinese_name);
+                btnGroup.appendChild(enableBtn);
+            }
+
+            const uninstallBtn = document.createElement('button');
+            uninstallBtn.textContent = '卸载';
+            uninstallBtn.className = 'uninstall-btn';
+            uninstallBtn.onclick = () => modAction('uninstall', m.chinese_name);
+            btnGroup.appendChild(uninstallBtn);
+
+            div.appendChild(btnGroup);
             container.appendChild(div);
         });
     }
@@ -448,6 +540,35 @@
             div.appendChild(btn);
             container.appendChild(div);
         });
+    }
+
+    // ---------- Mod 状态管理 ----------
+    function enableMod(name) {
+        fetch('/api/enable-mod', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) alert('启用失败: ' + data.error);
+                else loadMods();
+            })
+            .catch(err => alert('操作失败: ' + err.message));
+    }
+
+    function disableMod(name) {
+        fetch('/api/disable-mod', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: name })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) alert('禁用失败: ' + data.error);
+                else loadMods();
+            })
+            .catch(err => alert('操作失败: ' + err.message));
     }
 
     function modAction(action, name) {
