@@ -24,6 +24,14 @@
 <div class="container">
     <h1>配置管理</h1>
     <div class="section">
+        <div class="section-title">服务器配置</div>
+        <div class="path-row">
+            <label>服务器地址:</label>
+            <input type="text" id="serverUrl" placeholder="默认: https://pvzrhmod.zhaocheng.cc:8443">
+            <button id="btnSaveServer" onclick="saveServerUrl()">保存</button>
+        </div>
+    </div>
+    <div class="section">
         <div class="section-title">下载文件夹（用于规范化）</div>
         <div class="path-row">
             <label>下载路径:</label>
@@ -39,6 +47,7 @@
 var downloadPathInput = document.getElementById('downloadPath');
 var btnSelect = document.getElementById('btnSelect');
 var btnNormalize = document.getElementById('btnNormalize');
+var serverUrlInput = document.getElementById('serverUrl');
 
 // 加载配置
 var xhr1 = new XMLHttpRequest();
@@ -47,6 +56,7 @@ xhr1.onload = function() {
     try {
         var data = JSON.parse(xhr1.responseText);
         downloadPathInput.value = data.download_path || '';
+        serverUrlInput.value = data.server_url || '';
     } catch(e) {}
 };
 xhr1.send();
@@ -64,6 +74,29 @@ function doSelect() {
     };
     xhr.onerror = function() { alert('请求失败'); };
     xhr.send();
+}
+
+function saveServerUrl() {
+    var url = serverUrlInput.value.trim();
+    if (!url) { alert('请输入服务器地址'); return; }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/server-url');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        try {
+            var data = JSON.parse(xhr.responseText);
+            if (data.error) {
+                alert('保存失败: ' + data.error);
+            } else {
+                alert('服务器地址已保存');
+            }
+        } catch(e) {
+            alert('保存失败: ' + xhr.responseText);
+        }
+    };
+    xhr.onerror = function() { alert('请求失败'); };
+    xhr.send(JSON.stringify({url: url}));
 }
 
 function doNormalize() {

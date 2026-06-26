@@ -51,7 +51,6 @@ func (op *ModOperator) EnableMod(mod AvailableMod) error {
 	// 依赖检查 - CustomizeLib.dll
 	if err := op.ensureDependency("CustomizeLib.dll"); err != nil {
 		logger.Warnf("CustomizeLib.dll 依赖处理失败: %v", err)
-		// 非关键依赖，继续执行
 	}
 
 	// 复制 dll 文件
@@ -93,7 +92,6 @@ func (op *ModOperator) EnableMod(mod AvailableMod) error {
 func (op *ModOperator) DisableMod(mod AvailableMod) error {
 	logger.Infof("禁用 Mod: %s", mod.Name)
 
-	// 更新状态
 	for _, dllName := range mod.DllNames {
 		op.state.Disable(dllName)
 	}
@@ -119,7 +117,6 @@ func (op *ModOperator) RemoveMod(mod AvailableMod) error {
 		}
 	}
 
-	// 更新状态
 	for _, dllName := range mod.DllNames {
 		op.state.Disable(dllName)
 	}
@@ -135,14 +132,11 @@ func (op *ModOperator) RemoveMod(mod AvailableMod) error {
 func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
 	logger.Infof("删除 Mod: %s", chineseName)
 
-	// 获取 mod.json 中的信息
 	modInfoManager := GetModInfoManager()
 	currentVersion := DetectVersionFromPath(op.gamePath)
 
-	// 查找对应的 dll 名称
 	var targetDlls []string
 	if modInfoManager != nil {
-		// 从 mod.json 查找
 		for _, category := range []string{"plant", "zombie", "skin", "plugin"} {
 			mods := modInfoManager.GetModsByCategory(currentVersion, category)
 			for _, mod := range mods {
@@ -163,9 +157,7 @@ func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
 		}
 	}
 
-	// 如果在 mod.json 中没找到，尝试从已安装列表中匹配
 	if len(targetDlls) == 0 {
-		// 扫描 mod 库获取映射
 		available, _ := ScanModLibrary(op.modLibPath)
 		for _, m := range available {
 			if m.Name == chineseName {
@@ -175,7 +167,6 @@ func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
 		}
 	}
 
-	// 如果还是没找到，尝试直接作为 dll 名称删除
 	if len(targetDlls) == 0 {
 		dllName := chineseName
 		if !strings.HasSuffix(strings.ToLower(dllName), ".dll") {
@@ -184,7 +175,6 @@ func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
 		targetDlls = []string{dllName}
 	}
 
-	// 删除文件
 	pluginsDir := filepath.Join(op.gamePath, "BepInEx", "plugins")
 	deleted := false
 	for _, dllName := range targetDlls {
@@ -202,7 +192,6 @@ func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
 		return fmt.Errorf("未找到已安装的 Mod: %s", chineseName)
 	}
 
-	// 更新状态
 	for _, dllName := range targetDlls {
 		op.state.Disable(dllName)
 	}
@@ -218,29 +207,24 @@ func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
 func (op *ModOperator) DeployAll() error {
 	logger.Info("开始重新部署所有 Mod")
 
-	// 获取所有可用 Mod
 	mods, err := ScanModLibrary(op.modLibPath)
 	if err != nil {
 		return fmt.Errorf("扫描 Mod 库失败: %v", err)
 	}
 
-	// 获取启用状态
 	enabledSet := op.state.GetEnabledSet()
 
-	// 清空 plugins 目录（保留依赖库和状态文件）
 	pluginsDir := filepath.Join(op.gamePath, "BepInEx", "plugins")
 	if err := op.cleanPluginsDir(pluginsDir); err != nil {
 		return fmt.Errorf("清理 plugins 目录失败: %v", err)
 	}
 
-	// 按顺序重新复制启用的 Mod
 	var errors []string
 	for _, mod := range mods {
 		if mod.IsZip {
 			continue
 		}
 
-		// 检查是否所有 dll 都启用
 		allEnabled := true
 		for _, dll := range mod.DllNames {
 			if !enabledSet[dll] {
@@ -272,15 +256,12 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 	enabledSet := op.state.GetEnabledSet()
 	modInfoManager := GetModInfoManager()
 
-	// 获取当前版本（从游戏目录检测）
 	currentVersion := DetectVersionFromPath(op.gamePath)
 
-	// 构建 dll -> 分类 的映射
-	dllCategoryMap := make(map[string]string) // dllName(lower) -> category
-	dllChineseMap := make(map[string]string)  // dllName(lower) -> chineseName
+	dllCategoryMap := make(map[string]string)
+	dllChineseMap := make(map[string]string)
 
 	if modInfoManager != nil {
-		// 从 mod.json 获取分类信息
 		for _, category := range []string{"plant", "zombie", "skin", "plugin"} {
 			mods := modInfoManager.GetModsByCategory(currentVersion, category)
 			for _, mod := range mods {
@@ -296,9 +277,12 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 		}
 	}
 
-	// 从扫描结果补充映射
+	// 从扫描结果补充映射（仅限当前版本的 MOD）
 	for _, m := range available {
 		if m.IsZip {
+			continue
+		}
+		if currentVersion != "" && !strings.Contains(m.DirPath, currentVersion) {
 			continue
 		}
 		for _, dll := range m.DllNames {
@@ -307,7 +291,6 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 				dllChineseMap[lower] = m.Name
 			}
 			if _, ok := dllCategoryMap[lower]; !ok {
-				// 使用旧的分类逻辑作为后备
 				if IsZombieMod(m.Name, m.DllNames) {
 					dllCategoryMap[lower] = "zombie"
 				} else {
@@ -317,9 +300,8 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 		}
 	}
 
-	// 按分类组织已安装的 MOD
-	installedModMap := make(map[string][]string)    // chineseName -> []dllName
-	installedDllCategory := make(map[string]string) // chineseName -> category
+	installedModMap := make(map[string][]string)
+	installedDllCategory := make(map[string]string)
 
 	for _, dll := range installedDlls {
 		lower := strings.ToLower(dll)
@@ -333,7 +315,6 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 		}
 	}
 
-	// 构建结果
 	installedSet := make(map[string]bool)
 	result := map[string]interface{}{
 		"plant_mods": map[string]interface{}{
@@ -351,7 +332,6 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 		"zips": []map[string]interface{}{},
 	}
 
-	// 处理已安装的 MOD
 	for cnName, dlls := range installedModMap {
 		installedSet[cnName] = true
 		enabled := true
@@ -366,6 +346,7 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 			"chinese_name": cnName,
 			"dll_names":    dlls,
 			"enabled":      enabled,
+			"author":       extractAuthor(cnName),
 		}
 
 		category := installedDllCategory[cnName]
@@ -382,7 +363,6 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 		}
 	}
 
-	// 处理未安装的 MOD
 	for _, m := range available {
 		if m.IsZip {
 			result["zips"] = append(result["zips"].([]map[string]interface{}), map[string]interface{}{
@@ -392,15 +372,8 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 		}
 
 		if !installedSet[m.Name] {
-			// 版本过滤：检查该 MOD 的 dll 是否属于当前版本
-			matchVersion := false
-			for _, dll := range m.DllNames {
-				if _, ok := dllCategoryMap[strings.ToLower(dll)]; ok {
-					matchVersion = true
-					break
-				}
-			}
-			if !matchVersion {
+			// 版本过滤：MOD 目录路径必须包含当前版本号
+			if currentVersion != "" && !strings.Contains(m.DirPath, currentVersion) {
 				continue
 			}
 
@@ -409,9 +382,9 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 				"dll_names":    m.DllNames,
 				"needs_format": NeedsFormat(m.DirPath),
 				"enabled":      false,
+				"author":       extractAuthor(m.Name),
 			}
 
-			// 确定分类
 			category := "plant"
 			for _, dll := range m.DllNames {
 				if cat, ok := dllCategoryMap[strings.ToLower(dll)]; ok {
@@ -443,10 +416,9 @@ func (op *ModOperator) ensureDependency(dllName string) error {
 	targetPath := filepath.Join(pluginsDir, dllName)
 
 	if _, err := os.Stat(targetPath); err == nil {
-		return nil // 已存在
+		return nil
 	}
 
-	// 在 Mod 库中查找
 	var foundPath string
 	filepath.Walk(op.modLibPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -525,4 +497,14 @@ func (op *ModOperator) copyModFiles(mod AvailableMod) error {
 		}
 	}
 	return nil
+}
+
+// extractAuthor 从 MOD 名称中提取作者
+// 格式: "梧萱梦汐-梧萱梦汐-3.7-植物MOD-三子向日葵" -> "梧萱梦汐"
+func extractAuthor(name string) string {
+	parts := strings.SplitN(name, "-", 2)
+	if len(parts) > 0 {
+		return parts[0]
+	}
+	return ""
 }

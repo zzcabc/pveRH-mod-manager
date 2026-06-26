@@ -72,17 +72,86 @@ func FetchOnlineMods(serverURL, gameVersion string) ([]OnlineMod, error) {
 	return mods, nil
 }
 
-// DownloadMod 下载单个 Mod 并保存到 Mod 库对应路径
-// 保存路径格式：{游戏版本}/{作者}/[Mod类型]/{中文名}/{文件名}
-func DownloadMod(mod OnlineMod, modLibPath, serverURL string) error {
-	logger.Infof("开始下载 Mod: %s/%s, 版本: %s, 作者: %s", mod.NameCN, mod.FileName, mod.GameVer, mod.Author)
-	// 构建保存目录
-	saveDir := filepath.Join(modLibPath, mod.GameVer, mod.Author)
-	logger.Debugf("构建保存目录: %s", saveDir)
-	if mod.ModType != "" {
-		saveDir = filepath.Join(saveDir, mod.ModType)
+// mapModTypeToCategory 将 Mod 类型映射为中文分类目录名
+func mapModTypeToCategory(modType string) string {
+	switch strings.ToLower(modType) {
+	case "plant":
+		return "植物MOD"
+	case "zombie":
+		return "僵尸MOD"
+	case "skin":
+		return "皮肤"
+	case "plugin":
+		return "插件"
+	default:
+		return "植物MOD"
 	}
-	saveDir = filepath.Join(saveDir, mod.NameCN)
+}
+
+// NormalizeModType 将服务器返回的各种 mod_type 值归一化为标准值（plant/zombie/skin/plugin）
+// 无法识别时返回空字符串
+func NormalizeModType(raw string) string {
+	t := strings.TrimSpace(raw)
+	if t == "" {
+		return ""
+	}
+	lower := strings.ToLower(t)
+	switch lower {
+	case "plant", "zombie", "skin", "plugin":
+		return lower
+	}
+	// 中文值
+	if strings.Contains(t, "植物") {
+		return "plant"
+	}
+	if strings.Contains(t, "僵尸") {
+		return "zombie"
+	}
+	if strings.Contains(t, "皮肤") {
+		return "skin"
+	}
+	if strings.Contains(t, "插件") || strings.Contains(t, "修改器") || strings.Contains(t, "宠物") {
+		return "plugin"
+	}
+	// 其他无法识别的值（如中文名被误设为 mod_type）返回空，交给 GuessModType 处理
+	return ""
+}
+
+// GuessModType 从中文名和文件名推断 Mod 类型
+func GuessModType(nameCN, fileName string) string {
+	combined := strings.ToLower(nameCN + " " + fileName)
+	// 皮肤类关键词（优先级高，避免误判）
+	if strings.Contains(combined, "皮肤") || strings.Contains(combined, "skin") {
+		return "skin"
+	}
+	// 僵尸类关键词
+	if strings.Contains(combined, "僵尸") || strings.Contains(combined, "zombie") {
+		return "zombie"
+	}
+	// 插件/修改器类关键词
+	if strings.Contains(combined, "插件") || strings.Contains(combined, "plugin") ||
+		strings.Contains(combined, "修改器") || strings.Contains(combined, "patch") ||
+		strings.Contains(combined, "加载器") || strings.Contains(combined, "modslib") ||
+		strings.Contains(combined, "补丁") || strings.Contains(combined, "关卡") ||
+		strings.Contains(combined, "自动") || strings.Contains(combined, "图鉴") ||
+		strings.Contains(combined, "手套") || strings.Contains(combined, "铲子") ||
+		strings.Contains(combined, "宠物") || strings.Contains(combined, "pet") {
+		return "plugin"
+	}
+	// 默认为植物
+	return "plant"
+}
+
+// DownloadMod 下载单个 Mod 并保存到下载目录
+// 保存路径格式：{downloadPath}/{作者}/{作者-版本}/{分类}/{中文名}/{文件名}
+func DownloadMod(mod OnlineMod, downloadPath, serverURL string) error {
+	logger.Infof("开始下载 Mod: %s/%s, 版本: %s, 作者: %s", mod.NameCN, mod.FileName, mod.GameVer, mod.Author)
+
+	category := mapModTypeToCategory(mod.ModType)
+	versionDir := mod.Author + "-" + mod.GameVer
+	saveDir := filepath.Join(downloadPath, mod.Author, versionDir, category, mod.NameCN)
+	logger.Debugf("构建保存目录: %s", saveDir)
+
 	if err := os.MkdirAll(saveDir, os.ModePerm); err != nil {
 		return fmt.Errorf("创建目录失败: %v", err)
 	}
@@ -92,7 +161,6 @@ func DownloadMod(mod OnlineMod, modLibPath, serverURL string) error {
 	// 构建下载链接
 	downloadURL := mod.URL
 	if downloadURL == "" {
-		// 如果服务器未提供直链，根据规则拼接（假设文件可通过 /files/ 路径访问）
 		downloadURL = strings.TrimRight(serverURL, "/") + "/files/" + mod.FileName
 	}
 	logger.Debugf("下载链接: %s", downloadURL)

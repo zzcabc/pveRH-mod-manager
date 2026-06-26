@@ -180,6 +180,42 @@ func (mim *ModInfoManager) GetModsByCategory(version, category string) []ModEntr
 	return result
 }
 
+// GetModCategory 根据版本和 dll 名称或中文名获取分类（plant/zombie/skin/plugin）
+func (mim *ModInfoManager) GetModCategory(version, dllOrChineseName string) string {
+	if mim == nil {
+		return ""
+	}
+
+	lower := strings.ToLower(dllOrChineseName)
+	for _, info := range mim.infos {
+		if info.Version != version {
+			continue
+		}
+		lists := map[string][]ModEntry{
+			"plant":  info.PlanList,
+			"zombie": info.ZombieList,
+			"skin":   info.SkinList,
+			"plugin": info.PluginList,
+		}
+		for cat, entries := range lists {
+			for _, e := range entries {
+				// 匹配 dll 名称
+				modNames := strings.Split(e.ModName, ",")
+				for _, m := range modNames {
+					if strings.EqualFold(strings.TrimSpace(m), lower) {
+						return cat
+					}
+				}
+				// 匹配中文名
+				if e.ChineseName == dllOrChineseName {
+					return cat
+				}
+			}
+		}
+	}
+	return ""
+}
+
 // GetAllVersions 获取所有版本
 func (mim *ModInfoManager) GetAllVersions() []string {
 	if mim == nil {

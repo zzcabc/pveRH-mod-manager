@@ -22,6 +22,7 @@ type Config struct {
 	GamePaths    []GamePath `json:"game_path"`
 	ModPaths     []string   `json:"mod_path"`
 	DownloadPath string     `json:"download_path"`
+	ServerURL    string     `json:"server_url"`
 }
 
 // ConfigManager 配置管理器
@@ -121,6 +122,21 @@ func (cm *ConfigManager) GetDownloadPath() string {
 // SetDownloadPath 设置下载目录
 func (cm *ConfigManager) SetDownloadPath(path string) {
 	cm.config.DownloadPath = path
+}
+
+const defaultServerURL = "https://pvzrhmod.zhaocheng.cc:8443"
+
+// GetServerURL 获取服务器 URL（未配置时返回默认值）
+func (cm *ConfigManager) GetServerURL() string {
+	if cm.config.ServerURL != "" {
+		return cm.config.ServerURL
+	}
+	return defaultServerURL
+}
+
+// SetServerURL 设置服务器 URL
+func (cm *ConfigManager) SetServerURL(url string) {
+	cm.config.ServerURL = url
 }
 
 // AddGamePath 添加游戏目录

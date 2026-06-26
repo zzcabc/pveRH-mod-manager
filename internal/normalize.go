@@ -72,6 +72,8 @@ func HandleTheAuthorFolder(downloadDir string) {
 				HandleTheLinQiuFolder(downloadDir, authorDir.Name())
 			case "梧萱梦汐":
 				HandleTheWuXuanFolder(downloadDir, authorDir.Name())
+			case "恒暝":
+				HandleTheHengMingFolder(downloadDir, authorDir.Name())
 			}
 		}
 	}
@@ -629,6 +631,101 @@ func HandleTheWuXuanFolder(downloadDir string, authorDirName string) {
 	}
 
 	// 清理：只删原始版本目录和非版本目录，保留目标文件夹
+	for _, e := range entries {
+		if e.IsDir() && !keep[e.Name()] {
+			os.RemoveAll(filepath.Join(authorDir, e.Name()))
+			logger.Infof("  [清理] %s/", e.Name())
+		}
+	}
+}
+
+// HandleTheHengMingFolder 处理恒暝文件夹
+// 结构：{version}/{category}/{modName}
+// 目标：恒暝/恒暝-{version}/植物MOD/, 恒暝-{version}/插件/, 恒暝-{version}/其他/
+func HandleTheHengMingFolder(downloadDir string, authorDirName string) {
+	authorDir := filepath.Join(downloadDir, authorDirName)
+	logger.Infof("处理作者文件夹: %s", authorDir)
+	entries, err := os.ReadDir(authorDir)
+	if err != nil {
+		logger.Errorf("读取 %s 文件夹失败: %v", authorDir, err)
+		return
+	}
+
+	// 收集版本
+	versions := []string{}
+	for _, e := range entries {
+		if e.IsDir() && versionRe.MatchString(e.Name()) {
+			ver := normalizeVersion(e.Name())
+			if !contains(versions, ver) {
+				versions = append(versions, ver)
+			}
+		}
+	}
+	logger.Infof("  发现版本: %v", versions)
+
+	// 创建目标文件夹
+	for _, ver := range versions {
+		os.MkdirAll(filepath.Join(authorDir, authorDirName+"-"+ver, CatPlant), os.ModePerm)
+		os.MkdirAll(filepath.Join(authorDir, authorDirName+"-"+ver, CatPlugin), os.ModePerm)
+		os.MkdirAll(filepath.Join(authorDir, authorDirName+"-"+ver, CatOther), os.ModePerm)
+	}
+
+	// 处理每个版本目录
+	for _, entry := range entries {
+		if !entry.IsDir() || !versionRe.MatchString(entry.Name()) {
+			continue
+		}
+		ver := normalizeVersion(entry.Name())
+		verPath := filepath.Join(authorDir, entry.Name())
+
+		for _, catEntry := range mustReadDir(verPath) {
+			if !catEntry.IsDir() {
+				continue
+			}
+			catName := catEntry.Name()
+			catPath := filepath.Join(verPath, catName)
+
+			switch {
+			case strings.Contains(catName, "植物"):
+				// 植物 → 植物MOD，移动子目录并解析中文名
+				for _, modEntry := range mustReadDir(catPath) {
+					if !modEntry.IsDir() {
+						continue
+					}
+					modName := parseChineseName(modEntry.Name())
+					dstDir := filepath.Join(authorDir, authorDirName+"-"+ver, CatPlant, modName)
+					os.MkdirAll(dstDir, os.ModePerm)
+					moveAll(filepath.Join(catPath, modEntry.Name()), dstDir)
+					logger.Infof("  %s/%s/%s → %s/植物MOD/%s", entry.Name(), catName, modEntry.Name(), ver, modName)
+				}
+
+			case strings.Contains(strings.ToLower(catName), "modslib") || strings.Contains(catName, "加载器"):
+				// MOD 加载器 → 插件
+				dstDir := filepath.Join(authorDir, authorDirName+"-"+ver, CatPlugin, catName)
+				os.MkdirAll(dstDir, os.ModePerm)
+				moveAll(catPath, dstDir)
+				logger.Infof("  %s/%s → %s/插件/%s", entry.Name(), catName, ver, catName)
+
+			case strings.Contains(catName, "其他"):
+				dstDir := filepath.Join(authorDir, authorDirName+"-"+ver, CatOther)
+				os.MkdirAll(dstDir, os.ModePerm)
+				moveAll(catPath, dstDir)
+				logger.Infof("  %s/%s → %s/其他", entry.Name(), catName, ver)
+
+			default:
+				dstDir := filepath.Join(authorDir, authorDirName+"-"+ver, CatOther, catName)
+				os.MkdirAll(dstDir, os.ModePerm)
+				moveAll(catPath, dstDir)
+				logger.Infof("  %s/%s → %s/其他/%s", entry.Name(), catName, ver, catName)
+			}
+		}
+	}
+
+	// 清理原始版本目录
+	keep := map[string]bool{}
+	for _, ver := range versions {
+		keep[authorDirName+"-"+ver] = true
+	}
 	for _, e := range entries {
 		if e.IsDir() && !keep[e.Name()] {
 			os.RemoveAll(filepath.Join(authorDir, e.Name()))
