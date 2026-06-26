@@ -42,10 +42,16 @@ func (op *ModOperator) EnableMod(mod AvailableMod) error {
 		return fmt.Errorf("备份失败: %v", err)
 	}
 
-	// 依赖检查
+	// 依赖检查 - CustomizeLib.BepInEx.dll
 	if err := op.ensureDependency("CustomizeLib.BepInEx.dll"); err != nil {
 		op.backup.Rollback(backups)
 		return err
+	}
+
+	// 依赖检查 - CustomizeLib.dll
+	if err := op.ensureDependency("CustomizeLib.dll"); err != nil {
+		logger.Warnf("CustomizeLib.dll 依赖处理失败: %v", err)
+		// 非关键依赖，继续执行
 	}
 
 	// 复制 dll 文件
@@ -125,6 +131,89 @@ func (op *ModOperator) RemoveMod(mod AvailableMod) error {
 	return nil
 }
 
+// RemoveModByChineseName 根据中文名移除已安装的 Mod
+func (op *ModOperator) RemoveModByChineseName(chineseName string) error {
+	logger.Infof("删除 Mod: %s", chineseName)
+
+	// 获取 mod.json 中的信息
+	modInfoManager := GetModInfoManager()
+	currentVersion := DetectVersionFromPath(op.gamePath)
+
+	// 查找对应的 dll 名称
+	var targetDlls []string
+	if modInfoManager != nil {
+		// 从 mod.json 查找
+		for _, category := range []string{"plant", "zombie", "skin", "plugin"} {
+			mods := modInfoManager.GetModsByCategory(currentVersion, category)
+			for _, mod := range mods {
+				if mod.ChineseName == chineseName {
+					modNames := strings.Split(mod.ModName, ",")
+					for _, name := range modNames {
+						name = strings.TrimSpace(name)
+						if name != "" {
+							targetDlls = append(targetDlls, name)
+						}
+					}
+					break
+				}
+			}
+			if len(targetDlls) > 0 {
+				break
+			}
+		}
+	}
+
+	// 如果在 mod.json 中没找到，尝试从已安装列表中匹配
+	if len(targetDlls) == 0 {
+		// 扫描 mod 库获取映射
+		available, _ := ScanModLibrary(op.modLibPath)
+		for _, m := range available {
+			if m.Name == chineseName {
+				targetDlls = m.DllNames
+				break
+			}
+		}
+	}
+
+	// 如果还是没找到，尝试直接作为 dll 名称删除
+	if len(targetDlls) == 0 {
+		dllName := chineseName
+		if !strings.HasSuffix(strings.ToLower(dllName), ".dll") {
+			dllName += ".dll"
+		}
+		targetDlls = []string{dllName}
+	}
+
+	// 删除文件
+	pluginsDir := filepath.Join(op.gamePath, "BepInEx", "plugins")
+	deleted := false
+	for _, dllName := range targetDlls {
+		path := filepath.Join(pluginsDir, dllName)
+		if _, err := os.Stat(path); err == nil {
+			if err := os.Remove(path); err != nil {
+				return fmt.Errorf("删除 %s 失败: %v", dllName, err)
+			}
+			logger.Infof("已删除: %s", dllName)
+			deleted = true
+		}
+	}
+
+	if !deleted {
+		return fmt.Errorf("未找到已安装的 Mod: %s", chineseName)
+	}
+
+	// 更新状态
+	for _, dllName := range targetDlls {
+		op.state.Disable(dllName)
+	}
+	if err := op.state.Save(); err != nil {
+		logger.Warnf("保存状态失败: %v", err)
+	}
+
+	logger.Infof("Mod 删除成功: %s", chineseName)
+	return nil
+}
+
 // DeployAll 根据 enabled.txt 重新部署所有 Mod
 func (op *ModOperator) DeployAll() error {
 	logger.Info("开始重新部署所有 Mod")
@@ -175,39 +264,96 @@ func (op *ModOperator) DeployAll() error {
 	return nil
 }
 
-// GetModStatus 返回 Mod 状态列表（用于 API）
+// GetModStatus 返回 Mod 状态列表（用于 API），使用 mod.json 的分类信息
 func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 	installedDlls, _ := GetInstalledMods(op.gamePath)
 	available, _ := ScanModLibrary(op.modLibPath)
 
 	enabledSet := op.state.GetEnabledSet()
+	modInfoManager := GetModInfoManager()
 
-	dllToChinese := make(map[string]string)
+	// 获取当前版本（从游戏目录检测）
+	currentVersion := DetectVersionFromPath(op.gamePath)
+
+	// 构建 dll -> 分类 的映射
+	dllCategoryMap := make(map[string]string) // dllName(lower) -> category
+	dllChineseMap := make(map[string]string)  // dllName(lower) -> chineseName
+
+	if modInfoManager != nil {
+		// 从 mod.json 获取分类信息
+		for _, category := range []string{"plant", "zombie", "skin", "plugin"} {
+			mods := modInfoManager.GetModsByCategory(currentVersion, category)
+			for _, mod := range mods {
+				modNames := strings.Split(mod.ModName, ",")
+				for _, modName := range modNames {
+					modName = strings.TrimSpace(modName)
+					if modName != "" {
+						dllCategoryMap[strings.ToLower(modName)] = category
+						dllChineseMap[strings.ToLower(modName)] = mod.ChineseName
+					}
+				}
+			}
+		}
+	}
+
+	// 从扫描结果补充映射
 	for _, m := range available {
 		if m.IsZip {
 			continue
 		}
 		for _, dll := range m.DllNames {
-			dllToChinese[strings.ToLower(dll)] = m.Name
+			lower := strings.ToLower(dll)
+			if _, ok := dllChineseMap[lower]; !ok {
+				dllChineseMap[lower] = m.Name
+			}
+			if _, ok := dllCategoryMap[lower]; !ok {
+				// 使用旧的分类逻辑作为后备
+				if IsZombieMod(m.Name, m.DllNames) {
+					dllCategoryMap[lower] = "zombie"
+				} else {
+					dllCategoryMap[lower] = "plant"
+				}
+			}
 		}
 	}
 
-	installedModMap := make(map[string][]string)
+	// 按分类组织已安装的 MOD
+	installedModMap := make(map[string][]string)    // chineseName -> []dllName
+	installedDllCategory := make(map[string]string) // chineseName -> category
+
 	for _, dll := range installedDlls {
 		lower := strings.ToLower(dll)
-		cnName, ok := dllToChinese[lower]
+		cnName, ok := dllChineseMap[lower]
 		if !ok {
 			cnName = dll
 		}
 		installedModMap[cnName] = append(installedModMap[cnName], dll)
+		if cat, ok := dllCategoryMap[lower]; ok {
+			installedDllCategory[cnName] = cat
+		}
 	}
 
+	// 构建结果
 	installedSet := make(map[string]bool)
-	var installedPlant, installedZombie []map[string]interface{}
+	result := map[string]interface{}{
+		"plant_mods": map[string]interface{}{
+			"installed":     []map[string]interface{}{},
+			"not_installed": []map[string]interface{}{},
+		},
+		"zombie_mods": map[string]interface{}{
+			"installed":     []map[string]interface{}{},
+			"not_installed": []map[string]interface{}{},
+		},
+		"skins": map[string]interface{}{
+			"installed":     []map[string]interface{}{},
+			"not_installed": []map[string]interface{}{},
+		},
+		"zips": []map[string]interface{}{},
+	}
 
+	// 处理已安装的 MOD
 	for cnName, dlls := range installedModMap {
 		installedSet[cnName] = true
-		// 检查是否启用
 		enabled := true
 		for _, dll := range dlls {
 			if !enabledSet[dll] {
@@ -215,54 +361,80 @@ func (op *ModOperator) GetModStatus() (map[string]interface{}, error) {
 				break
 			}
 		}
+
 		entry := map[string]interface{}{
 			"chinese_name": cnName,
 			"dll_names":    dlls,
 			"enabled":      enabled,
 		}
-		if IsZombieMod(cnName, dlls) {
-			installedZombie = append(installedZombie, entry)
-		} else {
-			installedPlant = append(installedPlant, entry)
+
+		category := installedDllCategory[cnName]
+		switch category {
+		case "zombie":
+			result["zombie_mods"].(map[string]interface{})["installed"] =
+				append(result["zombie_mods"].(map[string]interface{})["installed"].([]map[string]interface{}), entry)
+		case "skin":
+			result["skins"].(map[string]interface{})["installed"] =
+				append(result["skins"].(map[string]interface{})["installed"].([]map[string]interface{}), entry)
+		default:
+			result["plant_mods"].(map[string]interface{})["installed"] =
+				append(result["plant_mods"].(map[string]interface{})["installed"].([]map[string]interface{}), entry)
 		}
 	}
 
-	var notInstalledPlant, notInstalledZombie []map[string]interface{}
+	// 处理未安装的 MOD
 	for _, m := range available {
 		if m.IsZip {
+			result["zips"] = append(result["zips"].([]map[string]interface{}), map[string]interface{}{
+				"name": m.Name,
+			})
 			continue
 		}
+
 		if !installedSet[m.Name] {
+			// 版本过滤：检查该 MOD 的 dll 是否属于当前版本
+			matchVersion := false
+			for _, dll := range m.DllNames {
+				if _, ok := dllCategoryMap[strings.ToLower(dll)]; ok {
+					matchVersion = true
+					break
+				}
+			}
+			if !matchVersion {
+				continue
+			}
+
 			entry := map[string]interface{}{
 				"name":         m.Name,
 				"dll_names":    m.DllNames,
 				"needs_format": NeedsFormat(m.DirPath),
 				"enabled":      false,
 			}
-			if IsZombieMod(m.Name, m.DllNames) {
-				notInstalledZombie = append(notInstalledZombie, entry)
-			} else {
-				notInstalledPlant = append(notInstalledPlant, entry)
+
+			// 确定分类
+			category := "plant"
+			for _, dll := range m.DllNames {
+				if cat, ok := dllCategoryMap[strings.ToLower(dll)]; ok {
+					category = cat
+					break
+				}
+			}
+
+			switch category {
+			case "zombie":
+				result["zombie_mods"].(map[string]interface{})["not_installed"] =
+					append(result["zombie_mods"].(map[string]interface{})["not_installed"].([]map[string]interface{}), entry)
+			case "skin":
+				result["skins"].(map[string]interface{})["not_installed"] =
+					append(result["skins"].(map[string]interface{})["not_installed"].([]map[string]interface{}), entry)
+			default:
+				result["plant_mods"].(map[string]interface{})["not_installed"] =
+					append(result["plant_mods"].(map[string]interface{})["not_installed"].([]map[string]interface{}), entry)
 			}
 		}
 	}
 
-	var zips []map[string]interface{}
-	for _, m := range available {
-		if m.IsZip {
-			zips = append(zips, map[string]interface{}{
-				"name": m.Name,
-			})
-		}
-	}
-
-	return map[string]interface{}{
-		"installed_plant":      installedPlant,
-		"installed_zombie":     installedZombie,
-		"not_installed_plant":  notInstalledPlant,
-		"not_installed_zombie": notInstalledZombie,
-		"zips":                 zips,
-	}, nil
+	return result, nil
 }
 
 // ensureDependency 确保依赖库存在

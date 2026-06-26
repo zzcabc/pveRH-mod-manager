@@ -5,708 +5,787 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>植物大战僵尸融合版 Mod 管理器</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: "Microsoft YaHei", sans-serif; background: #f0f2f5; padding: 20px; }
-        .container { width: 100%; max-width: 1300px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .toolbar { margin-bottom: 20px; }
-        .path-row { display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
-        .path-row label { width: 100px; font-weight: bold; }
-        .path-row input { flex: 1; padding: 6px; border: 1px solid #d9d9d9; border-radius: 4px; background: #fafafa; min-width: 200px; }
-        .path-row button, .path-row select { margin-left: 10px; padding: 6px 16px; background: #1677ff; color: #fff; border: none; border-radius: 4px; cursor: pointer; white-space: nowrap; }
-        .path-row select { background: #fff; color: #333; border: 1px solid #d9d9d9; }
-        .bep-row { display: flex; align-items: center; margin-top: 6px; gap: 12px; flex-wrap: wrap; }
-        .section { margin-bottom: 16px; }
-        .section-title { font-size: 16px; font-weight: bold; padding: 8px 12px; background: #f0f2f5; border-radius: 4px 4px 0 0; }
-        .split-panel { display: flex; gap: 8px; border: 1px solid #e8e8e8; border-radius: 0 0 4px 4px; overflow: hidden; min-height: 160px; max-height: 360px; }
-        .half { flex: 1; display: flex; flex-direction: column; overflow: auto; }
-        .half-header { padding: 6px 10px; background: #fafafa; font-size: 14px; font-weight: bold; border-bottom: 1px solid #e8e8e8; position: sticky; top: 0; z-index: 1; }
-        .half-content { padding: 6px 8px; flex: 1; }
-        .mod-item { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #f0f0f0; gap: 8px; }
-        .mod-item:last-child { border-bottom: none; }
-        .mod-item span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
-        .mod-item button { padding: 3px 10px; border: none; border-radius: 3px; cursor: pointer; font-size: 13px; white-space: nowrap; }
-        .install-btn { background: #52c41a; color: #fff; }
-        .uninstall-btn { background: #ff4d4f; color: #fff; }
-        .unzip-btn { background: #faad14; color: #fff; }
-        .format-btn { background: #722ed1; color: #fff; }
-        .refresh-btn { background: #1677ff; color: #fff; }
-        .enable-btn { background: #52c41a; color: #fff; }
-        .disable-btn { background: #ff7a45; color: #fff; }
-        .deploy-btn { background: #722ed1; color: #fff; }
-        .status { color: #888; }
-        button:disabled { opacity: 0.5; cursor: not-allowed; }
-        .btn-group { display: flex; gap: 4px; flex-wrap: nowrap; align-items: center; }
-        small { font-size: 0.75em; color: #666; }
-        .zips-panel, .online-panel, .trainer-panel { margin-top: 8px; }
-        .zips-panel .panel, .online-panel .panel, .trainer-panel .panel { border: 1px solid #e8e8e8; border-radius: 4px; overflow: auto; max-height: 200px; }
-        .zips-panel h3, .online-panel h3, .trainer-panel h3 { background: #fafafa; padding: 8px 12px; border-bottom: 1px solid #e8e8e8; position: sticky: 0; }
-        .zips-content, .online-content, .trainer-content { padding: 6px 10px; }
-
-        /* 已禁用 Mod 样式 */
-        .mod-item.disabled { opacity: 0.6; background: #fff7e6; }
-        .mod-item.disabled span { text-decoration: line-through; color: #999; }
-
-        /* 批量操作按钮 */
-        .batch-actions { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
-        .batch-actions button { padding: 4px 12px; font-size: 13px; }
-
-        @media screen and (max-width: 750px) {
-            .split-panel { flex-direction: column; max-height: none; }
-            .half { max-height: 200px; }
-            .path-row { flex-direction: column; align-items: flex-start; }
-            .path-row label { width: auto; margin-bottom: 4px; }
-            .path-row button, .path-row select { margin-left: 0; margin-top: 8px; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        .section .split-panel { /* 已存在，保持 */ }
-        .online-panel, .trainer-panel, .zips-panel {
-            /* 让这些面板也遵循 section 布局 */
-            margin-top: 8px;
+
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* 行样式 */
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .row label {
+            font-weight: bold;
+            min-width: 80px;
+        }
+
+        .row select, .row button {
+            padding: 8px 16px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .row select {
+            min-width: 200px;
+            background: #fff;
+        }
+
+        .row button {
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .row .info {
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+
+        /* 按钮样式 */
+        .btn-primary {
+            background: #1677ff;
+            color: #fff;
+            border-color: #1677ff;
+        }
+
+        .btn-primary:hover {
+            background: #4096ff;
+        }
+
+        .btn-success {
+            background: #52c41a;
+            color: #fff;
+            border-color: #52c41a;
+        }
+
+        .btn-success:hover {
+            background: #73d13d;
+        }
+
+        .btn-danger {
+            background: #ff4d4f;
+            color: #fff;
+            border-color: #ff4d4f;
+        }
+
+        .btn-danger:hover {
+            background: #ff7875;
+        }
+
+        .btn-warning {
+            background: #faad14;
+            color: #fff;
+            border-color: #faad14;
+        }
+
+        .btn-warning:hover {
+            background: #ffc53d;
+        }
+
+        .btn-default {
+            background: #fff;
+            color: #333;
+        }
+
+        .btn-default:hover {
+            background: #f5f5f5;
+        }
+
+        .btn-disabled {
+            background: #d9d9d9;
+            color: #999;
+            cursor: not-allowed;
+            border-color: #d9d9d9;
+        }
+
+        /* 状态标签 */
+        .status-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .status-installed {
+            background: #f6ffed;
+            color: #52c41a;
+            border: 1px solid #b7eb8f;
+        }
+
+        .status-not-installed {
+            background: #fff7e6;
+            color: #faad14;
+            border: 1px solid #ffd591;
+        }
+
+        /* MOD 列表区域 */
+        .mod-section {
+            margin-bottom: 16px;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .mod-section-title {
+            padding: 10px 16px;
+            background: #fafafa;
+            font-weight: bold;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .mod-split {
+            display: flex;
+            min-height: 200px;
+        }
+
+        .mod-half {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mod-half:first-child {
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .mod-half-header {
+            padding: 8px 12px;
+            background: #f5f5f5;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .mod-half-content {
+            padding: 8px;
+            flex: 1;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        /* MOD 项 */
+        .mod-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 4px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mod-item:last-child {
+            border-bottom: none;
+        }
+
+        .mod-item:hover {
+            background: #f5f5f5;
+        }
+
+        .mod-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 8px;
+        }
+
+        .mod-name small {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .mod-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        /* 功能按钮行 */
+        .action-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* 搜索框 */
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .row label {
+                min-width: auto;
+                margin-bottom: 4px;
+            }
+
+            .mod-split {
+                flex-direction: column;
+            }
+
+            .mod-half:first-child {
+                border-right: none;
+                border-bottom: 1px solid #e8e8e8;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="toolbar">
-        <div class="path-row">
-            <label>游戏目录:</label>
-            <input type="text" id="gamePath" readonly placeholder="请点击右侧选择...">
-            <button id="selectGameBtn" onclick="selectFolder('game')">选择</button>
-        </div>
-        <div class="path-row">
-            <label>Mod 库:</label>
-            <input type="text" id="modLibPath" readonly placeholder="请点击右侧选择...">
-            <button id="selectModLibBtn" onclick="selectFolder('modlib')">选择</button>
-        </div>
-        <div class="path-row">
-            <label>下载目录:</label>
-            <input type="text" id="downloadPath" readonly placeholder="请点击右侧选择...">
-            <button id="selectDownloadBtn" onclick="selectFolder('download')">选择</button>
-        </div>
-        <div class="path-row">
-            <label>搜索 Mod:</label>
-            <input type="text" id="searchInput" placeholder="输入中文名称关键字..." oninput="onSearch()" style="flex:1; padding:6px;">
-            <button onclick="clearSearch()">清除</button>
-        </div>
-        <div class="bep-row">
-            <span id="bepStatus">BepInEx: 未检测</span>
-            <button id="installBepBtn" onclick="installBepInEx()" style="display:none;">安装 BepInEx</button>
-            <button id="removeBepBtn" onclick="removeBepInEx()" style="display:none;">移除 BepInEx</button>
-            <button id="refreshModsBtn" class="refresh-btn" onclick="refreshMods()">刷新列表</button>
-            <button id="formatAllBtn" class="refresh-btn" onclick="formatAll()">一键格式化</button>
-            <button id="unzipAllBtn" class="unzip-btn" onclick="unzipAll()">一键解压</button>
-            <button id="deployAllBtn" class="deploy-btn" onclick="deployAll()">重新部署</button>
-        </div>
+    <h1>植物大战僵尸融合版 Mod 管理器</h1>
+
+    <!-- 第一行：游戏目录和版本选择 -->
+    <div class="row">
+        <label>游戏目录：</label>
+        <select id="gamePathSelect" onchange="onGamePathChange()">
+            <option value="">请选择...</option>
+        </select>
+        <button class="btn-default" onclick="addGamePath()">添加</button>
+        <label style="min-width: 50px;">版本：</label>
+        <select id="versionSelect" onchange="onVersionChange()">
+            <option value="">请选择...</option>
+        </select>
     </div>
 
-    <!-- 植物 Mod -->
-    <div class="section">
-        <div class="section-title">🌱 植物 Mod</div>
-        <div class="split-panel">
-            <div class="half">
-                <div class="half-header">未安装</div>
-                <div class="half-content" id="plantAvailable"></div>
-            </div>
-            <div class="half">
-                <div class="half-header">已安装</div>
-                <div class="half-content" id="plantInstalled"></div>
-            </div>
-        </div>
+    <!-- 第二行：MOD 目录选择 -->
+    <div class="row">
+        <label>MOD目录：</label>
+        <select id="modPathSelect" onchange="onModPathChange()">
+            <option value="">请选择...</option>
+        </select>
+        <button class="btn-default" onclick="addModPath()">添加</button>
     </div>
 
-    <!-- 僵尸 Mod -->
-    <div class="section">
-        <div class="section-title">🧟 僵尸 Mod</div>
-        <div class="split-panel">
-            <div class="half">
-                <div class="half-header">未安装</div>
-                <div class="half-content" id="zombieAvailable"></div>
-            </div>
-            <div class="half">
-                <div class="half-header">已安装</div>
-                <div class="half-content" id="zombieInstalled"></div>
-            </div>
-        </div>
+    <!-- 第三行：BepInEx 检测 -->
+    <div class="row">
+        <label>BepInEx：</label>
+        <span id="bepStatus" class="status-tag status-not-installed">检测中...</span>
+        <button id="installBepBtn" class="btn-success" onclick="installBepInEx()" style="display:none;">安装 BepInEx
+        </button>
+        <button id="removeBepBtn" class="btn-danger" onclick="removeBepInEx()" style="display:none;">卸载 BepInEx
+        </button>
     </div>
 
-    <!-- 皮肤 -->
-    <div class="section">
-        <div class="section-title">🎨 皮肤</div>
-        <div class="split-panel">
-            <div class="half">
-                <div class="half-header">未安装</div>
-                <div class="half-content" id="skinAvailable"></div>
+    <!-- 第四行：修改器安装 -->
+    <div class="row">
+        <label>修改器：</label>
+        <button class="btn-disabled" disabled title="功能开发中">安装高数修改器</button>
+        <button class="btn-disabled" disabled title="功能开发中">安装梧萱修改器</button>
+    </div>
+
+    <!-- 第五行：打开目录 -->
+    <div class="row">
+        <label>快捷操作：</label>
+        <button class="btn-default" onclick="openFolder('game')">打开游戏目录</button>
+        <button class="btn-default" onclick="openFolder('mod')">打开MOD目录</button>
+        <button class="btn-default" onclick="openFolder('installed')">打开已安装MOD目录</button>
+    </div>
+
+    <!-- 搜索框 -->
+    <div class="row">
+        <label>搜索：</label>
+        <input type="text" class="search-input" id="searchInput" placeholder="输入中文名称关键字..."
+               oninput="onSearch()">
+        <button class="btn-default" onclick="clearSearch()">清除</button>
+        <button class="btn-primary" onclick="refreshAll()">刷新列表</button>
+    </div>
+
+    <!-- 第六行：植物 MOD -->
+    <div class="mod-section">
+        <div class="mod-section-title">🌱 植物 MOD</div>
+        <div class="mod-split">
+            <div class="mod-half">
+                <div class="mod-half-header">未安装</div>
+                <div class="mod-half-content" id="plantNotInstalled"></div>
             </div>
-            <div class="half">
-                <div class="half-header">已安装</div>
-                <div class="half-content" id="skinInstalled"></div>
+            <div class="mod-half">
+                <div class="mod-half-header">已安装</div>
+                <div class="mod-half-content" id="plantInstalled"></div>
             </div>
         </div>
     </div>
 
-    <!-- 修改器 -->
-    <div class="trainer-panel">
-        <div class="panel">
-            <h3>🔧 修改器</h3>
-            <div class="trainer-content" id="trainerList"></div>
-        </div>
-    </div>
-
-    <!-- 在线 Mod -->
-    <div class="section">
-        <div class="section-title">🌐 在线 Mod</div>
-        <div style="padding: 8px 12px; display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e8e8e8; border-top: none;">
-            <label>游戏版本:</label>
-            <select id="gameVersionSelect" onchange="onGameVersionChange()" style="padding:4px;">
-                <option value="">请选择...</option>
-            </select>
-            <button onclick="refreshVersions()" class="refresh-btn" style="padding:4px 12px;">刷新版本</button>
-        </div>
-        <div class="split-panel" style="max-height: 360px; min-height: 160px;">
-            <div class="half" style="flex: 1;">
-                <div class="half-header">在线 Mod 列表</div>
-                <div class="half-content" id="onlineModList"></div>
+    <!-- 第七行：僵尸 MOD -->
+    <div class="mod-section">
+        <div class="mod-section-title">🧟 僵尸 MOD</div>
+        <div class="mod-split">
+            <div class="mod-half">
+                <div class="mod-half-header">未安装</div>
+                <div class="mod-half-content" id="zombieNotInstalled"></div>
+            </div>
+            <div class="mod-half">
+                <div class="mod-half-header">已安装</div>
+                <div class="mod-half-content" id="zombieInstalled"></div>
             </div>
         </div>
     </div>
 
-    <!-- 可解压 ZIP -->
-    <div class="zips-panel">
-        <div class="panel">
-            <h3>📦 可解压 ZIP</h3>
-            <div class="zips-content" id="zipList"></div>
+    <!-- 第八行：皮肤 -->
+    <div class="mod-section">
+        <div class="mod-section-title">🎨 皮肤</div>
+        <div class="mod-split">
+            <div class="mod-half">
+                <div class="mod-half-header">未安装</div>
+                <div class="mod-half-content" id="skinNotInstalled"></div>
+            </div>
+            <div class="mod-half">
+                <div class="mod-half-header">已安装</div>
+                <div class="mod-half-content" id="skinInstalled"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第九行：在线 MOD -->
+    <div class="mod-section">
+        <div class="mod-section-title">🌐 在线 MOD</div>
+        <div style="padding: 16px; text-align: center; color: #999;">
+            <button class="btn-disabled" disabled title="功能开发中">在线 MOD（功能开发中）</button>
         </div>
     </div>
 </div>
 
 <script>
-    const locks = new WeakMap();
-    let allData = {
-        plantInstalled: [],
-        plantAvailable: [],
-        zombieInstalled: [],
-        zombieAvailable: [],
-        skinInstalled: [],
-        skinAvailable: []
-    };
+    let currentConfig = null;
     let currentKeyword = '';
+    let allModData = {
+        plantMods: {installed: [], not_installed: []},
+        zombieMods: {installed: [], not_installed: []},
+        skins: {installed: [], not_installed: []}
+    };
 
     // 页面初始化
     window.addEventListener('DOMContentLoaded', () => {
+        loadConfig();
+    });
+
+    // 加载配置
+    function loadConfig() {
         fetch('/api/config')
             .then(res => res.json())
             .then(cfg => {
-                if (cfg.game_path) document.getElementById('gamePath').value = cfg.game_path;
-                if (cfg.modlib_path) document.getElementById('modLibPath').value = cfg.modlib_path;
-                if (cfg.download_path) document.getElementById('downloadPath').value = cfg.download_path;
-                if (cfg.game_path) checkBepInExAndLoadAll();
+                currentConfig = cfg;
+                updateGamePathSelect(cfg.game_paths || []);
+                updateModPathSelect(cfg.mod_paths || []);
+                updateVersionSelect(cfg.versions || []);
+
+                if (cfg.current_game) {
+                    document.getElementById('gamePathSelect').value = cfg.current_game;
+                    checkBepInEx();
+                    loadMods();
+                }
+                if (cfg.current_version) {
+                    document.getElementById('versionSelect').value = cfg.current_version;
+                }
+                if (cfg.current_modlib) {
+                    document.getElementById('modPathSelect').value = cfg.current_modlib;
+                }
             })
             .catch(err => console.error('加载配置失败:', err));
-        loadGameVersions();
-    });
+    }
 
-    function selectFolder(type) {
-        const btnId = type === 'game' ? 'selectGameBtn' : 'selectDownloadBtn';
-        const btn = document.getElementById(btnId);
-        if (locks.get(btn)) return;
-        locks.set(btn, true);
-        btn.disabled = true;
-        btn.textContent = '...';
-        fetch(`/api/select-${type}`)
+    // 更新游戏目录下拉框
+    function updateGamePathSelect(paths) {
+        const select = document.getElementById('gamePathSelect');
+        select.innerHTML = '<option value="">请选择...</option>';
+        paths.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p.path;
+            opt.textContent = `${p.path} (${p.version || '未知版本'})`;
+            select.appendChild(opt);
+        });
+    }
+
+    // 更新 MOD 目录下拉框
+    function updateModPathSelect(paths) {
+        const select = document.getElementById('modPathSelect');
+        select.innerHTML = '<option value="">请选择...</option>';
+        paths.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p;
+            opt.textContent = p;
+            select.appendChild(opt);
+        });
+    }
+
+    // 更新版本下拉框
+    function updateVersionSelect(versions) {
+        const select = document.getElementById('versionSelect');
+        select.innerHTML = '<option value="">请选择...</option>';
+        versions.forEach(v => {
+            const opt = document.createElement('option');
+            opt.value = v;
+            opt.textContent = v;
+            select.appendChild(opt);
+        });
+    }
+
+    // 游戏目录切换
+    function onGamePathChange() {
+        const path = document.getElementById('gamePathSelect').value;
+        if (!path) return;
+
+        fetch('/api/switch-game', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({path: path})
+        })
             .then(res => res.json())
             .then(data => {
-                if (data && data.path) {
-                    if (type === 'game') {
-                        document.getElementById('gamePath').value = data.path;
-                        checkBepInExAndLoadAll();
-                    } else {
-                        document.getElementById('downloadPath').value = data.path;
-                    }
+                if (data.error) {
+                    alert('切换失败: ' + data.error);
+                } else {
+                    checkBepInEx();
+                    loadMods();
                 }
             })
-            .catch(err => alert('选择失败: ' + err.message))
-            .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '选择'; });
+            .catch(err => alert('切换失败: ' + err.message));
     }
 
-    function checkBepInExOnly() {
+    // 版本切换
+    function onVersionChange() {
+        const version = document.getElementById('versionSelect').value;
+        if (!version) return;
+
+        fetch('/api/switch-version', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({version: version})
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert('切换失败: ' + data.error);
+                } else {
+                    document.getElementById('gamePathSelect').value = data.game_path;
+                    checkBepInEx();
+                    loadMods();
+                }
+            })
+            .catch(err => alert('切换失败: ' + err.message));
+    }
+
+    // MOD 目录切换
+    function onModPathChange() {
+        fetch('/api/add-mod-path', {method: 'POST'})
+            .then(res => res.json())
+            .then(data => {
+                if (data.path) {
+                    loadConfig();
+                }
+            })
+            .catch(err => alert('添加失败: ' + err.message));
+    }
+
+    // 添加游戏目录
+    function addGamePath() {
+        fetch('/api/add-game-path', {method: 'POST'})
+            .then(res => res.json())
+            .then(data => {
+                if (data.path) {
+                    loadConfig();
+                }
+            })
+            .catch(err => alert('添加失败: ' + err.message));
+    }
+
+    // 添加 MOD 目录
+    function addModPath() {
+        fetch('/api/add-mod-path', {method: 'POST'})
+            .then(res => res.json())
+            .then(data => {
+                if (data.path) {
+                    loadConfig();
+                }
+            })
+            .catch(err => alert('添加失败: ' + err.message));
+    }
+
+    // 检查 BepInEx 状态
+    function checkBepInEx() {
         fetch('/api/check-bepinex')
             .then(res => res.json())
             .then(data => {
-                const el = document.getElementById('bepStatus');
+                const statusEl = document.getElementById('bepStatus');
                 const installBtn = document.getElementById('installBepBtn');
                 const removeBtn = document.getElementById('removeBepBtn');
+
                 if (data.installed) {
-                    el.textContent = 'BepInEx: ✅ 已安装';
+                    statusEl.textContent = '已安装';
+                    statusEl.className = 'status-tag status-installed';
                     installBtn.style.display = 'none';
                     removeBtn.style.display = 'inline-block';
                 } else {
-                    el.textContent = 'BepInEx: ⚠️ 未安装';
+                    statusEl.textContent = '未安装';
+                    statusEl.className = 'status-tag status-not-installed';
                     installBtn.style.display = 'inline-block';
                     removeBtn.style.display = 'none';
                 }
-            });
+            })
+            .catch(err => console.error('检查 BepInEx 失败:', err));
     }
 
-    function checkBepInExAndLoadAll() {
-        const gamePath = document.getElementById('gamePath').value;
-        if (!gamePath) return;
-        fetch('/api/check-bepinex')
-            .then(res => res.json())
-            .then(data => {
-                const el = document.getElementById('bepStatus');
-                const installBtn = document.getElementById('installBepBtn');
-                const removeBtn = document.getElementById('removeBepBtn');
-                if (data.installed) {
-                    el.textContent = 'BepInEx: ✅ 已安装';
-                    installBtn.style.display = 'none';
-                    removeBtn.style.display = 'inline-block';
-                } else {
-                    el.textContent = 'BepInEx: ⚠️ 未安装';
-                    installBtn.style.display = 'inline-block';
-                    removeBtn.style.display = 'none';
-                }
-                if (gamePath) { loadMods(); loadSkins(); loadTrainers(); loadOnlineModsIfVersionSelected(); }
-            });
-    }
-
+    // 安装 BepInEx
     function installBepInEx() {
+        if (!confirm('确定要安装 BepInEx 吗？')) return;
+
         const btn = document.getElementById('installBepBtn');
-        if (locks.get(btn)) return;
-        locks.set(btn, true);
         btn.disabled = true;
         btn.textContent = '安装中...';
-        fetch('/api/install-bepinex', { method: 'POST' })
+
+        fetch('/api/install-bepinex', {method: 'POST'})
             .then(res => res.json())
             .then(data => {
-                if (data.error) alert(data.error);
-                else { alert('BepInEx 安装完成！'); checkBepInExAndLoadAll(); }
+                if (data.error) {
+                    alert('安装失败: ' + data.error);
+                } else {
+                    alert('BepInEx 安装完成！');
+                    checkBepInEx();
+                    loadMods();
+                }
             })
-            .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '安装 BepInEx'; });
+            .catch(err => alert('安装失败: ' + err.message))
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = '安装 BepInEx';
+            });
     }
 
+    // 卸载 BepInEx
     function removeBepInEx() {
-        if (!confirm('确定要移除 BepInEx 吗？\n这将删除 BepInEx 相关文件，但保留游戏原始文件。')) return;
+        if (!confirm('确定要卸载 BepInEx 吗？\n这将删除 BepInEx 相关文件，但保留游戏原始文件。')) return;
+
         const btn = document.getElementById('removeBepBtn');
-        if (locks.get(btn)) return;
-        locks.set(btn, true);
         btn.disabled = true;
-        btn.textContent = '移除中...';
-        fetch('/api/remove-bepinex', { method: 'POST' })
+        btn.textContent = '卸载中...';
+
+        fetch('/api/remove-bepinex', {method: 'POST'})
             .then(res => res.json())
             .then(data => {
-                if (data.error) alert('移除失败: ' + data.error);
-                else { alert('BepInEx 已移除！'); checkBepInExAndLoadAll(); }
+                if (data.error) {
+                    alert('卸载失败: ' + data.error);
+                } else {
+                    alert('BepInEx 已卸载！');
+                    checkBepInEx();
+                    loadMods();
+                }
             })
-            .catch(err => alert('请求失败: ' + err.message))
-            .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '移除 BepInEx'; });
+            .catch(err => alert('卸载失败: ' + err.message))
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = '卸载 BepInEx';
+            });
     }
 
-    function refreshMods() {
-        if (!document.getElementById('gamePath').value) {
-            alert('请先选择游戏目录'); return;
+    // 打开目录
+    function openFolder(type) {
+        if (type === 'installed') {
+            // 打开已安装MOD目录前，先检查 BepInEx 是否已安装
+            fetch('/api/check-bepinex')
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.installed) {
+                        alert('BepInEx 未安装，无法打开已安装MOD目录。\n请先安装 BepInEx。');
+                        return;
+                    }
+                    doOpenFolder(type);
+                })
+                .catch(err => alert('检查 BepInEx 失败: ' + err.message));
+            return;
         }
-        loadMods(); loadSkins(); loadTrainers(); loadOnlineModsIfVersionSelected();
+        doOpenFolder(type);
     }
 
-    // ---------- 批量操作 ----------
-    function formatAll() {
-        if (!confirm('确定要格式化所有未安装的 Mod 文件夹吗？')) return;
-        fetch('/api/format-all', { method: 'POST' })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) alert('格式化失败: ' + data.error);
-                else { alert('全部格式化完成！'); loadMods(); }
-            })
-            .catch(err => alert('请求失败: ' + err.message));
+    function doOpenFolder(type) {
+        fetch(`/api/open-folder`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({type: type})
+        })
+            .catch(err => alert('打开目录失败: ' + err.message));
     }
 
-    function unzipAll() {
-        if (!confirm('确定要解压所有 ZIP 文件吗？')) return;
-        fetch('/api/unzip-all', { method: 'POST' })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) alert('解压失败: ' + data.error);
-                else { alert('全部解压完成！'); loadMods(); }
-            })
-            .catch(err => alert('请求失败: ' + err.message));
+    // 刷新所有列表
+    function refreshAll() {
+        loadConfig();
+        loadMods();
     }
 
-    function deployAll() {
-        if (!confirm('确定要重新部署所有已启用的 Mod 吗？\n这将清空 plugins 目录并重新复制所有已启用的 Mod。')) return;
-        const btn = document.getElementById('deployAllBtn');
-        if (locks.get(btn)) return;
-        locks.set(btn, true);
-        btn.disabled = true;
-        btn.textContent = '部署中...';
-        fetch('/api/deploy-all', { method: 'POST' })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) alert('部署失败: ' + data.error);
-                else { alert('部署完成！'); loadMods(); }
-            })
-            .catch(err => alert('请求失败: ' + err.message))
-            .finally(() => { locks.set(btn, false); btn.disabled = false; btn.textContent = '重新部署'; });
-    }
-
-    // ---------- Mod 列表 ----------
-    function loadMods() {
-        fetch('/api/mods')
-            .then(res => res.json())
-            .then(data => {
-                allData.plantInstalled = data.installed_plant || [];
-                allData.plantAvailable = data.not_installed_plant || [];
-                allData.zombieInstalled = data.installed_zombie || [];
-                allData.zombieAvailable = data.not_installed_zombie || [];
-                renderZips(data.zips);
-                applyFilter();
-            })
-            .catch(err => console.error(err));
-    }
-
-    function loadSkins() {
-        fetch('/api/skins')
-            .then(res => res.json())
-            .then(data => {
-                allData.skinInstalled = (data.installed || []).map(name => ({chinese_name: name, dll_names: []}));
-                allData.skinAvailable = (data.not_installed || []).map(name => ({name: name, dll_names: [], needs_format: false}));
-                applyFilter();
-            })
-            .catch(err => console.error(err));
-    }
-
-    function loadTrainers() {
-        fetch('/api/trainers')
-            .then(res => res.json())
-            .then(data => renderTrainers(data.trainers))
-            .catch(err => console.error(err));
-    }
-
-    // 过滤并渲染所有
-    function applyFilter() {
-        const keyword = currentKeyword.trim().toLowerCase();
-        const match = (text) => text && text.toLowerCase().includes(keyword);
-
-        renderAvailableMods(allData.plantAvailable.filter(m => match(m.name)), 'plantAvailable');
-        renderInstalledMods(allData.plantInstalled.filter(m => match(m.chinese_name)), 'plantInstalled');
-        renderAvailableMods(allData.zombieAvailable.filter(m => match(m.name)), 'zombieAvailable');
-        renderInstalledMods(allData.zombieInstalled.filter(m => match(m.chinese_name)), 'zombieInstalled');
-        renderSkinList('skinAvailable', allData.skinAvailable.filter(m => match(m.name)), true);
-        renderSkinList('skinInstalled', allData.skinInstalled.filter(m => match(m.chinese_name)), false);
-    }
-
+    // 搜索
     function onSearch() {
         currentKeyword = document.getElementById('searchInput').value;
-        applyFilter();
+        renderAllMods();
     }
 
     function clearSearch() {
         document.getElementById('searchInput').value = '';
         currentKeyword = '';
-        applyFilter();
+        renderAllMods();
     }
 
-    function renderAvailableMods(mods, containerId) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        if (!mods || mods.length === 0) {
-            container.innerHTML = '<div class="mod-item status">无</div>'; return;
-        }
-        mods.forEach(m => {
-            const div = document.createElement('div');
-            div.className = 'mod-item';
-            const dllList = m.dll_names.join(', ');
-            div.innerHTML = `<span title="${escapeHtml(m.name)}">${escapeHtml(m.name)} <small>(${escapeHtml(dllList)})</small></span>`;
-            const btnGroup = document.createElement('div');
-            btnGroup.className = 'btn-group';
-
-            const installBtn = document.createElement('button');
-            installBtn.textContent = '安装并启用';
-            installBtn.className = 'install-btn';
-            installBtn.onclick = () => enableMod(m.name);
-            btnGroup.appendChild(installBtn);
-
-            if (m.needs_format) {
-                const formatBtn = document.createElement('button');
-                formatBtn.textContent = '格式化';
-                formatBtn.className = 'format-btn';
-                formatBtn.onclick = () => formatMod(m.name);
-                btnGroup.appendChild(formatBtn);
-            }
-
-            div.appendChild(btnGroup);
-            container.appendChild(div);
-        });
-    }
-
-    function renderInstalledMods(mods, containerId) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        if (!mods || mods.length === 0) {
-            container.innerHTML = '<div class="mod-item status">无</div>'; return;
-        }
-        mods.forEach(m => {
-            const div = document.createElement('div');
-            const isEnabled = m.enabled !== false; // 默认启用
-            div.className = 'mod-item' + (isEnabled ? '' : ' disabled');
-            const dllList = m.dll_names.join(', ');
-            const statusIcon = isEnabled ? '✅' : '⏸️';
-            div.innerHTML = `<span title="${escapeHtml(m.chinese_name)}">${statusIcon} ${escapeHtml(m.chinese_name)} <small>(${escapeHtml(dllList)})</small></span>`;
-            const btnGroup = document.createElement('div');
-            btnGroup.className = 'btn-group';
-
-            if (isEnabled) {
-                const disableBtn = document.createElement('button');
-                disableBtn.textContent = '禁用';
-                disableBtn.className = 'disable-btn';
-                disableBtn.onclick = () => disableMod(m.chinese_name);
-                btnGroup.appendChild(disableBtn);
-            } else {
-                const enableBtn = document.createElement('button');
-                enableBtn.textContent = '启用';
-                enableBtn.className = 'enable-btn';
-                enableBtn.onclick = () => enableMod(m.chinese_name);
-                btnGroup.appendChild(enableBtn);
-            }
-
-            const uninstallBtn = document.createElement('button');
-            uninstallBtn.textContent = '卸载';
-            uninstallBtn.className = 'uninstall-btn';
-            uninstallBtn.onclick = () => modAction('uninstall', m.chinese_name);
-            btnGroup.appendChild(uninstallBtn);
-
-            div.appendChild(btnGroup);
-            container.appendChild(div);
-        });
-    }
-
-    function renderSkinList(containerId, skins, isInstall) {
-        const container = document.getElementById(containerId);
-        container.innerHTML = '';
-        if (!skins || skins.length === 0) {
-            container.innerHTML = '<div class="mod-item status">无</div>'; return;
-        }
-        skins.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'mod-item';
-            const displayName = isInstall ? item.name : item.chinese_name;
-            div.innerHTML = `<span title="${escapeHtml(displayName)}">${escapeHtml(displayName)}</span>`;
-            const btn = document.createElement('button');
-            if (isInstall) {
-                btn.textContent = '安装';
-                btn.className = 'install-btn';
-                btn.onclick = () => skinAction('install', item.name);
-            } else {
-                btn.textContent = '卸载';
-                btn.className = 'uninstall-btn';
-                btn.onclick = () => skinAction('uninstall', item.chinese_name);
-            }
-            div.appendChild(btn);
-            container.appendChild(div);
-        });
-    }
-
-    function renderTrainers(trainers) {
-        const container = document.getElementById('trainerList');
-        container.innerHTML = '';
-        if (!trainers || trainers.length === 0) {
-            container.innerHTML = '<div class="mod-item status">无</div>'; return;
-        }
-        trainers.forEach(t => {
-            const div = document.createElement('div');
-            div.className = 'mod-item';
-            div.innerHTML = `<span>${escapeHtml(t.Name)}</span>`;
-            const btn = document.createElement('button');
-            btn.textContent = '安装';
-            btn.className = 'install-btn';
-            btn.onclick = () => installTrainer(t.Name);
-            div.appendChild(btn);
-            container.appendChild(div);
-        });
-    }
-
-    function renderZips(zips) {
-        const container = document.getElementById('zipList');
-        container.innerHTML = '';
-        if (!zips || zips.length === 0) {
-            container.innerHTML = '<div class="mod-item status">无</div>'; return;
-        }
-        zips.forEach(z => {
-            const div = document.createElement('div');
-            div.className = 'mod-item';
-            div.innerHTML = `<span>${escapeHtml(z.name)}.zip</span>`;
-            const btn = document.createElement('button');
-            btn.textContent = '解压';
-            btn.className = 'unzip-btn';
-            btn.onclick = () => unzipMod(z.name);
-            div.appendChild(btn);
-            container.appendChild(div);
-        });
-    }
-
-    // ---------- Mod 状态管理 ----------
-    function enableMod(name) {
-        fetch('/api/enable-mod', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
+    // 加载 MOD 列表
+    function loadMods() {
+        fetch('/api/mods')
             .then(res => res.json())
             .then(data => {
-                if (data.error) alert('启用失败: ' + data.error);
-                else loadMods();
+                allModData = {
+                    plantMods: data.plant_mods || {installed: [], not_installed: []},
+                    zombieMods: data.zombie_mods || {installed: [], not_installed: []},
+                    skins: data.skins || {installed: [], not_installed: []}
+                };
+                renderAllMods();
             })
-            .catch(err => alert('操作失败: ' + err.message));
+            .catch(err => console.error('加载 MOD 列表失败:', err));
     }
 
-    function disableMod(name) {
-        fetch('/api/disable-mod', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.error) alert('禁用失败: ' + data.error);
-                else loadMods();
-            })
-            .catch(err => alert('操作失败: ' + err.message));
+    // 渲染所有 MOD 列表
+    function renderAllMods() {
+        const keyword = currentKeyword.trim().toLowerCase();
+        const match = (text) => !keyword || (text && text.toLowerCase().includes(keyword));
+
+        renderModList('plantNotInstalled', allModData.plantMods.not_installed.filter(m => match(m.name)), false);
+        renderModList('plantInstalled', allModData.plantMods.installed.filter(m => match(m.chinese_name)), true);
+        renderModList('zombieNotInstalled', allModData.zombieMods.not_installed.filter(m => match(m.name)), false);
+        renderModList('zombieInstalled', allModData.zombieMods.installed.filter(m => match(m.chinese_name)), true);
+        renderModList('skinNotInstalled', allModData.skins.not_installed.filter(m => match(m.name)), false);
+        renderModList('skinInstalled', allModData.skins.installed.filter(m => match(m.chinese_name)), true);
     }
 
-    function modAction(action, name) {
-        fetch(`/api/${action}-mod`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
-            .then(res => res.json())
-            .then(data => { if (data.error) alert(data.error); else loadMods(); })
-            .catch(err => alert('操作失败: ' + err.message));
-    }
-
-    function skinAction(action, name) {
-        fetch(`/api/${action}-skin`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
-            .then(res => res.json())
-            .then(data => { if (data.error) alert(data.error); else loadSkins(); })
-            .catch(err => alert('操作失败: ' + err.message));
-    }
-
-    function unzipMod(name) {
-        fetch('/api/unzip-mod', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
-            .then(res => res.json())
-            .then(data => { if (data.error) alert(data.error); else { alert('解压完成！'); loadMods(); } })
-            .catch(err => alert('请求失败: ' + err.message));
-    }
-
-    function formatMod(name) {
-        fetch('/api/format-mod', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
-            .then(res => res.json())
-            .then(data => { if (data.error) alert('格式化失败: ' + data.error); else { alert('格式化完成！'); loadMods(); } })
-            .catch(err => alert('请求失败: ' + err.message));
-    }
-
-    function installTrainer(name) {
-        fetch('/api/install-trainer', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: name })
-        })
-            .then(res => res.json())
-            .then(data => { if (data.error) alert('安装失败: ' + data.error); else alert('修改器安装完成！'); })
-            .catch(err => alert('请求失败: ' + err.message));
-    }
-
-    // ---------- 在线 Mod ----------
-    function loadGameVersions() {
-        fetch('/api/game-versions')
-            .then(res => res.json())
-            .then(data => {
-                const select = document.getElementById('gameVersionSelect');
-                const current = select.value;
-                select.innerHTML = '<option value="">请选择...</option>';
-                (data.versions || []).forEach(v => {
-                    const opt = document.createElement('option');
-                    opt.value = v; opt.textContent = v;
-                    select.appendChild(opt);
-                });
-                if (current) select.value = current;
-                if (select.value) loadOnlineMods(select.value);
-                else document.getElementById('onlineModList').innerHTML = '<div class="mod-item status">请选择游戏版本</div>';
-            })
-            .catch(err => console.error(err));
-    }
-
-    function onGameVersionChange() {
-        const ver = document.getElementById('gameVersionSelect').value;
-        if (ver) loadOnlineMods(ver);
-        else document.getElementById('onlineModList').innerHTML = '<div class="mod-item status">请选择游戏版本</div>';
-    }
-
-    function loadOnlineModsIfVersionSelected() {
-        const ver = document.getElementById('gameVersionSelect').value;
-        if (ver) loadOnlineMods(ver);
-    }
-
-    function loadOnlineMods(ver) {
-        fetch(`/api/online-mods?ver=${encodeURIComponent(ver)}`)
-            .then(res => res.json())
-            .then(data => renderOnlineMods(data.mods))
-            .catch(err => {
-                console.error(err);
-                document.getElementById('onlineModList').innerHTML = '<div class="mod-item status">加载失败</div>';
-            });
-    }
-
-    function renderOnlineMods(mods) {
-        const container = document.getElementById('onlineModList');
+    // 渲染 MOD 列表
+    function renderModList(containerId, mods, isInstalled) {
+        const container = document.getElementById(containerId);
         container.innerHTML = '';
+
         if (!mods || mods.length === 0) {
-            container.innerHTML = '<div class="mod-item status">无在线 Mod</div>'; return;
+            container.innerHTML = '<div class="mod-item"><span class="mod-name" style="color:#999;">无</span></div>';
+            return;
         }
+
         mods.forEach(mod => {
             const div = document.createElement('div');
             div.className = 'mod-item';
-            div.innerHTML = `<span>${escapeHtml(mod.name_cn)} (${escapeHtml(mod.file_name)}) <small>作者:${escapeHtml(mod.author)} 版本:${escapeHtml(mod.game_ver)}</small></span>`;
-            const btn = document.createElement('button');
-            btn.textContent = '下载';
-            btn.className = 'install-btn';
-            btn.onclick = () => downloadMod(mod);
-            div.appendChild(btn);
+
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'mod-name';
+
+            if (isInstalled) {
+                const statusIcon = mod.enabled !== false ? '✅' : '⏸️';
+                nameSpan.textContent = `${statusIcon} ${mod.chinese_name}`;
+                if (mod.dll_names && mod.dll_names.length > 0) {
+                    const small = document.createElement('small');
+                    small.textContent = ` (${mod.dll_names.join(', ')})`;
+                    nameSpan.appendChild(small);
+                }
+            } else {
+                nameSpan.textContent = mod.name;
+                if (mod.dll_names && mod.dll_names.length > 0) {
+                    const small = document.createElement('small');
+                    small.textContent = ` (${mod.dll_names.join(', ')})`;
+                    nameSpan.appendChild(small);
+                }
+            }
+
+            div.appendChild(nameSpan);
+
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'mod-actions';
+
+            if (isInstalled) {
+                // 已安装：显示移除按钮
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = '移除';
+                removeBtn.className = 'btn-danger';
+                removeBtn.style.padding = '4px 8px';
+                removeBtn.style.fontSize = '12px';
+                removeBtn.onclick = () => removeMod(mod.chinese_name);
+                actionsDiv.appendChild(removeBtn);
+            } else {
+                // 未安装：显示安装按钮
+                const installBtn = document.createElement('button');
+                installBtn.textContent = '安装';
+                installBtn.className = 'btn-success';
+                installBtn.style.padding = '4px 8px';
+                installBtn.style.fontSize = '12px';
+                installBtn.onclick = () => installMod(mod.name);
+                actionsDiv.appendChild(installBtn);
+            }
+
+            div.appendChild(actionsDiv);
             container.appendChild(div);
         });
     }
 
-    function downloadMod(mod) {
-        fetch('/api/download-mod', {
+    // 安装 MOD
+    function installMod(name) {
+        fetch('/api/install-mod', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(mod)
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: name})
         })
             .then(res => res.json())
             .then(data => {
-                if (data.error) alert('下载失败: ' + data.error);
-                else { alert('下载成功！'); loadMods(); }
+                if (data.error) {
+                    alert('安装失败: ' + data.error);
+                } else {
+                    loadMods();
+                }
             })
-            .catch(err => alert('请求失败: ' + err.message));
+            .catch(err => alert('安装失败: ' + err.message));
     }
 
-    function refreshVersions() {
-        loadGameVersions();
-    }
+    // 移除 MOD
+    function removeMod(name) {
+        if (!confirm(`确定要移除 "${name}" 吗？`)) return;
 
-    function escapeHtml(text) {
-        const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-        return String(text).replace(/[&<>"']/g, m => map[m]);
+        fetch('/api/remove-mod-by-name', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: name})
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert('移除失败: ' + data.error);
+                } else {
+                    loadMods();
+                }
+            })
+            .catch(err => alert('移除失败: ' + err.message));
     }
 </script>
 </body>
