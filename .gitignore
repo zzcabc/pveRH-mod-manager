@@ -1,6 +1,10 @@
-HELP.md
-logs/
+# Build output
+pveRH-mod-manager.exe
+config.json
+
+# IDE
 .idea/
+logs/
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

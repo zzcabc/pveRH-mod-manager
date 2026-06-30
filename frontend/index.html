@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PvZRH Mod Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>🌻 植物大战僵尸融合版 Mod 管理器</h1>
+
+  <!-- 第1行：游戏目录 + 版本 -->
+  <div class="row">
+    <div class="field">
+      <label>游戏目录</label>
+      <select id="gamePath" onchange="onGamePathChange()"></select>
+      <button onclick="addGamePath()">+</button>
+    </div>
+    <div class="field">
+      <label>版本</label>
+      <select id="version" onchange="onVersionChange()"></select>
+    </div>
+  </div>
+
+  <!-- 第2行：MOD目录 + 服务器 -->
+  <div class="row">
+    <div class="field grow">
+      <label>MOD 目录</label>
+      <select id="modPath" onchange="onModPathChange()"></select>
+      <button onclick="addModPath()">+</button>
+    </div>
+    <div class="field grow">
+      <label>服务器地址</label>
+      <input type="text" id="serverUrl" onchange="onServerUrlChange()">
+    </div>
+  </div>
+
+  <!-- 第3行：BepInEx -->
+  <div class="row">
+    <div class="field">
+      <label>BepInEx 状态</label>
+      <span id="bepinexStatus" class="status">检测中...</span>
+    </div>
+    <div class="field">
+      <button id="btnBepInEx" onclick="toggleBepInEx()">安装 BepInEx</button>
+    </div>
+  </div>
+
+  <!-- 第4行：修改器 -->
+  <div class="row">
+    <div class="field">
+      <button onclick="installModifier()">安装高数修改器</button>
+      <span id="modifierStatus"></span>
+    </div>
+  </div>
+
+  <!-- 第5行：打开目录 + 作者筛选 -->
+  <div class="row">
+    <button onclick="openDir(currentGamePath())">打开游戏目录</button>
+    <button onclick="openDir(currentModPath())">打开 MOD 目录</button>
+    <button onclick="openDir(currentGamePath() + '\\BepInEx\\plugins')">打开已安装目录</button>
+    <span style="flex:1"></span>
+    <div class="field">
+      <label>作者</label>
+      <select id="authorFilter" onchange="refreshMods()">
+        <option value="">全部作者</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 第6行：植物MOD -->
+  <div class="section">
+    <h2>🌱 植物 MOD</h2>
+    <div class="mod-row">
+      <div class="mod-col">
+        <h3>未安装 (<span id="plantUninstalledCount">0</span>)</h3>
+        <ul id="plantUninstalled" class="mod-list"></ul>
+      </div>
+      <div class="mod-col">
+        <h3>已安装 (<span id="plantInstalledCount">0</span>)</h3>
+        <ul id="plantInstalled" class="mod-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第7行：僵尸MOD -->
+  <div class="section">
+    <h2>🧟 僵尸 MOD</h2>
+    <div class="mod-row">
+      <div class="mod-col">
+        <h3>未安装 (<span id="zombieUninstalledCount">0</span>)</h3>
+        <ul id="zombieUninstalled" class="mod-list"></ul>
+      </div>
+      <div class="mod-col">
+        <h3>已安装 (<span id="zombieInstalledCount">0</span>)</h3>
+        <ul id="zombieInstalled" class="mod-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第9行：在线MOD -->
+  <div class="section">
+    <h2>🌐 在线 MOD</h2>
+    <div class="row">
+      <select id="onlineVer" onchange="fetchOnlineMods()"></select>
+      <select id="onlineAuthor" onchange="fetchOnlineMods()">
+        <option value="">全部作者</option>
+      </select>
+      <select id="onlineType" onchange="fetchOnlineMods()">
+        <option value="">全部类型</option>
+        <option value="植物MOD">植物MOD</option>
+        <option value="僵尸MOD">僵尸MOD</option>
+      </select>
+    </div>
+    <ul id="onlineModList" class="mod-list"></ul>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
