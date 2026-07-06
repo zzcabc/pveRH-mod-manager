@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -9,6 +10,9 @@ import (
 	"sort"
 	"strings"
 )
+
+//go:embed gamefile.json
+var embeddedGameFile embed.FS
 
 // ===== 数据结构 =====
 
@@ -108,23 +112,36 @@ func createDefaultConfig(path string) (*Config, error) {
 	return cfg, nil
 }
 
-// LoadGameFileManifest 读取项目内置的 gamefile.json
+// LoadGameFileManifest 读取 gamefile.json
+// 优先从程序目录的磁盘文件读取（允许用户覆盖），其次从嵌入的文件读取
 func LoadGameFileManifest() (*GameFileManifest, error) {
-	// 优先从程序目录读取
-	path := filepath.Join(exeDir(), gamefileFileName)
-	if !FileExists(path) {
-		// 开发时从当前目录读取
-		path = gamefileFileName
-		if !FileExists(path) {
-			return nil, fmt.Errorf("未找到 %s 文件", gamefileFileName)
+	var data []byte
+	var err error
+
+	// 1. 优先读取程序目录中的磁盘文件（允许用户自定义覆盖）
+	diskPath := filepath.Join(exeDir(), gamefileFileName)
+	if FileExists(diskPath) {
+		data, err = os.ReadFile(diskPath)
+		if err == nil {
+			goto parse
 		}
 	}
 
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, fmt.Errorf("读取 %s 失败: %w", gamefileFileName, err)
+	// 2. 尝试当前工作目录（开发场景）
+	if FileExists(gamefileFileName) {
+		data, err = os.ReadFile(gamefileFileName)
+		if err == nil {
+			goto parse
+		}
 	}
 
+	// 3. 从嵌入的文件读取（保证打包后始终可用）
+	data, err = embeddedGameFile.ReadFile(gamefileFileName)
+	if err != nil {
+		return nil, fmt.Errorf("未找到 %s 文件（磁盘和嵌入均缺失）", gamefileFileName)
+	}
+
+parse:
 	var manifest GameFileManifest
 	if err := json.Unmarshal(data, &manifest); err != nil {
 		return nil, fmt.Errorf("解析 %s 失败: %w", gamefileFileName, err)

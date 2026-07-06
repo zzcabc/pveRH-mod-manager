@@ -8,6 +8,9 @@ let localPlantMods = [];
 let localZombieMods = [];
 let installedMods = [];
 let onlineMods = [];
+// 渲染后的过滤列表，用于按 data-idx 查找（与显示顺序一致）
+let renderedPlantUninstalled = [];
+let renderedZombieUninstalled = [];
 
 // ===== 初始化 =====
 async function init() {
@@ -223,10 +226,10 @@ async function refreshMods() {
     });
   }
 
-  renderLocalModList('plantUninstalled', 'plantUninstalledCount',
-    filterMods(localPlantMods.filter(m => !isInstalled(m))));
-  renderLocalModList('zombieUninstalled', 'zombieUninstalledCount',
-    filterMods(localZombieMods.filter(m => !isInstalled(m))));
+  renderedPlantUninstalled = filterMods(localPlantMods.filter(m => !isInstalled(m)));
+  renderedZombieUninstalled = filterMods(localZombieMods.filter(m => !isInstalled(m)));
+  renderLocalModList('plantUninstalled', 'plantUninstalledCount', renderedPlantUninstalled);
+  renderLocalModList('zombieUninstalled', 'zombieUninstalledCount', renderedZombieUninstalled);
 
   // 已安装列表
   renderInstalledModList('plantInstalled', 'plantInstalledCount',
@@ -335,9 +338,9 @@ async function installLocalMod(idx) {
   const gp = currentGamePath();
   if (!gp) return alert('请先选择游戏目录');
 
-  const item = localPlantMods[idx] !== undefined
-    ? localPlantMods[idx]
-    : localZombieMods[idx];
+  const item = renderedPlantUninstalled[idx] !== undefined
+    ? renderedPlantUninstalled[idx]
+    : renderedZombieUninstalled[idx];
   if (!item) return alert('MOD 数据不存在');
 
   try {
